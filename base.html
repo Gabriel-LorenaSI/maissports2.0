@@ -39,10 +39,6 @@
     .slide        { display: none;  }
     .slide.active { display: block; }
     .hero-banner  { min-height: 420px; }
-
-    /* ── Mapas ── */
-    #mini-map-aside { height: 200px; }
-    #joga-map       { height: 340px; }
   </style>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -77,8 +73,9 @@
         <button id="btnMenu" class="md:hidden text-fg text-xl w-9 h-9 flex items-center justify-center rounded-lg hover:bg-surface transition-colors" aria-label="Abrir menu">☰</button>
       </div>
     </nav>
-
-    <div id="menuMobile" class="hidden md:hidden bg-surface border-b border-white/10 px-4 py-4 flex flex-col gap-3 text-sm font-medium">
+    
+    <!-- Tirei um "flex" da class dessa div como um teste, se algo bugar, lembrar de adicionar esse flex novamente -->
+    <div id="menuMobile" class="hidden md:hidden bg-surface border-b border-white/10 px-4 py-4 flex-col gap-3 text-sm font-medium">
       <a href="index.html"   class="text-fg hover:text-lime transition-colors">Home</a>
       <a href="#"            class="text-fg hover:text-lime transition-colors">Eventos</a>
       <a href="#"            class="text-fg hover:text-lime transition-colors">Joga Junto</a>
