@@ -3,78 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>+Sports — Nome da Página</title>
+  <title>+Sports — Home</title>
 
-  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="css/global.css" />
 
-  <!-- Fontes: Archivo Black (display) + JetBrains Mono (timer/mono) + Inter (corpo) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            zinc950:   '#0c0c0e',   /* fundo principal */
-            surface:   '#161618',   /* cards, sheets */
-            secondary: '#1f2024',   /* botões secundários, chips */
-            lime:      '#bef264',   /* CTA, live, destaque — usar com economia */
-            limeHover: '#d9f99d',
-            fg:        '#f3f3f3',   /* texto principal */
-            muted:     '#9ca39e',   /* labels, metadata */
-            /* border usa rgba direto: rgba(255,255,255,0.10) */
-          },
-          fontFamily: {
-            display: ['"Archivo Black"', 'sans-serif'],
-            body:    ['Inter', 'sans-serif'],
-            mono:    ['"JetBrains Mono"', 'monospace'],
-          },
-        }
-      }
-    }
-  </script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
 
   <style>
-    /* Glow lime — usar só em CTAs primários e pins ativos no hover */
-    .glow-lime    { box-shadow: 0 0 24px #bef264; }
-    .glow-lime-sm { box-shadow: 0 0 12px rgba(190,242,100,0.6); }
+    /* Slideshow */
+    .slide { display: none; }
+    .slide.active { display: block; }
 
-    /* Animação de pin live */
-    @keyframes pulse-lime {
-      0%, 100% { box-shadow: 0 0 0 0   rgba(190,242,100,0.7); }
-      50%       { box-shadow: 0 0 0 10px rgba(190,242,100,0);   }
-    }
-    .live-pin { animation: pulse-lime 2s infinite; }
+    /* Mapas */
+    #mini-map { height: 160px; }
+    #joga-map { height: 340px; }
+
+    /* Scrollbar oculta para filtros se necessário em mobile */
+    .no-scroll::-webkit-scrollbar { display: none; }
+    .no-scroll { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
 
 <body class="bg-zinc950 text-fg font-body antialiased">
 
-  <!-- ====================================================
-       NAV BAR
-       Sticky no topo, fundo semi-transparente com blur.
-       Hamburguer aparece em mobile, links e barra de busca
-       ficam visíveis a partir de md (768px).
-  ===================================================== -->
   <header class="sticky top-0 z-50 bg-zinc950/90 backdrop-blur border-b border-white/10">
     <nav class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
 
-      <!-- Logo -->
-      <a href="index.html" class="font-display text-lg text-fg tracking-tight flex items-center gap-1">
-        <span class="text-lime">+</span>Sports
+      <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity" aria-label="Ir para a página inicial do +Sports">
+        <img src="img/logo.svg" alt="+Sports" class="h-6 w-auto" />
       </a>
 
-      <!-- Links — visíveis apenas em desktop (md+) -->
       <div class="hidden md:flex items-center gap-6 text-sm font-medium text-muted">
-        <a href="index.html"   class="hover:text-lime transition-colors">Home</a>
-        <a href="#"            class="hover:text-lime transition-colors">Eventos</a>
-        <a href="#"            class="hover:text-lime transition-colors">Joga Junto</a>
+        <a href="index.html"   class="hover:text-lime transition-colors text-lime">Home</a>
+        <a href="#eventos"     class="hover:text-lime transition-colors">Eventos</a>
+        <a href="#joga-junto"  class="hover:text-lime transition-colors">Joga Junto</a>
       </div>
 
-      <!-- Direita: busca + botões + hamburguer -->
       <div class="flex items-center gap-2">
         <input
           type="text"
@@ -84,76 +54,275 @@
         <a href="login.html"    class="hidden md:block text-sm border border-white/20 text-fg px-3 py-1.5 rounded-lg hover:bg-surface transition-colors">Entrar</a>
         <a href="cadastro.html" class="hidden md:block text-sm bg-lime text-zinc-900 font-semibold px-3 py-1.5 rounded-lg hover:glow-lime-sm transition-all">Criar Conta</a>
 
-        <!-- Hamburguer (mobile) -->
         <button id="btnMenu" class="md:hidden text-fg text-xl w-9 h-9 flex items-center justify-center rounded-lg hover:bg-surface transition-colors" aria-label="Abrir menu">☰</button>
       </div>
     </nav>
 
-    <!-- Drawer mobile -->
     <div id="menuMobile" class="hidden md:hidden bg-surface border-b border-white/10 px-4 py-4 flex flex-col gap-3 text-sm font-medium">
-      <a href="index.html"   class="text-fg hover:text-lime transition-colors">Home</a>
-      <a href="#"            class="text-fg hover:text-lime transition-colors">Eventos</a>
-      <a href="#"            class="text-fg hover:text-lime transition-colors">Joga Junto</a>
+      <a href="index.html"   class="text-lime hover:text-lime transition-colors">Home</a>
+      <a href="#eventos"     class="text-fg hover:text-lime transition-colors">Eventos</a>
+      <a href="#joga-junto"  class="text-fg hover:text-lime transition-colors">Joga Junto</a>
       <hr class="border-white/10" />
       <a href="login.html"    class="text-muted hover:text-fg transition-colors">Login</a>
       <a href="cadastro.html" class="bg-lime text-zinc-900 font-semibold px-4 py-2 rounded-lg text-center">Criar Conta</a>
     </div>
   </header>
 
-  <!-- ====================================================
-       CONTEÚDO DA PÁGINA — coloque tudo aqui
-  ===================================================== -->
   <main class="max-w-7xl mx-auto px-4 py-8">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
 
-    <!-- Exemplo de uso das classes do design system:
+      <div class="lg:col-span-3 flex flex-col gap-12">
+        
+        <div class="relative rounded-2xl overflow-hidden bg-surface border border-white/10" style="min-height: 380px;">
+          <div class="slide active absolute inset-0">
+            <img src="img/eventos/CorridaGuerreiro.jpg" alt="Corrida do Guerreiro" class="w-full h-full object-cover opacity-60" />
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"></div>
+          </div>
+          <div class="slide absolute inset-0">
+            <img src="img/eventos/meiaRoyal.png" alt="Meia Maratona do Aço" class="w-full h-full object-cover opacity-60" />
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"></div>
+          </div>
+          <div class="slide absolute inset-0">
+            <img src="img/eventos/NutriDayRun.jpg" alt="Nutri Day Run" class="w-full h-full object-cover opacity-60" />
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"></div>
+          </div>
 
-    Título display:
-    <h1 class="font-display text-4xl text-fg">Título da Página</h1>
+          <div class="absolute bottom-0 left-0 right-0 p-6 z-10">
+            <span id="hero-badge" class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold border border-lime/40 text-lime px-2.5 py-1 rounded-md mb-3 bg-zinc950/50 backdrop-blur-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-lime live-pin"></span>
+              INSCRIÇÕES ABERTAS
+            </span>
 
-    Badge "live":
-    <span class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold border border-lime/40 text-lime px-2.5 py-1 rounded-md">
-      <span class="w-1.5 h-1.5 rounded-full bg-lime live-pin"></span>
-      AO VIVO
-    </span>
+            <h1 id="hero-title" class="font-display text-3xl md:text-4xl text-fg leading-tight mb-1">Corrida do Guerreiro</h1>
+            <p id="hero-sub" class="text-sm text-muted mb-6">21 de Abril · Volta Redonda, RJ · 3K e 5K</p>
 
-    Card padrão:
-    <div class="bg-surface border border-white/10 rounded-2xl p-4">...</div>
+            <div class="flex flex-col sm:flex-row items-start sm:items-end gap-6 justify-between">
+              <a href="#" class="bg-lime text-zinc-900 font-display text-sm px-6 py-3 rounded-xl hover:glow-lime transition-all uppercase tracking-wide">
+                Garantir Vaga →
+              </a>
+              <div class="text-left sm:text-right">
+                <p class="text-xs text-muted font-mono mb-1 tracking-widest uppercase">Largada em</p>
+                <div class="flex items-end gap-2 font-mono text-lime">
+                  <div class="text-center"><span id="cd-dias" class="text-3xl sm:text-4xl font-bold tabular-nums">--</span><p class="text-[10px] text-muted tracking-widest">DIAS</p></div>
+                  <span class="text-2xl sm:text-3xl pb-4 opacity-50">:</span>
+                  <div class="text-center"><span id="cd-hrs" class="text-3xl sm:text-4xl font-bold tabular-nums">--</span><p class="text-[10px] text-muted tracking-widest">HRS</p></div>
+                  <span class="text-2xl sm:text-3xl pb-4 opacity-50">:</span>
+                  <div class="text-center"><span id="cd-min" class="text-3xl sm:text-4xl font-bold tabular-nums">--</span><p class="text-[10px] text-muted tracking-widest">MIN</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-    Botão CTA primário:
-    <a href="#" class="bg-lime text-zinc-900 font-display text-sm px-5 py-2.5 rounded-xl hover:glow-lime transition-all">→ Ação</a>
+          <div class="absolute top-5 right-5 z-10 flex gap-1.5 bg-zinc950/30 p-2 rounded-full backdrop-blur-sm">
+            <button data-slide="0" class="slide-dot w-6 h-1.5 rounded-full bg-lime transition-all" aria-label="Slide 1"></button>
+            <button data-slide="1" class="slide-dot w-1.5 h-1.5 rounded-full bg-white/30 transition-all" aria-label="Slide 2"></button>
+            <button data-slide="2" class="slide-dot w-1.5 h-1.5 rounded-full bg-white/30 transition-all" aria-label="Slide 3"></button>
+          </div>
+        </div>
 
-    Botão secundário:
-    <a href="#" class="border border-white/20 text-fg px-5 py-2.5 rounded-xl hover:bg-surface transition-colors text-sm">Ver mais</a>
+        <div id="eventos">
+          <h2 class="font-display text-2xl text-fg mb-5">Eventos em Destaque <span class="text-lime">🔥</span></h2>
 
-    Número mono (timer, stats):
-    <span class="font-mono text-lime text-4xl font-bold tabular-nums">42:18</span>
+          <div class="flex gap-2 flex-wrap mb-6">
+            <button class="filtro-btn active-filtro font-mono text-xs font-semibold px-4 py-1.5 rounded-full bg-lime text-zinc-900 transition-all">Todas</button>
+            <button class="filtro-btn font-mono text-xs font-semibold px-4 py-1.5 rounded-full border border-white/20 text-muted hover:border-lime hover:text-lime transition-all">Corrida</button>
+            <button class="filtro-btn font-mono text-xs font-semibold px-4 py-1.5 rounded-full border border-white/20 text-muted hover:border-lime hover:text-lime transition-all">Ciclismo</button>
+            <button class="filtro-btn font-mono text-xs font-semibold px-4 py-1.5 rounded-full border border-white/20 text-muted hover:border-lime hover:text-lime transition-all">Futebol</button>
+          </div>
 
-    Label meta:
-    <p class="font-mono text-xs tracking-widest text-muted uppercase">Modalidade · Horário</p>
+          <div class="flex flex-col gap-3">
+            
+            <div class="bg-surface border border-white/10 rounded-2xl flex items-center gap-4 px-4 py-4 hover:border-white/20 transition-colors cursor-pointer">
+              <div class="flex-shrink-0 w-12 text-center">
+                <p class="font-mono text-2xl font-bold text-fg leading-none">26</p>
+                <p class="font-mono text-[10px] text-muted tracking-widest uppercase mt-1">ABRIL</p>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="font-display text-sm text-fg truncate">Falcões de Aço 2026</p>
+                <p class="text-xs text-muted mt-1 truncate">
+                  <span class="inline-block w-1.5 h-1.5 rounded-full bg-lime mr-1 align-middle"></span>Volta Redonda, RJ
+                  <span class="mx-1 text-white/20">·</span>Corrida 5K
+                </p>
+              </div>
+              <div class="hidden sm:block flex-shrink-0 text-right pr-4 border-r border-white/10">
+                <p class="text-[10px] text-muted font-mono uppercase tracking-widest">A partir de</p>
+                <p class="font-mono text-lime font-bold text-sm">R$ 114,90</p>
+              </div>
+              <span class="flex-shrink-0 text-muted hover:text-lime transition-colors text-lg">→</span>
+            </div>
 
-    -->
+            <div class="bg-surface border border-white/10 rounded-2xl flex items-center gap-4 px-4 py-4 hover:border-white/20 transition-colors cursor-pointer">
+              <div class="flex-shrink-0 w-12 text-center">
+                <p class="font-mono text-2xl font-bold text-fg leading-none">12</p>
+                <p class="font-mono text-[10px] text-muted tracking-widest uppercase mt-1">MAIO</p>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="font-display text-sm text-fg truncate">Circuito Dr. Saúde 5Km</p>
+                <p class="text-xs text-muted mt-1 truncate">
+                  <span class="inline-block w-1.5 h-1.5 rounded-full bg-lime mr-1 align-middle"></span>Bananal, SP
+                  <span class="mx-1 text-white/20">·</span>Caminhada e Corrida
+                </p>
+              </div>
+              <div class="hidden sm:block flex-shrink-0 text-right pr-4 border-r border-white/10">
+                <p class="text-[10px] text-muted font-mono uppercase tracking-widest">Inscrição</p>
+                <p class="font-mono text-lime font-bold text-sm">GRÁTIS</p>
+              </div>
+              <span class="flex-shrink-0 text-muted hover:text-lime transition-colors text-lg">→</span>
+            </div>
 
-    <p class="text-muted text-sm">Conteúdo da página aqui.</p>
+            <div class="bg-surface border border-white/10 rounded-2xl flex items-center gap-4 px-4 py-4 opacity-50 grayscale">
+              <div class="flex-shrink-0 w-12 text-center">
+                <p class="font-mono text-2xl font-bold text-fg leading-none">12</p>
+                <p class="font-mono text-[10px] text-muted tracking-widest uppercase mt-1">ABRIL</p>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="font-display text-sm text-fg truncate">2ª Meia Maratona do Aço</p>
+                <p class="text-xs text-muted mt-1 truncate">
+                  Volta Redonda, RJ <span class="mx-1 text-white/20">·</span> 21K
+                </p>
+              </div>
+              <div class="hidden sm:block flex-shrink-0 text-right pr-4 border-r border-white/10">
+                <p class="font-mono text-[10px] text-red-500 uppercase tracking-widest mt-0.5">Encerrado</p>
+              </div>
+            </div>
 
+          </div>
+          
+          <div class="text-center mt-6">
+            <a href="#" class="font-mono text-sm tracking-widest text-muted hover:text-lime transition-colors uppercase border-b border-transparent hover:border-lime pb-1">Ver todos os eventos →</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="lg:col-span-2 flex flex-col gap-6">
+
+        <div class="bg-surface rounded-2xl border border-white/10 p-5">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-mono text-sm tracking-widest text-fg uppercase">Abril 2026</h3>
+            <div class="flex gap-2">
+              <button class="bg-secondary text-muted hover:text-lime w-7 h-7 flex items-center justify-center rounded-lg transition-colors" aria-label="Mês anterior">‹</button>
+              <button class="bg-secondary text-muted hover:text-lime w-7 h-7 flex items-center justify-center rounded-lg transition-colors" aria-label="Próximo mês">›</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-7 text-center text-[10px] text-muted font-mono tracking-widest mb-2">
+            <span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span>
+          </div>
+
+          <div class="grid grid-cols-7 text-center text-sm gap-y-1 gap-x-1" id="calendario-grid">
+            </div>
+
+          <div class="mt-4 border-t border-white/10 pt-4 flex flex-col gap-2.5">
+            <div class="flex items-center gap-3 text-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-lime flex-shrink-0 shadow-[0_0_8px_#bef264]"></span>
+              <span class="text-muted font-mono text-xs">12/ABR</span>
+              <span class="text-fg truncate">2ª Meia do Aço</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-lime flex-shrink-0 shadow-[0_0_8px_#bef264]"></span>
+              <span class="text-muted font-mono text-xs">21/ABR</span>
+              <span class="text-fg truncate">Corrida do Guerreiro</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-surface rounded-2xl border border-white/10 overflow-hidden flex flex-col">
+          <div class="px-5 py-4 border-b border-white/10 flex items-center justify-between bg-zinc950/30">
+            <div>
+              <p class="text-[10px] font-mono tracking-widest text-muted uppercase">Joga Junto</p>
+              <p class="text-sm font-display text-fg mt-0.5"><span class="text-lime mr-1 flex-shrink-0 inline-block w-2 h-2 rounded-full bg-lime live-pin"></span>6 Quadras Ativas</p>
+            </div>
+            <a href="#joga-junto" class="text-xs font-mono tracking-widest uppercase border border-white/20 text-muted px-3 py-1.5 rounded-lg hover:border-lime hover:text-lime transition-colors">Ver</a>
+          </div>
+          <div id="mini-map" class="w-full flex-1"></div>
+        </div>
+
+        <div class="bg-surface rounded-2xl border border-white/10 p-5">
+          <p class="text-[10px] font-mono tracking-widest text-muted uppercase mb-3">Seu Desempenho</p>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-secondary rounded-xl p-4 border border-white/5">
+              <p class="text-[10px] text-muted font-mono uppercase tracking-widest mb-1">Eventos</p>
+              <p class="text-2xl font-display text-fg">4</p>
+            </div>
+            <div class="bg-secondary rounded-xl p-4 border border-white/5">
+              <p class="text-[10px] text-muted font-mono uppercase tracking-widest mb-1">KMs Corridos</p>
+              <p class="text-2xl font-display text-lime">32<span class="text-sm text-muted font-body ml-1">km</span></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
   </main>
 
-  <!-- ====================================================
-       FOOTER
-  ===================================================== -->
-  <footer class="border-t border-white/10 bg-surface mt-16">
+  <section class="py-16 bg-[#0a1f0a] border-y border-lime/10 mt-8" id="joga-junto">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <span class="inline-block font-mono text-xs tracking-widest border border-lime/40 text-lime px-3 py-1 rounded-md mb-5 uppercase">Joga Junto</span>
+        <h2 class="font-display text-4xl md:text-5xl text-fg leading-tight mb-5">
+          ENCONTRE O LUGAR<br />
+          <span class="text-lime">PERFEITO PARA</span><br />
+          JOGAR
+        </h2>
+        <p class="text-muted text-sm mb-8 max-w-md leading-relaxed">
+          Mapeamos as melhores quadras públicas e privadas da cidade.
+          Filtre por esporte, iluminação e avaliações da comunidade.
+        </p>
+        <a href="#" class="inline-flex items-center gap-2 bg-lime text-zinc-900 font-display text-sm px-6 py-3.5 rounded-xl hover:glow-lime transition-all uppercase tracking-wide">
+          Abrir o Mapa →
+        </a>
+      </div>
+      <div class="rounded-2xl overflow-hidden border border-lime/20 relative shadow-2xl">
+        <div id="joga-map" class="w-full"></div>
+        <div class="absolute bottom-0 left-0 right-0 bg-zinc950/80 backdrop-blur-md px-5 py-4 flex items-center justify-between z-[400]">
+          <div>
+            <p class="text-[10px] font-mono tracking-widest text-muted uppercase">Status</p>
+            <p class="font-mono font-bold text-lime text-sm flex items-center gap-2 mt-1">
+              <span class="w-2 h-2 rounded-full bg-lime live-pin"></span> 44 Locais Disponíveis
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 to-surface"></div>
+    <div class="relative max-w-3xl mx-auto px-4 text-center">
+      <h2 class="font-display text-4xl text-fg mb-4 leading-tight">Pronto para a largada?</h2>
+      <p class="text-muted text-sm mb-8 mx-auto leading-relaxed max-w-lg">
+        Cadastre-se gratuitamente e tenha acesso a todos os eventos esportivos de Volta Redonda.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="cadastro.html" class="bg-lime text-zinc-900 font-display px-8 py-3.5 rounded-xl hover:glow-lime transition-all uppercase tracking-wide text-sm">Criar Conta Grátis</a>
+        <a href="#eventos" class="border border-white/20 text-fg px-8 py-3.5 rounded-xl hover:bg-white/5 transition-colors text-sm font-medium">Explorar Eventos</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-white/10 bg-surface">
     <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
 
       <div class="col-span-2 md:col-span-1">
-        <a href="index.html" class="font-display text-xl text-fg flex items-center gap-1 mb-3">
-          <span class="text-lime">+</span>Sports
+        <a href="index.html" class="flex items-center mb-3 hover:opacity-80 transition-opacity" aria-label="Ir para a página inicial do +Sports">
+          <img src="img/logo.svg" alt="+Sports" class="h-7 w-auto" />
         </a>
         <p class="text-muted text-xs leading-relaxed">
           Conectando a comunidade de Volta Redonda aos melhores eventos esportivos da região.
         </p>
-        <div class="flex gap-3 mt-4 text-muted text-sm">
-          <a href="#" class="hover:text-lime transition-colors" aria-label="Instagram">IG</a>
-          <a href="#" class="hover:text-lime transition-colors" aria-label="Facebook">FB</a>
-          <a href="#" class="hover:text-lime transition-colors" aria-label="Twitter">TW</a>
+        <div class="flex gap-4 mt-4 text-muted">
+          <a href="#" class="hover:text-lime transition-colors" aria-label="Acessar nosso Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="#" class="hover:text-lime transition-colors" aria-label="Acessar nosso Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+          <a href="#" class="hover:text-lime transition-colors" aria-label="Acessar nosso Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+          </a>
         </div>
       </div>
 
@@ -161,8 +330,8 @@
         <h4 class="font-mono text-xs tracking-widest text-muted uppercase mb-3">Navegação</h4>
         <ul class="flex flex-col gap-2 text-sm text-fg/70">
           <li><a href="index.html" class="hover:text-lime transition-colors">Home</a></li>
-          <li><a href="#"          class="hover:text-lime transition-colors">Eventos</a></li>
-          <li><a href="#"          class="hover:text-lime transition-colors">Joga Junto</a></li>
+          <li><a href="#eventos"   class="hover:text-lime transition-colors">Eventos</a></li>
+          <li><a href="#joga-junto" class="hover:text-lime transition-colors">Joga Junto</a></li>
           <li><a href="#"          class="hover:text-lime transition-colors">Mapa</a></li>
         </ul>
       </div>
@@ -193,20 +362,88 @@
     </div>
   </footer>
 
-  <!-- ====================================================
-       JS — hamburguer
-  ===================================================== -->
+  <script src="js/global.js"></script>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script>
-    const btnMenu    = document.getElementById('btnMenu');
-    const menuMobile = document.getElementById('menuMobile');
+    document.addEventListener('DOMContentLoaded', () => {
 
-    btnMenu.addEventListener('click', () => {
-      menuMobile.classList.toggle('hidden');
+      // 1. GERADOR DO CALENDÁRIO
+      const calGrid = document.getElementById('calendario-grid');
+      let calHTML = '';
+      // Dias vazios no começo (Ex: mês começa na 4ª)
+      for(let i=0; i<3; i++) calHTML += `<span></span>`;
+      // Dias normais
+      for(let i=1; i<=30; i++) {
+        let isEvent = (i === 12 || i === 21 || i === 26);
+        if (isEvent) {
+          calHTML += `<span class="flex items-center justify-center h-7 rounded-md bg-zinc-800 text-lime font-bold font-mono text-xs cursor-pointer hover:bg-lime hover:text-zinc-900 transition-colors">${i}</span>`;
+        } else {
+          calHTML += `<span class="flex items-center justify-center h-7 rounded-md text-muted font-mono text-xs hover:bg-secondary cursor-pointer transition-colors">${i}</span>`;
+        }
+      }
+      if(calGrid) calGrid.innerHTML = calHTML;
+
+      // 2. SLIDESHOW DO HERO BANNER
+      const heroData = [
+        { titulo: 'Corrida do Guerreiro', sub: '21 de Abril · Volta Redonda, RJ · 3K e 5K', badge: 'INSCRIÇÕES ABERTAS', aberta: true, data: new Date('2026-04-21T06:00:00') },
+        { titulo: '2ª Meia Maratona do Aço', sub: '12 de Abril · Volta Redonda, RJ · 21K', badge: 'INSCRIÇÕES ENCERRADAS', aberta: false, data: new Date('2026-04-12T06:00:00') },
+        { titulo: 'Nutri Day Run', sub: '03 de Maio · Bananal/SP · 5K', badge: 'INSCRIÇÕES ABERTAS', aberta: true, data: new Date('2026-05-03T07:00:00') }
+      ];
+      const slides = document.querySelectorAll('.slide');
+      const dots   = document.querySelectorAll('.slide-dot');
+      let current = 0, timer;
+
+      function goTo(idx) {
+        slides[current].classList.remove('active');
+        dots[current].style.cssText = 'width:6px;height:6px;border-radius:9999px;background:rgba(255,255,255,0.3);transition:all .3s;';
+        current = idx;
+        slides[current].classList.add('active');
+        dots[current].style.cssText = 'width:24px;height:6px;border-radius:9999px;background:#bef264;transition:all .3s;';
+        const d = heroData[current];
+        document.getElementById('hero-title').textContent = d.titulo;
+        document.getElementById('hero-sub').textContent   = d.sub;
+        document.getElementById('hero-badge').innerHTML   = `<span class="w-1.5 h-1.5 rounded-full bg-lime ${d.aberta ? 'live-pin' : ''}"></span> ${d.badge}`;
+        updateCountdown();
+      }
+      dots.forEach((dot, i) => dot.addEventListener('click', () => { clearInterval(timer); goTo(i); startTimer(); }));
+      function startTimer() { timer = setInterval(() => goTo((current + 1) % slides.length), 5000); }
+      startTimer();
+
+      // 3. COUNTDOWN TIMER
+      function updateCountdown() {
+        const target = heroData[current].data;
+        const now  = new Date();
+        const diff = target - now;
+        if (diff <= 0) {
+          ['cd-dias','cd-hrs','cd-min'].forEach(id => document.getElementById(id).textContent = '00');
+          return;
+        }
+        document.getElementById('cd-dias').textContent = String(Math.floor(diff / 86400000)).padStart(2,'0');
+        document.getElementById('cd-hrs').textContent  = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
+        document.getElementById('cd-min').textContent  = String(Math.floor((diff % 3600000)  / 60000)).padStart(2,'0');
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 60000);
+
+      // 4. MAPAS (Leaflet)
+      // Mini Mapa (Aside)
+      if (document.getElementById('mini-map')) {
+        const miniMap = L.map('mini-map', { zoomControl: false, dragging: false, scrollWheelZoom: false, doubleClickZoom: false, attributionControl: false }).setView([-22.508, -44.092], 13);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 19 }).addTo(miniMap);
+        const limeIcon = L.divIcon({ html: `<div style="width:8px;height:8px;border-radius:50%;background:#bef264;box-shadow:0 0 8px #bef264;"></div>`, className: '', iconAnchor: [4, 4] });
+        [[-22.508,-44.097],[-22.502,-44.084],[-22.504,-44.071],[-22.537,-44.075]].forEach(pos => L.marker(pos, { icon: limeIcon }).addTo(miniMap));
+      }
+
+      // Mapa Grande (Joga Junto)
+      if (document.getElementById('joga-map')) {
+        const jogaMap = L.map('joga-map', { zoomControl: false, attributionControl: false }).setView([-22.508, -44.092], 13);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 19 }).addTo(jogaMap);
+        const liveIcon = L.divIcon({ html: `<div style="width:14px;height:14px;border-radius:50%;background:#bef264;box-shadow:0 0 0 3px rgba(190,242,100,0.4),0 0 16px #bef264;"></div>`, className: '', iconAnchor: [7,7] });
+        [[-22.508,-44.097],[-22.502,-44.084],[-22.504,-44.071],[-22.537,-44.075],[-22.524,-44.101],[-22.514,-44.094]].forEach(pos => L.marker(pos, { icon: liveIcon }).addTo(jogaMap));
+      }
+
     });
-
-    menuMobile.querySelectorAll('a').forEach(a =>
-      a.addEventListener('click', () => menuMobile.classList.add('hidden'))
-    );
   </script>
 
 </body>
