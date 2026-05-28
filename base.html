@@ -21,7 +21,7 @@
 
       /* ── Tipografia ── */
       --font-display: "Archivo Black", sans-serif;
-      --font-body:    Inter, sans-serif;
+      --font-body: "Barlow", sans-serif;
       --font-mono:    "JetBrains Mono", monospace;
     }
 
@@ -43,44 +43,43 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@500;700&family=Barlow:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 </head>
 
 <body class="bg-zinc950 text-fg font-body antialiased">
 
   <header class="sticky top-0 z-50 bg-zinc950/90 backdrop-blur border-b border-white/10">
-    <nav class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
+    <nav class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between gap-4 relative">
 
-      <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity" aria-label="Ir para a página inicial do +Sports">
+      <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity z-10" aria-label="Ir para a página inicial do +Sports">
         <img src="img/logo.svg" alt="+Sports" class="h-6 w-auto" />
       </a>
 
-      <div class="hidden md:flex items-center gap-6 text-sm font-medium text-muted">
-        <a href="index.html"   class="hover:text-lime transition-colors">Home</a>
-        <a href="#"            class="hover:text-lime transition-colors">Eventos</a>
-        <a href="#"            class="hover:text-lime transition-colors">Joga Junto</a>
+      <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-6 text-[15px] font-medium text-muted">
+        <a href="index.html" class="hover:text-lime transition-colors whitespace-nowrap">Home</a>
+        <a href="index.html#eventos" class="hover:text-lime transition-colors whitespace-nowrap">Eventos</a>
+        <a href="jj.html" class="hover:text-lime transition-colors whitespace-nowrap">Joga Junto</a>
       </div>
 
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-2 ml-auto z-10">
         <input
           type="text"
-          placeholder="Pesquisar evento..."
-          class="hidden md:block bg-surface border border-white/10 rounded-lg text-sm text-fg placeholder-muted px-3 py-1.5 w-44 focus:outline-none focus:border-lime/50 transition-colors"
+          placeholder="Pesquisar..."
+          class="hidden lg:block bg-surface border border-white/10 rounded-lg text-sm text-fg placeholder-muted px-3 py-1.5 w-44 focus:outline-none focus:border-lime/50 transition-colors"
         />
-        <a href="login.html"    class="hidden md:block text-sm border border-white/20 text-fg px-3 py-1.5 rounded-lg hover:bg-surface transition-colors">Entrar</a>
-        <a href="cadastro.html" class="hidden md:block text-sm bg-lime text-zinc-900 font-semibold px-3 py-1.5 rounded-lg hover:glow-lime-sm transition-all">Criar Conta</a>
+        <a href="telaPerfil.html" class="hidden md:block text-sm border border-white/20 text-fg px-3 py-1.5 rounded-lg hover:bg-surface transition-colors whitespace-nowrap">Entrar</a>
+        <a href="cadastro.html" class="hidden md:block text-sm bg-lime text-zinc-900 font-semibold px-3 py-1.5 rounded-lg hover:glow-lime-sm transition-all whitespace-nowrap">Criar Conta</a>
 
-        <button id="btnMenu" class="md:hidden text-fg text-xl w-9 h-9 flex items-center justify-center rounded-lg hover:bg-surface transition-colors" aria-label="Abrir menu">☰</button>
+        <button id="btnMenu" class="md:hidden text-fg text-xl w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-lg hover:bg-surface transition-colors" aria-label="Abrir menu">☰</button>
       </div>
     </nav>
-    
-    <!-- Tirei um "flex" da class dessa div como um teste, se algo bugar, lembrar de adicionar esse flex novamente -->
-    <div id="menuMobile" class="hidden md:hidden bg-surface border-b border-white/10 px-4 py-4 flex-col gap-3 text-sm font-medium">
+
+    <div id="menuMobile" class="hidden md:hidden bg-surface border-b border-white/10 px-4 py-4 flex flex-col gap-3 text-sm font-medium">
       <a href="index.html"   class="text-fg hover:text-lime transition-colors">Home</a>
-      <a href="#"            class="text-fg hover:text-lime transition-colors">Eventos</a>
-      <a href="#"            class="text-fg hover:text-lime transition-colors">Joga Junto</a>
+      <a href="index.html#eventos" class="text-fg hover:text-lime transition-colors">Eventos</a>
+      <a href="jj.html"          class="text-fg hover:text-lime transition-colors">Joga Junto</a>
       <hr class="border-white/10" />
-      <a href="login.html"    class="text-muted hover:text-fg transition-colors">Login</a>
+      <a href="telaPerfil.html" class="text-muted hover:text-fg transition-colors">Login</a>
       <a href="cadastro.html" class="bg-lime text-zinc-900 font-semibold px-4 py-2 rounded-lg text-center">Criar Conta</a>
     </div>
   </header>
@@ -124,8 +123,8 @@
         <h4 class="font-mono text-xs tracking-widest text-muted uppercase mb-3">Navegação</h4>
         <ul class="flex flex-col gap-2 text-sm text-fg/70">
           <li><a href="index.html" class="hover:text-lime transition-colors">Home</a></li>
-          <li><a href="#"          class="hover:text-lime transition-colors">Eventos</a></li>
-          <li><a href="#"          class="hover:text-lime transition-colors">Joga Junto</a></li>
+          <li><a href="index.html#eventos" class="hover:text-lime transition-colors">Eventos</a></li>
+          <li><a href="jj.html" class="hover:text-lime transition-colors">Joga Junto</a></li>
           <li><a href="#"          class="hover:text-lime transition-colors">Mapa</a></li>
         </ul>
       </div>
@@ -133,9 +132,9 @@
       <div>
         <h4 class="font-mono text-xs tracking-widest text-muted uppercase mb-3">Conta</h4>
         <ul class="flex flex-col gap-2 text-sm text-fg/70">
-          <li><a href="login.html"    class="hover:text-lime transition-colors">Login</a></li>
+          <li><a href="telaPerfil.html" class="hover:text-lime transition-colors">Login</a></li>
           <li><a href="cadastro.html" class="hover:text-lime transition-colors">Cadastrar</a></li>
-          <li><a href="login.html"    class="hover:text-lime transition-colors">Meus Eventos</a></li>
+          <li><a href="telaPerfil.html" class="hover:text-lime transition-colors">Meus Eventos</a></li>
           <li><a href="#"             class="hover:text-lime transition-colors">Ajuda</a></li>
         </ul>
       </div>

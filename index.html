@@ -93,33 +93,33 @@
       class="sticky top-0 z-50 bg-zinc950/90 backdrop-blur border-b border-white/10"
     >
       <nav
-        class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between gap-4"
+        class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between gap-4 relative"
       >
         <a
           href="index.html"
-          class="flex items-center hover:opacity-80 transition-opacity"
+          class="flex items-center hover:opacity-80 transition-opacity z-10"
           aria-label="Ir para a página inicial do +Sports"
         >
           <img src="img/logo.svg" alt="+Sports" class="h-6 w-auto" />
         </a>
 
         <div
-          class="hidden md:flex items-center gap-6 text-sm font-medium text-muted"
+          class="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-6 text-[15px] font-medium text-muted"
         >
           <a href="index.html" class="text-lime">Home</a>
           <a href="#eventos" class="hover:text-lime transition-colors"
             >Eventos</a
           >
-          <a href="#joga-junto" class="hover:text-lime transition-colors"
+          <a href="jj.html" class="hover:text-lime transition-colors"
             >Joga Junto</a
           >
         </div>
 
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 ml-auto z-10">
           <input
             type="text"
-            placeholder="Pesquisar evento..."
-            class="hidden md:block bg-surface border border-white/10 rounded-lg text-sm text-fg placeholder-muted px-3 py-1.5 w-44 focus:outline-none focus:border-lime/50 transition-colors"
+            placeholder="Pesquisar..."
+            class="hidden lg:block bg-surface border border-white/10 rounded-lg text-sm text-fg placeholder-muted px-3 py-1.5 w-44 focus:outline-none focus:border-lime/50 transition-colors"
           />
           <a
             href="telaPerfil.html "
@@ -133,7 +133,7 @@
           >
           <button
             id="btnMenu"
-            class="md:hidden text-fg text-xl w-9 h-9 flex items-center justify-center rounded-lg hover:bg-surface transition-colors"
+            class="md:hidden text-fg text-xl w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-lg hover:bg-surface transition-colors"
             aria-label="Abrir menu"
           >
             ☰
@@ -150,7 +150,7 @@
         <a href="#eventos" class="text-fg hover:text-lime transition-colors"
           >Eventos</a
         >
-        <a href="#joga-junto" class="text-fg hover:text-lime transition-colors"
+        <a href="jj.html" class="text-fg hover:text-lime transition-colors"
           >Joga Junto</a
         >
         <hr class="border-white/10" />
@@ -634,16 +634,16 @@
                 >
                   Eventos
                 </p>
-                <p class="text-xl font-display text-fg">4</p>
+                <p class="text-xl font-display text-fg">12</p>
               </div>
               <div class="bg-secondary rounded-xl p-3 border border-white/5">
                 <p
                   class="text-[10px] text-muted font-mono uppercase tracking-widest mb-1"
                 >
-                  KMs
+                  Participantes
                 </p>
                 <p class="text-xl font-display text-lime">
-                  32<span class="text-xs text-muted font-body ml-0.5">km</span>
+                  3287<span class="text-xs text-muted font-body ml-0.5">pessoas</span>
                 </p>
               </div>
             </div>

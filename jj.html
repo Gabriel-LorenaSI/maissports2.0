@@ -22,7 +22,7 @@
 
       /* ── Tipografia ── */
       --font-display: "Archivo Black", sans-serif;
-      --font-body:    Inter, sans-serif;
+      --font-body: "Barlow", sans-serif;
       --font-mono:    "JetBrains Mono", monospace;
     }
 
@@ -35,44 +35,38 @@
       50%       { box-shadow: 0 0 0 10px rgba(190, 242, 100, 0);   }
     }
     .live-pin { animation: pulse-lime 2s infinite; }
-
-    /* ── Componentes Globais ── */
-    .slide        { display: none;  }
-    .slide.active { display: block; }
-    .hero-banner  { min-height: 420px; }
   </style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@500;700&family=Barlow:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet" />
 </head>
 
 <body class="bg-zinc950 text-fg font-body antialiased">
 
     <header class="sticky top-0 z-50 bg-zinc950/90 backdrop-blur border-b border-white/10">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-4">
+        <nav class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between gap-4 relative">
 
-            <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity flex-shrink-0"
+            <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity flex-shrink-0 z-10"
                 aria-label="Ir para a página inicial do +Sports">
-                <img src="img/logo.svg" alt="+Sports" class="h-5 sm:h-6 w-auto" />
+                <img src="img/logo.svg" alt="+Sports" class="h-6 w-auto" />
             </a>
 
-            <div class="hidden md:flex items-center gap-3 lg:gap-6 text-sm font-medium text-muted">
+            <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-6 text-[15px] font-medium text-muted">
                 <a href="index.html" class="hover:text-lime transition-colors whitespace-nowrap">Home</a>
-                <a href="#" class="hover:text-lime transition-colors whitespace-nowrap">Eventos</a>
-                <a href="#" class="hover:text-lime transition-colors whitespace-nowrap">Joga Junto</a>
+                <a href="index.html#eventos" class="hover:text-lime transition-colors whitespace-nowrap">Eventos</a>
+                <a href="jj.html" class="text-lime whitespace-nowrap">Joga Junto</a>
             </div>
 
-            <div class="flex items-center gap-1 sm:gap-2">
+            <div class="flex items-center gap-1 sm:gap-2 ml-auto z-10">
                 <input type="text" placeholder="Pesquisar..."
                     class="hidden lg:block bg-surface border border-white/10 rounded-lg text-sm text-fg placeholder-muted px-3 py-1.5 w-36 xl:w-44 focus:outline-none focus:border-lime/50 transition-colors" />
                 <a href="telaPerfil.html"
-                    class="hidden sm:block text-sm border border-white/20 text-fg px-2 sm:px-3 py-1.5 rounded-lg hover:bg-surface transition-colors whitespace-nowrap">Entrar</a>
+                    class="hidden md:block text-sm border border-white/20 text-fg px-3 py-1.5 rounded-lg hover:bg-surface transition-colors whitespace-nowrap">Entrar</a>
                 <a href="cadastro.html"
-                    class="hidden sm:block text-sm bg-lime text-zinc-900 font-semibold px-2 sm:px-3 py-1.5 rounded-lg hover:glow-lime-sm transition-all whitespace-nowrap">Criar
-                    Conta</a>
+                    class="hidden md:block text-sm bg-lime text-zinc-900 font-semibold px-3 py-1.5 rounded-lg hover:glow-lime-sm transition-all whitespace-nowrap">Criar Conta</a>
 
                 <button id="btnMenu"
                     class="md:hidden text-fg text-xl w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-lg hover:bg-surface transition-colors"
@@ -83,8 +77,8 @@
         <div id="menuMobile"
             class="hidden md:hidden bg-surface border-b border-white/10 px-4 py-4 flex flex-col gap-3 text-sm font-medium">
             <a href="index.html" class="text-fg hover:text-lime transition-colors">Home</a>
-            <a href="#" class="text-fg hover:text-lime transition-colors">Eventos</a>
-            <a href="#" class="text-fg hover:text-lime transition-colors">Joga Junto</a>
+            <a href="index.html#eventos" class="text-fg hover:text-lime transition-colors">Eventos</a>
+            <a href="jj.html" class="text-fg hover:text-lime transition-colors">Joga Junto</a>
             <hr class="border-white/10" />
             <a href="telaPerfil.html" class="text-muted hover:text-fg transition-colors">Login</a>
             <a href="cadastro.html" class="bg-lime text-zinc-900 font-semibold px-4 py-2 rounded-lg text-center">Criar
@@ -92,7 +86,7 @@
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
+    <main class="max-w-7xl mx-auto px-4 py-4 sm:py-8">
         <header class="mb-4 sm:mb-6 lg:mb-8">
             <h1 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-fg">Joga Junto</h1>
             <p class="text-muted text-xs sm:text-sm lg:text-base mt-1 sm:mt-2">Descubra e participe das comunidades
@@ -519,7 +513,7 @@
     <!-- Inicio do Footer -->
     <footer class="border-t border-white/10 bg-surface mt-8 sm:mt-12 lg:mt-16">
         <div
-            class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+            class="max-w-7xl mx-auto px-4 py-6 sm:py-8 lg:py-10 grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
 
             <div class="xs:col-span-2 lg:col-span-1">
                 <a href="index.html" class="flex items-center mb-2 sm:mb-3 hover:opacity-80 transition-opacity"
