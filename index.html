@@ -22,7 +22,7 @@
 
         /* ── Tipografia ── */
         --font-display: "Archivo Black", sans-serif;
-        --font-body: Inter, sans-serif;
+        --font-body: "Barlow", sans-serif;
         --font-mono: "JetBrains Mono", monospace;
       }
 
@@ -73,7 +73,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@500;700&family=Barlow:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
 
@@ -341,6 +341,39 @@
               </button>
             </div>
           </div>
+
+          <!-- Destaque leve -->
+          <article
+            class="bg-surface border border-white/10 rounded-2xl overflow-hidden flex flex-col md:flex-row md:items-center hover:border-lime/25 transition-colors"
+          >
+            <div class="relative h-32 md:h-auto md:w-56 md:self-stretch flex-shrink-0">
+              <img
+                src="img/eventos/CorridaGuerreiro.jpg"
+                alt="Corrida do Guerreiro"
+                class="absolute inset-0 w-full h-full object-cover opacity-70"
+              />
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface"></div>
+            </div>
+            <div class="flex-1 p-4 md:p-5 flex flex-col md:flex-row md:items-center gap-4">
+              <div class="flex-1 min-w-0">
+                <p class="font-mono text-[10px] text-lime tracking-widest uppercase mb-1">
+                  Destaque da semana
+                </p>
+                <h3 class="font-display text-xl text-fg leading-tight">
+                  Corrida do Guerreiro
+                </h3>
+                <p class="text-xs text-muted mt-1">
+                  21 ABR &middot; Volta Redonda &middot; 3K e 5K
+                </p>
+              </div>
+              <a
+                href="#"
+                class="bg-lime text-zinc-900 font-display text-xs px-4 py-2.5 rounded-xl hover:glow-lime-sm transition-all uppercase tracking-wide text-center flex-shrink-0"
+              >
+                Ver evento
+              </a>
+            </div>
+          </article>
 
           <!-- Cards de eventos -->
           <div class="flex flex-col gap-3">
@@ -652,7 +685,7 @@
     <!-- /GRID -->
 
     <!-- =====================================================
-       SEÇÃO JOGA JUNTO
+       SECAO JOGA JUNTO
   ====================================================== -->
     <section
       class="mt-6 py-16 bg-[#0a1f0a] border-y border-lime/10"
@@ -674,14 +707,15 @@
             JOGAR
           </h2>
           <p class="text-muted text-sm mb-8 max-w-md leading-relaxed">
-            Mapeamos as melhores quadras públicas e privadas da cidade. Filtre
-            por esporte, iluminação e avaliações da comunidade.
+            Mapeamos as melhores quadras p&uacute;blicas e privadas da cidade.
+            Filtre por esporte, ilumina&ccedil;&atilde;o e avalia&ccedil;&otilde;es
+            da comunidade.
           </p>
           <a
             href="jj.html"
             class="inline-flex items-center gap-2 bg-lime text-zinc-900 font-display text-sm px-6 py-3.5 rounded-xl hover:glow-lime transition-all uppercase tracking-wide"
           >
-            Abrir o Mapa →
+            Abrir o Mapa &rarr;
           </a>
         </div>
 
@@ -700,7 +734,7 @@
                 class="font-mono font-bold text-lime text-sm flex items-center gap-2 mt-1"
               >
                 <span class="w-2 h-2 rounded-full bg-lime live-pin"></span>44
-                Locais Disponíveis
+                Locais Dispon&iacute;veis
               </p>
             </div>
           </div>
@@ -709,31 +743,57 @@
     </section>
 
     <!-- =====================================================
-       SEÇÃO CTA
+       SE??O CTA
   ====================================================== -->
-    <section class="py-24 relative overflow-hidden">
+    <section class="max-w-7xl mx-auto px-4 py-10">
       <div
-        class="absolute inset-0 bg-gradient-to-t from-zinc-950 to-surface"
-      ></div>
-      <div class="relative max-w-3xl mx-auto px-4 text-center">
-        <h2 class="font-display text-4xl text-fg mb-4 leading-tight">
-          Pronto para a largada?
-        </h2>
-        <p class="text-muted text-sm mb-8 max-w-lg mx-auto leading-relaxed">
-          Cadastre-se gratuitamente e tenha acesso a todos os eventos esportivos
-          de Volta Redonda.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="cadastro.html"
-            class="bg-lime text-zinc-900 font-display px-8 py-3.5 rounded-xl hover:glow-lime transition-all uppercase tracking-wide text-sm"
-            >Criar Conta Grátis</a
-          >
-          <a
-            href="#eventos"
-            class="border border-white/20 text-fg px-8 py-3.5 rounded-xl hover:bg-white/5 transition-colors text-sm font-medium"
-            >Explorar Eventos</a
-          >
+        class="relative min-h-[430px] overflow-hidden rounded-2xl border border-white/10 bg-zinc-950"
+      >
+        <img
+          src="img/braden-collum-9HI8UJMSdZA-unsplash.jpg"
+          alt="Atleta na largada de uma corrida"
+          class="absolute inset-0 w-full h-full object-cover opacity-45"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/85 to-zinc-950/20"
+        ></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent"></div>
+
+        <div class="relative max-w-2xl px-6 py-16 md:px-14 md:py-20">
+          <h2 class="font-display text-4xl md:text-5xl text-fg leading-tight mb-5">
+            Pronto para come&ccedil;ar sua jornada esportiva?
+          </h2>
+          <p class="text-muted text-base md:text-lg mb-8 max-w-xl leading-relaxed">
+            Cadastre-se gratuitamente e encontre corridas, campeonatos, quadras e partidas informais perto de voc&ecirc; em Volta Redonda.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 mb-8">
+            <a
+              href="cadastro.html"
+              class="bg-lime text-zinc-900 font-display px-7 py-3.5 rounded-xl hover:glow-lime transition-all uppercase tracking-wide text-sm text-center"
+              >Criar Conta Gr&aacute;tis &rarr;</a
+            >
+            <a
+              href="#eventos"
+              class="border border-white/20 text-fg px-7 py-3.5 rounded-xl hover:bg-white/5 transition-colors text-sm font-semibold text-center"
+              >Explorar Eventos</a
+            >
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-xl">
+            <div class="border-t border-white/15 pt-3">
+              <p class="font-mono text-[10px] text-lime tracking-widest uppercase">Eventos locais</p>
+              <p class="text-xs text-muted mt-1">Calend&aacute;rio esportivo da regi&atilde;o.</p>
+            </div>
+            <div class="border-t border-white/15 pt-3">
+              <p class="font-mono text-[10px] text-lime tracking-widest uppercase">Joga Junto</p>
+              <p class="text-xs text-muted mt-1">Quadras e partidas abertas.</p>
+            </div>
+            <div class="border-t border-white/15 pt-3">
+              <p class="font-mono text-[10px] text-lime tracking-widest uppercase">Tudo r&aacute;pido</p>
+              <p class="text-xs text-muted mt-1">Informa&ccedil;&atilde;o direta, sem enrola&ccedil;&atilde;o.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
