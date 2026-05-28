@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="pt-BR" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
@@ -93,18 +93,18 @@
       class="sticky top-0 z-50 bg-zinc950/90 backdrop-blur border-b border-white/10"
     >
       <nav
-        class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between gap-4"
+        class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between gap-4 relative"
       >
         <a
           href="index.html"
-          class="flex items-center hover:opacity-80 transition-opacity"
+          class="flex items-center hover:opacity-80 transition-opacity z-10"
           aria-label="Ir para a página inicial do +Sports"
         >
           <img src="img/logo.svg" alt="+Sports" class="h-6 w-auto" />
         </a>
 
         <div
-          class="hidden md:flex items-center gap-6 text-sm font-medium text-muted"
+          class="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-6 text-sm font-medium text-muted"
         >
           <a href="index.html" class="text-lime">Home</a>
           <a href="#eventos" class="hover:text-lime transition-colors"
@@ -115,11 +115,11 @@
           >
         </div>
 
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 ml-auto z-10">
           <input
             type="text"
             placeholder="Pesquisar evento..."
-            class="hidden md:block bg-surface border border-white/10 rounded-lg text-sm text-fg placeholder-muted px-3 py-1.5 w-44 focus:outline-none focus:border-lime/50 transition-colors"
+            class="hidden lg:block bg-surface border border-white/10 rounded-lg text-sm text-fg placeholder-muted px-3 py-1.5 w-44 focus:outline-none focus:border-lime/50 transition-colors"
           />
           <a
             href="telaPerfil.html"
