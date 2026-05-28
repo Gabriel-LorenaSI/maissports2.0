@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pt-BR" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
@@ -110,7 +110,7 @@
           <a href="#eventos" class="hover:text-lime transition-colors"
             >Eventos</a
           >
-          <a href="jj.html" class="hover:text-lime transition-colors"
+          <a href="#joga-junto" class="hover:text-lime transition-colors"
             >Joga Junto</a
           >
         </div>
@@ -154,7 +154,7 @@
           >Joga Junto</a
         >
         <hr class="border-white/10" />
-        <a href="login.html" class="text-muted hover:text-fg transition-colors"
+        <a href="telaPerfil.html" class="text-muted hover:text-fg transition-colors"
           >Login</a
         >
         <a
@@ -342,198 +342,168 @@
             </div>
           </div>
 
-          <!-- Destaque leve -->
-          <article
-            class="bg-surface border border-white/10 rounded-2xl overflow-hidden flex flex-col md:flex-row md:items-center hover:border-lime/25 transition-colors"
-          >
-            <div class="relative h-32 md:h-auto md:w-56 md:self-stretch flex-shrink-0">
-              <img
-                src="img/eventos/CorridaGuerreiro.jpg"
-                alt="Corrida do Guerreiro"
-                class="absolute inset-0 w-full h-full object-cover opacity-70"
-              />
-              <div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface"></div>
-            </div>
-            <div class="flex-1 p-4 md:p-5 flex flex-col md:flex-row md:items-center gap-4">
-              <div class="flex-1 min-w-0">
-                <p class="font-mono text-[10px] text-lime tracking-widest uppercase mb-1">
-                  Destaque da semana
-                </p>
-                <h3 class="font-display text-xl text-fg leading-tight">
-                  Corrida do Guerreiro
-                </h3>
-                <p class="text-xs text-muted mt-1">
-                  21 ABR &middot; Volta Redonda &middot; 3K e 5K
-                </p>
-              </div>
-              <a
-                href="#"
-                class="bg-lime text-zinc-900 font-display text-xs px-4 py-2.5 rounded-xl hover:glow-lime-sm transition-all uppercase tracking-wide text-center flex-shrink-0"
-              >
-                Ver evento
-              </a>
-            </div>
-          </article>
-
           <!-- Cards de eventos -->
           <div class="flex flex-col gap-3">
-            <!-- Evento 1 -->
-            <div
-              class="bg-surface border border-white/10 rounded-2xl flex items-center gap-4 px-5 py-4 hover:border-white/25 transition-colors cursor-pointer"
+            <!-- Destaque da semana -->
+            <article
+              class="group bg-surface border border-lime/20 rounded-2xl overflow-hidden flex flex-col md:flex-row hover:border-lime/35 transition-colors cursor-pointer min-h-[210px]"
             >
-              <div class="flex-shrink-0 w-12 text-center">
-                <p class="font-mono text-2xl font-bold text-fg leading-none">
-                  26
-                </p>
-                <p
-                  class="font-mono text-[10px] text-muted tracking-widest uppercase mt-1"
-                >
-                  ABRIL
-                </p>
+              <div class="relative h-48 md:h-auto md:w-[44%] flex-shrink-0 overflow-hidden">
+                <img
+                  src="img/eventos/CorridaGuerreiro.jpg"
+                  alt="Corrida do Guerreiro"
+                  class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500"
+                />
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface"></div>
               </div>
-              <div class="flex-1 min-w-0">
-                <p class="font-display text-sm text-fg">Falcões de Aço 2026</p>
-                <p class="text-xs text-muted mt-1">
-                  <span
-                    class="inline-block w-1.5 h-1.5 rounded-full bg-lime mr-1 align-middle"
-                  ></span
-                  >Volta Redonda, RJ
-                  <span class="mx-1.5 opacity-30">·</span>Corrida 5K
-                </p>
+              <div class="flex-1 p-5 md:p-6 flex flex-col justify-between gap-5">
+                <div>
+                  <p class="font-mono text-[10px] text-lime tracking-widest uppercase mb-2">
+                    Destaque da semana
+                  </p>
+                  <h3 class="font-display text-2xl md:text-3xl text-fg leading-tight">
+                    Corrida do Guerreiro
+                  </h3>
+                  <p class="text-sm text-muted mt-2">
+                    21 ABR &middot; Volta Redonda &middot; 3K e 5K
+                  </p>
+                </div>
+                <div class="flex items-end justify-between gap-4 border-t border-white/10 pt-4">
+                  <div>
+                    <p class="font-mono text-[10px] text-muted uppercase tracking-widest">
+                      A partir de
+                    </p>
+                    <p class="font-mono text-2xl text-lime font-bold">R$ 130,90</p>
+                  </div>
+                  <span class="text-muted group-hover:text-lime transition-colors text-xl">&rarr;</span>
+                </div>
               </div>
-              <div
-                class="hidden sm:block flex-shrink-0 text-right border-r border-white/10 pr-5 mr-1"
-              >
-                <p
-                  class="text-[10px] text-muted font-mono uppercase tracking-widest"
-                >
-                  A partir de
-                </p>
-                <p class="font-mono text-lime font-bold">R$ 114,90</p>
+            </article>
+
+            <!-- Evento 1 -->
+            <article
+              class="group bg-surface border border-white/10 rounded-2xl overflow-hidden flex flex-col md:flex-row hover:border-lime/25 transition-colors cursor-pointer"
+            >
+              <div class="relative h-36 md:h-auto md:w-56 md:self-stretch flex-shrink-0 overflow-hidden">
+                <img
+                  src="img/eventos/RoyalRun.jpg"
+                  alt="Falc&otilde;es de A&ccedil;o"
+                  class="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:scale-105 transition-transform duration-500"
+                />
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface"></div>
               </div>
-              <span
-                class="flex-shrink-0 text-muted hover:text-lime transition-colors text-lg"
-                >→</span
-              >
-            </div>
+              <div class="flex-1 p-4 md:p-5 flex flex-col sm:flex-row sm:items-center gap-4">
+                <div class="flex-1 min-w-0">
+                  <p class="font-mono text-[10px] text-muted tracking-widest uppercase mb-1">
+                    26 ABR &middot; Corrida 5K
+                  </p>
+                  <h3 class="font-display text-xl text-fg leading-tight">
+                    Falc&otilde;es de A&ccedil;o 2026
+                  </h3>
+                  <p class="text-xs text-muted mt-1">Volta Redonda, RJ</p>
+                </div>
+                <div class="sm:text-right flex-shrink-0">
+                  <p class="font-mono text-[10px] text-muted uppercase tracking-widest">
+                    A partir de
+                  </p>
+                  <p class="font-mono text-lime font-bold">R$ 114,90</p>
+                </div>
+              </div>
+            </article>
 
             <!-- Evento 2 -->
-            <div
-              class="bg-surface border border-white/10 rounded-2xl flex items-center gap-4 px-5 py-4 hover:border-white/25 transition-colors cursor-pointer"
+            <article
+              class="group bg-surface border border-white/10 rounded-2xl overflow-hidden flex flex-col md:flex-row hover:border-lime/25 transition-colors cursor-pointer opacity-60"
             >
-              <div class="flex-shrink-0 w-12 text-center">
-                <p class="font-mono text-2xl font-bold text-fg leading-none">
-                  21
-                </p>
-                <p
-                  class="font-mono text-[10px] text-muted tracking-widest uppercase mt-1"
-                >
-                  ABRIL
-                </p>
+              <div class="relative h-36 md:h-auto md:w-56 md:self-stretch flex-shrink-0 overflow-hidden">
+                <img
+                  src="img/eventos/meiaRoyal.png"
+                  alt="Meia Maratona do A&ccedil;o"
+                  class="absolute inset-0 w-full h-full object-cover opacity-75"
+                />
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface"></div>
               </div>
-              <div class="flex-1 min-w-0">
-                <p class="font-display text-sm text-fg">Corrida do Guerreiro</p>
-                <p class="text-xs text-muted mt-1">
-                  <span
-                    class="inline-block w-1.5 h-1.5 rounded-full bg-lime mr-1 align-middle"
-                  ></span
-                  >Volta Redonda, RJ <span class="mx-1.5 opacity-30">·</span>3K
-                  ou 5K
-                </p>
+              <div class="flex-1 p-4 md:p-5 flex flex-col sm:flex-row sm:items-center gap-4">
+                <div class="flex-1 min-w-0">
+                  <p class="font-mono text-[10px] text-muted tracking-widest uppercase mb-1">
+                    12 ABR &middot; Meia maratona
+                  </p>
+                  <h3 class="font-display text-xl text-fg leading-tight">
+                    2&ordf; Meia Maratona do A&ccedil;o
+                  </h3>
+                  <p class="text-xs text-muted mt-1">Volta Redonda, RJ &middot; 21K</p>
+                </div>
+                <div class="sm:text-right flex-shrink-0">
+                  <p class="font-mono text-[10px] text-red-500 uppercase tracking-widest">
+                    Encerrado
+                  </p>
+                  <p class="font-mono text-muted font-bold">R$ 149,90</p>
+                </div>
               </div>
-              <div
-                class="hidden sm:block flex-shrink-0 text-right border-r border-white/10 pr-5 mr-1"
-              >
-                <p
-                  class="text-[10px] text-muted font-mono uppercase tracking-widest"
-                >
-                  A partir de
-                </p>
-                <p class="font-mono text-lime font-bold">R$ 130,90</p>
-              </div>
-              <span
-                class="flex-shrink-0 text-muted hover:text-lime transition-colors text-lg"
-                >→</span
-              >
-            </div>
+            </article>
 
-            <!-- Evento 3 — encerrado -->
-            <div
-              class="bg-surface border border-white/10 rounded-2xl flex items-center gap-4 px-5 py-4 opacity-50"
+            <!-- Evento 3 -->
+            <article
+              class="group bg-surface border border-white/10 rounded-2xl overflow-hidden flex flex-col md:flex-row hover:border-lime/25 transition-colors cursor-pointer"
             >
-              <div class="flex-shrink-0 w-12 text-center">
-                <p class="font-mono text-2xl font-bold text-fg leading-none">
-                  12
-                </p>
-                <p
-                  class="font-mono text-[10px] text-muted tracking-widest uppercase mt-1"
-                >
-                  ABRIL
-                </p>
+              <div class="relative h-36 md:h-auto md:w-56 md:self-stretch flex-shrink-0 overflow-hidden">
+                <img
+                  src="img/eventos/DrSaude.jpg"
+                  alt="Circuito Dr. Sa&uacute;de"
+                  class="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:scale-105 transition-transform duration-500"
+                />
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface"></div>
               </div>
-              <div class="flex-1 min-w-0">
-                <p class="font-display text-sm text-fg">
-                  2ª Meia Maratona do Aço
-                </p>
-                <p class="text-xs text-muted mt-1">
-                  Volta Redonda, RJ <span class="mx-1.5 opacity-30">·</span>21K
-                </p>
+              <div class="flex-1 p-4 md:p-5 flex flex-col sm:flex-row sm:items-center gap-4">
+                <div class="flex-1 min-w-0">
+                  <p class="font-mono text-[10px] text-muted tracking-widest uppercase mb-1">
+                    03 MAI &middot; Caminhada e corrida
+                  </p>
+                  <h3 class="font-display text-xl text-fg leading-tight">
+                    Circuito Dr. Sa&uacute;de 5Km
+                  </h3>
+                  <p class="text-xs text-muted mt-1">Bananal, SP</p>
+                </div>
+                <div class="sm:text-right flex-shrink-0">
+                  <p class="font-mono text-[10px] text-muted uppercase tracking-widest">
+                    Inscri&ccedil;&atilde;o
+                  </p>
+                  <p class="font-mono text-lime font-bold">GR&Aacute;TIS</p>
+                </div>
               </div>
-              <div
-                class="hidden sm:block flex-shrink-0 text-right border-r border-white/10 pr-5 mr-1"
-              >
-                <p
-                  class="font-mono text-[10px] text-red-500 uppercase tracking-widest"
-                >
-                  Encerrado
-                </p>
-              </div>
-              <span class="flex-shrink-0 text-muted/40 text-lg">→</span>
-            </div>
+            </article>
 
             <!-- Evento 4 -->
-            <div
-              class="bg-surface border border-white/10 rounded-2xl flex items-center gap-4 px-5 py-4 hover:border-white/25 transition-colors cursor-pointer"
+            <article
+              class="group bg-surface border border-white/10 rounded-2xl overflow-hidden flex flex-col md:flex-row hover:border-lime/25 transition-colors cursor-pointer"
             >
-              <div class="flex-shrink-0 w-12 text-center">
-                <p class="font-mono text-2xl font-bold text-fg leading-none">
-                  3
-                </p>
-                <p
-                  class="font-mono text-[10px] text-muted tracking-widest uppercase mt-1"
-                >
-                  MAIO
-                </p>
+              <div class="relative h-36 md:h-auto md:w-56 md:self-stretch flex-shrink-0 overflow-hidden">
+                <img
+                  src="img/eventos/NutriDayRun.jpg"
+                  alt="Nutri Day Run"
+                  class="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:scale-105 transition-transform duration-500"
+                />
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface"></div>
               </div>
-              <div class="flex-1 min-w-0">
-                <p class="font-display text-sm text-fg">
-                  Circuito Dr. Saúde 5Km
-                </p>
-                <p class="text-xs text-muted mt-1">
-                  <span
-                    class="inline-block w-1.5 h-1.5 rounded-full bg-lime mr-1 align-middle"
-                  ></span
-                  >Bananal, SP <span class="mx-1.5 opacity-30">·</span>Caminhada
-                  e Corrida
-                </p>
+              <div class="flex-1 p-4 md:p-5 flex flex-col sm:flex-row sm:items-center gap-4">
+                <div class="flex-1 min-w-0">
+                  <p class="font-mono text-[10px] text-muted tracking-widest uppercase mb-1">
+                    03 MAI &middot; Corrida 5K
+                  </p>
+                  <h3 class="font-display text-xl text-fg leading-tight">
+                    Nutri Day Run
+                  </h3>
+                  <p class="text-xs text-muted mt-1">Bananal, SP</p>
+                </div>
+                <div class="sm:text-right flex-shrink-0">
+                  <p class="font-mono text-[10px] text-muted uppercase tracking-widest">
+                    A partir de
+                  </p>
+                  <p class="font-mono text-lime font-bold">R$ 89,90</p>
+                </div>
               </div>
-              <div
-                class="hidden sm:block flex-shrink-0 text-right border-r border-white/10 pr-5 mr-1"
-              >
-                <p
-                  class="text-[10px] text-muted font-mono uppercase tracking-widest"
-                >
-                  Inscrição
-                </p>
-                <p class="font-mono text-lime font-bold">GRÁTIS</p>
-              </div>
-              <span
-                class="flex-shrink-0 text-muted hover:text-lime transition-colors text-lg"
-                >→</span
-              >
-            </div>
+            </article>
           </div>
-
           <div class="text-center pt-1">
             <a
               href="#"
