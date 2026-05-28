@@ -105,7 +105,7 @@
             <span class="font-mono text-[10px] tracking-widest text-muted/70 uppercase">Atleta · ID 00482</span>
             <span
               class="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase text-lime bg-lime/10 border border-lime/30 rounded-full px-2 py-0.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-lime"></span>Ativo
+              <span class="w-1.5 h-1.5 rounded-full bg-lime live-pin"></span>Ativo
             </span>
           </div>
 
@@ -254,10 +254,10 @@
 
         <!-- HERO PRÓXIMA LARGADA -->
         <div class="relative overflow-hidden bg-surface border border-white/10 rounded-2xl">
-          <!-- Aba de imagem da próxima corrida (background do folheto) — troque o caminho pela imagem do evento -->
+          <!-- Aba de imagem da próxima corrida (background do folheto) -->
           <div class="absolute inset-0 bg-cover bg-center"
             style="background-image:url('img/eventos/CorridaGuerreiro.jpg');"></div>
-          <!-- Overlay escuro: mantém o texto legível (regra de contraste do design sheet) -->
+          <!-- Overlay escuro: mantém o texto legível -->
           <div class="absolute inset-0 bg-gradient-to-br from-zinc950 via-zinc950/95 to-zinc950/70"></div>
 
           <div class="relative p-5 sm:p-6">
@@ -266,7 +266,7 @@
               <span class="font-mono text-[10px] tracking-widest text-muted/70 uppercase">Próxima Largada · EVT-041</span>
               <span
                 class="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase text-lime bg-lime/10 border border-lime/30 rounded-full px-2 py-0.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-lime"></span>Inscrito
+                <span class="w-1.5 h-1.5 rounded-full bg-lime live-pin"></span>Inscrito
               </span>
             </div>
             <div class="sm:text-right">
@@ -323,87 +323,103 @@
           </div>
 
           <div class="flex flex-col gap-2">
-            <!-- EVT-041 -->
+            <!-- EVT-041 — foto-pôster com degradê na lateral esquerda (estilo destaque do index.html) -->
             <a href="#"
-              class="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-surface border border-white/10 hover:border-lime/40 transition-colors cursor-pointer">
-              <div class="flex items-center gap-3.5 min-w-0">
-                <div class="flex flex-col items-center min-w-[44px]">
-                  <span class="font-mono text-2xl font-bold text-lime leading-none">21</span>
-                  <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase mt-0.5">Abr</span>
-                </div>
-                <div class="min-w-0">
-                  <div class="flex items-center gap-1.5 mb-1 flex-wrap">
-                    <span class="font-mono text-[10px] text-muted/70">EVT-041</span>
-                    <span
-                      class="text-[9px] font-bold tracking-wider uppercase text-lime bg-lime/10 border border-lime/25 rounded-full px-1.5 py-0.5">Inscrito</span>
-                  </div>
-                  <div class="font-display text-base text-fg leading-tight">Corrida do Guerreiro</div>
-                  <div class="flex items-center gap-3 mt-1 flex-wrap text-[10px] text-muted/70">
-                    <span class="flex items-center gap-1">
-                      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                        <circle cx="12" cy="10" r="3" />
-                      </svg>
-                      Volta Redonda · RJ
-                    </span>
-                    <span>⚡ Corrida 5K</span>
-                    <span>🕒 06:00</span>
-                  </div>
-                </div>
+              class="relative overflow-hidden flex items-stretch rounded-xl bg-surface border border-white/10 hover:border-lime/40 transition-colors cursor-pointer">
+              <div class="relative w-24 sm:w-36 md:w-48 flex-shrink-0 self-stretch">
+                <img src="img/eventos/CorridaGuerreiro.jpg" alt="" aria-hidden="true"
+                  class="absolute inset-0 w-full h-full object-cover opacity-70 pointer-events-none" />
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface pointer-events-none"></div>
               </div>
-              <div class="flex items-center gap-3 text-right flex-shrink-0">
-                <div>
-                  <div class="font-mono text-[9px] tracking-widest text-muted/70 uppercase">Peitoral</div>
-                  <div class="font-mono text-base font-bold text-lime">#0428</div>
-                  <div class="font-mono text-[9px] tracking-widest text-muted/70 uppercase mt-1">T-Minus</div>
-                  <div class="font-mono text-lg font-bold text-fg">12d</div>
+
+              <div class="flex-1 min-w-0 flex items-center justify-between gap-3 p-3.5">
+                <div class="flex items-center gap-3.5 min-w-0">
+                  <div class="flex flex-col items-center min-w-[44px]">
+                    <span class="font-mono text-2xl font-bold text-lime leading-none">21</span>
+                    <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase mt-0.5">Abr</span>
+                  </div>
+                  <div class="min-w-0">
+                    <div class="flex items-center gap-1.5 mb-1 flex-wrap">
+                      <span class="font-mono text-[10px] text-muted/70">EVT-041</span>
+                      <span
+                        class="text-[9px] font-bold tracking-wider uppercase text-lime bg-lime/10 border border-lime/25 rounded-full px-1.5 py-0.5">Inscrito</span>
+                    </div>
+                    <div class="font-display text-base text-fg leading-tight">Corrida do Guerreiro</div>
+                    <div class="flex items-center gap-3 mt-1 flex-wrap text-[10px] text-muted/70">
+                      <span class="flex items-center gap-1">
+                        <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>
+                        Volta Redonda · RJ
+                      </span>
+                      <span>⚡ Corrida 5K</span>
+                      <span>🕒 06:00</span>
+                    </div>
+                  </div>
                 </div>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  class="text-muted/50">
-                  <path d="m9 18 6-6-6-6" />
-                </svg>
+                <div class="flex items-center gap-3 text-right flex-shrink-0">
+                  <div>
+                    <div class="font-mono text-[9px] tracking-widest text-muted/70 uppercase">Peitoral</div>
+                    <div class="font-mono text-base font-bold text-lime">#0428</div>
+                    <div class="font-mono text-[9px] tracking-widest text-muted/70 uppercase mt-1">T-Minus</div>
+                    <div class="font-mono text-lg font-bold text-fg">12d</div>
+                  </div>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    class="text-muted/50">
+                    <path d="m9 18 6-6-6-6" />
+                  </svg>
+                </div>
               </div>
             </a>
 
-            <!-- EVT-046 -->
+            <!-- EVT-046 — foto-pôster com degradê na lateral esquerda -->
             <a href="#"
-              class="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-surface border border-white/10 hover:border-lime/40 transition-colors cursor-pointer">
-              <div class="flex items-center gap-3.5 min-w-0">
-                <div class="flex flex-col items-center min-w-[44px]">
-                  <span class="font-mono text-2xl font-bold text-lime leading-none">26</span>
-                  <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase mt-0.5">Abr</span>
-                </div>
-                <div class="min-w-0">
-                  <div class="flex items-center gap-1.5 mb-1 flex-wrap">
-                    <span class="font-mono text-[10px] text-muted/70">EVT-046</span>
-                    <span
-                      class="text-[9px] font-bold tracking-wider uppercase text-lime bg-lime/10 border border-lime/25 rounded-full px-1.5 py-0.5">Inscrito</span>
-                  </div>
-                  <div class="font-display text-base text-fg leading-tight">Falcões de Aço 2026</div>
-                  <div class="flex items-center gap-3 mt-1 flex-wrap text-[10px] text-muted/70">
-                    <span class="flex items-center gap-1">
-                      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                        <circle cx="12" cy="10" r="3" />
-                      </svg>
-                      Volta Redonda · RJ
-                    </span>
-                    <span>⚡ Corrida 5K</span>
-                    <span>🕒 07:30</span>
-                  </div>
-                </div>
+              class="relative overflow-hidden flex items-stretch rounded-xl bg-surface border border-white/10 hover:border-lime/40 transition-colors cursor-pointer">
+              <div class="relative w-24 sm:w-36 md:w-48 flex-shrink-0 self-stretch">
+                <img src="img/eventos/RoyalRun.jpg" alt="" aria-hidden="true"
+                  class="absolute inset-0 w-full h-full object-cover opacity-70 pointer-events-none" />
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface pointer-events-none"></div>
               </div>
-              <div class="flex items-center gap-3 text-right flex-shrink-0">
-                <div>
-                  <div class="font-mono text-[9px] tracking-widest text-muted/70 uppercase">Peitoral</div>
-                  <div class="font-mono text-base font-bold text-lime">#0521</div>
-                  <div class="font-mono text-[9px] tracking-widest text-muted/70 uppercase mt-1">T-Minus</div>
-                  <div class="font-mono text-lg font-bold text-fg">17d</div>
+
+              <div class="flex-1 min-w-0 flex items-center justify-between gap-3 p-3.5">
+                <div class="flex items-center gap-3.5 min-w-0">
+                  <div class="flex flex-col items-center min-w-[44px]">
+                    <span class="font-mono text-2xl font-bold text-lime leading-none">26</span>
+                    <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase mt-0.5">Abr</span>
+                  </div>
+                  <div class="min-w-0">
+                    <div class="flex items-center gap-1.5 mb-1 flex-wrap">
+                      <span class="font-mono text-[10px] text-muted/70">EVT-046</span>
+                      <span
+                        class="text-[9px] font-bold tracking-wider uppercase text-lime bg-lime/10 border border-lime/25 rounded-full px-1.5 py-0.5">Inscrito</span>
+                    </div>
+                    <div class="font-display text-base text-fg leading-tight">Falcões de Aço 2026</div>
+                    <div class="flex items-center gap-3 mt-1 flex-wrap text-[10px] text-muted/70">
+                      <span class="flex items-center gap-1">
+                        <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>
+                        Volta Redonda · RJ
+                      </span>
+                      <span>⚡ Corrida 5K</span>
+                      <span>🕒 07:30</span>
+                    </div>
+                  </div>
                 </div>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  class="text-muted/50">
-                  <path d="m9 18 6-6-6-6" />
-                </svg>
+                <div class="flex items-center gap-3 text-right flex-shrink-0">
+                  <div>
+                    <div class="font-mono text-[9px] tracking-widest text-muted/70 uppercase">Peitoral</div>
+                    <div class="font-mono text-base font-bold text-lime">#0521</div>
+                    <div class="font-mono text-[9px] tracking-widest text-muted/70 uppercase mt-1">T-Minus</div>
+                    <div class="font-mono text-lg font-bold text-fg">17d</div>
+                  </div>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    class="text-muted/50">
+                    <path d="m9 18 6-6-6-6" />
+                  </svg>
+                </div>
               </div>
             </a>
           </div>
