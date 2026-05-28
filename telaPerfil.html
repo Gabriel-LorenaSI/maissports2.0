@@ -1,705 +1,636 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>+Sports · Perfil</title>
-  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" defer></script>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>+Sports — Perfil · Bruno Alves</title>
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            lime: { 400: '#CCFF00', 500: '#b8e600' },
-            dark: {
-              900: '#0a0a0a',
-              800: '#111111',
-              700: '#1a1a1a',
-              600: '#222222',
-              500: '#2a2a2a',
-              400: '#333333',
-            },
-            accent: '#CCFF00',
-          },
-          fontFamily: {
-            condensed: ['Barlow Condensed', 'sans-serif'],
-            body: ['Barlow', 'sans-serif'],
-          },
-        }
-      }
-    }
-  </script>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      background-color: #0a0a0a;
-      color: #e5e5e5;
-      font-family: 'Barlow', sans-serif;
-    }
-    .accent { color: #CCFF00; }
-    .accent-bg { background-color: #CCFF00; }
-    .card {
-      background-color: #111111;
-      border: 1px solid #222222;
-      border-radius: 10px;
-    }
-    .badge-green {
-      background-color: rgba(204,255,0,0.12);
-      color: #CCFF00;
-      border: 1px solid rgba(204,255,0,0.3);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      padding: 2px 8px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .badge-green::before {
-      content: '';
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: #CCFF00;
-      display: inline-block;
-    }
-    .progress-bar {
-      height: 4px;
-      border-radius: 2px;
-      background: #222;
-    }
-    .progress-fill {
-      height: 100%;
-      border-radius: 2px;
-      background: #CCFF00;
-    }
-    .menu-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 14px;
-      border-radius: 8px;
-      background: #1a1a1a;
-      font-size: 13px;
-      font-weight: 500;
-      color: #ccc;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-    .menu-item:hover { background: #222; color: #fff; }
-    .timer-digit {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 56px;
-      font-weight: 800;
-      color: #CCFF00;
-      letter-spacing: -1px;
-      line-height: 1;
-    }
-    .timer-sep { font-size: 48px; font-weight: 700; color: #555; padding: 0 2px; line-height: 1; }
-    .cal-day {
-      width: 32px; height: 32px;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 500;
-      color: #666;
-    }
-    .cal-day.today { background: #1a1a1a; color: #ccc; }
-    .cal-day.event-inscrito { background: #CCFF00; color: #000; font-weight: 700; }
-    .cal-day.event-finalizado { background: #333; color: #888; font-weight: 600; }
-    .cal-header { font-size: 10px; font-weight: 600; color: #555; text-align: center; }
-    .event-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 14px 16px;
-      border-radius: 8px;
-      background: #1a1a1a;
-      border: 1px solid #222;
-      cursor: pointer;
-      transition: border-color 0.15s;
-    }
-    .event-row:hover { border-color: #444; }
-    .event-date-box {
-      min-width: 44px;
-      display: flex; flex-direction: column; align-items: center;
-      gap: 1px;
-    }
-    .event-date-num {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 30px; font-weight: 800; color: #CCFF00; line-height: 1;
-    }
-    .event-date-month {
-      font-size: 10px; font-weight: 700; color: #666; letter-spacing: 0.08em; text-transform: uppercase;
-    }
-    .stat-value {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 26px; font-weight: 800; line-height: 1;
-    }
-    .stat-label { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; color: #555; text-transform: uppercase; margin-top: 2px; }
-    .section-title {
-      font-size: 10px; font-weight: 700; letter-spacing: 0.12em; color: #555; text-transform: uppercase;
-    }
-    .tag {
-      font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
-      padding: 2px 7px; border-radius: 999px;
-    }
-    .tag-inscrito { background: rgba(204,255,0,0.12); color: #CCFF00; border: 1px solid rgba(204,255,0,0.25); }
-    .peitoral-badge {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 16px; font-weight: 800; color: #CCFF00;
-    }
-    .t-minus { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 800; color: #fff; }
-    .t-label { font-size: 9px; color: #555; letter-spacing: 0.1em; text-transform: uppercase; }
-    .conquest-badge {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 8px 12px;
-      border-radius: 6px;
-      background: #1a1a1a;
-      border: 1px solid #222;
-    }
-    .conquest-key {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
-      background: #222; color: #CCFF00; border: 1px solid #333;
-      padding: 2px 7px; border-radius: 4px;
-      min-width: 72px; text-align: center;
-    }
-    .conquest-val { font-size: 12px; color: #888; }
-    .logo-text { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 22px; letter-spacing: -0.5px; }
-    .logo-plus { color: #CCFF00; }
-    .nav-link { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; color: #666; text-transform: uppercase; cursor: pointer; transition: color 0.15s; }
-    .nav-link:hover { color: #ccc; }
-    .nav-link.active { color: #CCFF00; }
-    .map-dot { width: 10px; height: 10px; border-radius: 50%; background: #CCFF00; box-shadow: 0 0 10px #CCFF00; }
-    .results-row td { padding: 12px 8px; font-size: 12px; border-bottom: 1px solid #1a1a1a; }
-    .results-row:last-child td { border-bottom: none; }
-    .topbar-search {
-      background: #1a1a1a;
-      border: 1px solid #222;
-      border-radius: 6px;
-      padding: 5px 12px;
-      font-size: 12px;
-      color: #555;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .footer-bar {
-      background: #0d0d0d;
-      border-top: 1px solid #1a1a1a;
-      padding: 10px 24px;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .footer-text { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: #444; text-transform: uppercase; }
-    .btn-primary {
-      background: #CCFF00; color: #000;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 13px; font-weight: 800; letter-spacing: 0.05em;
-      padding: 8px 18px; border-radius: 7px;
-      border: none; cursor: pointer; transition: background 0.15s;
-    }
-    .btn-primary:hover { background: #b8e600; }
-    .btn-outline {
-      background: transparent; color: #ccc;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 13px; font-weight: 700; letter-spacing: 0.05em;
-      padding: 8px 18px; border-radius: 7px;
-      border: 1px solid #333; cursor: pointer; transition: border-color 0.15s;
-    }
-    .btn-outline:hover { border-color: #555; }
-    .btn-ghost {
-      background: transparent; color: #888;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 13px; font-weight: 700; letter-spacing: 0.05em;
-      padding: 8px 18px; border-radius: 7px;
-      border: 1px solid #222; cursor: pointer; transition: border-color 0.15s;
-    }
-    .btn-ghost:hover { border-color: #444; color: #ccc; }
-    .timer-container { display: flex; align-items: center; gap: 4px; }
-    .logout-btn {
-      display: flex; align-items: center; justify-content: space-between;
-      width: 100%; padding: 11px 14px; border-radius: 8px;
-      background: rgba(220,38,38,0.1); border: 1px solid rgba(220,38,38,0.2);
-      color: #f87171; font-size: 13px; font-weight: 600;
-      cursor: pointer; transition: background 0.15s;
-    }
-    .logout-btn:hover { background: rgba(220,38,38,0.18); }
-    /* Countdown animation */
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-    .timer-sep-anim { animation: blink 1.5s ease-in-out infinite; }
-  </style>
+  <script src="js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="css/global.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 </head>
-<body>
 
-<!-- TOP NAV -->
-<nav style="background:#0d0d0d; border-bottom:1px solid #1a1a1a; padding:0 24px; height:50px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:50;">
-  <div style="display:flex; align-items:center; gap:32px;">
-    <span class="logo-text"><span class="logo-plus">+</span>sports<span style="color:#333;">.</span></span>
-    <div style="display:flex; gap:20px;">
-      <span class="nav-link">Eventos</span>
-      <span class="nav-link">Joga Junto</span>
-      <span class="nav-link">Ranking</span>
-      <span class="nav-link active">Perfil</span>
-    </div>
-  </div>
-  <div style="display:flex; align-items:center; gap:10px;">
-    <div class="topbar-search" style="width:220px;">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <span>Buscar eventos, atletas…</span>
-      <span style="font-size:10px; background:#222; padding:1px 5px; border-radius:3px; color:#444; margin-left:auto;">⌘K</span>
-    </div>
-    <div style="width:30px;height:30px;border-radius:6px;background:#1a1a1a;border:1px solid #222;display:flex;align-items:center;justify-content:center;cursor:pointer;">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
-    </div>
-  </div>
-</nav>
+<body class="bg-zinc950 text-fg font-body antialiased">
 
-<!-- MAIN GRID -->
-<div style="display:grid; grid-template-columns:280px 1fr 260px; gap:16px; padding:20px 24px; max-width:1280px; margin:0 auto;">
+  <!-- ═══════════════════════════════════
+       HEADER — idêntico ao base.html
+  ═══════════════════════════════════ -->
+  <header class="sticky top-0 z-50 bg-zinc950/90 backdrop-blur border-b border-white/10">
+    <nav class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
 
-  <!-- ===== LEFT COLUMN ===== -->
-  <div style="display:flex; flex-direction:column; gap:12px;">
+      <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity" aria-label="Ir para a página inicial do +Sports">
+        <img src="img/logo.svg" alt="+Sports" class="h-6 w-auto" />
+      </a>
 
-    <!-- PROFILE CARD -->
-    <div class="card" style="padding:18px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-        <span style="font-size:10px; font-weight:700; color:#444; letter-spacing:0.1em;">ATLETA · ID 00482</span>
-        <span class="badge-green">ATIVO</span>
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium text-muted">
+        <a href="index.html" class="hover:text-lime transition-colors">Home</a>
+        <a href="#"          class="hover:text-lime transition-colors">Eventos</a>
+        <a href="#"          class="hover:text-lime transition-colors">Joga Junto</a>
+        <a href="#"          class="text-lime font-semibold">Perfil</a>
       </div>
 
-      <!-- Avatar -->
-      <div style="position:relative; margin-bottom:14px;">
-        <div style="width:76px; height:76px; border-radius:12px; background:#1a1a1a; border:2px solid #CCFF00; display:flex; align-items:center; justify-content:center;">
-          <span style="font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:900; color:#CCFF00;">BA</span>
+      <div class="flex items-center gap-2">
+        <input type="text" placeholder="Pesquisar evento..."
+          class="hidden md:block bg-surface border border-white/10 rounded-lg text-sm text-fg placeholder-muted px-3 py-1.5 w-44 focus:outline-none focus:border-lime/50 transition-colors" />
+        <a href="login.html"    class="hidden md:block text-sm border border-white/20 text-fg px-3 py-1.5 rounded-lg hover:bg-surface transition-colors">Entrar</a>
+        <a href="cadastro.html" class="hidden md:block text-sm bg-lime text-zinc-900 font-semibold px-3 py-1.5 rounded-lg hover:glow-lime-sm transition-all">Criar Conta</a>
+        <button id="btnMenu" class="md:hidden text-fg text-xl w-9 h-9 flex items-center justify-center rounded-lg hover:bg-surface transition-colors" aria-label="Abrir menu">☰</button>
+      </div>
+    </nav>
+
+    <div id="menuMobile" class="hidden md:hidden bg-surface border-b border-white/10 px-4 py-4 flex flex-col gap-3 text-sm font-medium">
+      <a href="index.html" class="text-fg hover:text-lime transition-colors">Home</a>
+      <a href="#"          class="text-fg hover:text-lime transition-colors">Eventos</a>
+      <a href="#"          class="text-fg hover:text-lime transition-colors">Joga Junto</a>
+      <a href="#"          class="text-lime font-semibold">Perfil</a>
+      <hr class="border-white/10" />
+      <a href="login.html"    class="text-muted hover:text-fg transition-colors">Login</a>
+      <a href="cadastro.html" class="bg-lime text-zinc-900 font-semibold px-4 py-2 rounded-lg text-center">Criar Conta</a>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════
+       MAIN
+  ═══════════════════════════════════ -->
+  <main class="max-w-7xl mx-auto px-4 py-6">
+
+    <!--
+      ┌─────────────────────────────────────────────────┐
+      │  GRID PRINCIPAL — Mobile First                   │
+      │  mobile  → 1 coluna (tudo empilhado)             │
+      │  lg+     → [sidebar 300px] [conteúdo 1fr]        │
+      └─────────────────────────────────────────────────┘
+    -->
+    <div class="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-4 items-start">
+
+      <!-- ╔══════════════════════════════════╗
+           ║   SIDEBAR ESQUERDA               ║
+           ║   Perfil + Conquistas + Menu      ║
+           ╚══════════════════════════════════╝ -->
+      <aside class="flex flex-col gap-3">
+
+        <!-- ── CARD DO PERFIL ── -->
+        <div class="bg-surface border border-white/10 rounded-2xl p-4">
+
+          <!-- Linha: ID do atleta + badge ATIVO -->
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono text-[10px] tracking-widest text-muted uppercase">Atleta · ID 00482</span>
+            <span class="inline-flex items-center gap-1.5 font-mono text-[10px] font-bold tracking-widest text-lime border border-lime/30 bg-lime/10 rounded-full px-2.5 py-0.5 uppercase">
+              <span class="w-1.5 h-1.5 rounded-full bg-lime live-pin"></span>Ativo
+            </span>
+          </div>
+
+          <!-- Avatar + botão editar -->
+          <div class="flex items-end gap-3 mb-4">
+            <div class="relative">
+              <div class="w-[72px] h-[72px] rounded-xl bg-secondary border-2 border-lime flex items-center justify-center shrink-0">
+                <span class="font-display text-2xl text-lime">BA</span>
+              </div>
+              <!-- Badge de editar, posicionado no canto do avatar -->
+              <button class="absolute -bottom-2 -right-2 flex items-center gap-1 bg-secondary border border-white/15 rounded-md px-1.5 py-0.5 text-[9px] font-semibold text-muted hover:text-fg hover:border-white/30 transition-colors whitespace-nowrap">
+                <svg class="w-2.5 h-2.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4z"/></svg>
+                EDITAR
+              </button>
+            </div>
+            <div>
+              <p class="font-display text-xl text-fg leading-tight">BRUNO ALVES</p>
+              <p class="flex items-center gap-1 text-xs text-muted mt-1">
+                <svg class="w-3 h-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Volta Redonda · RJ
+              </p>
+            </div>
+          </div>
+
+          <!-- Stats 3 colunas -->
+          <div class="grid grid-cols-3 divide-x divide-white/10 border border-white/8 rounded-xl overflow-hidden mb-4">
+            <div class="flex flex-col items-center py-3">
+              <span class="font-display text-2xl text-fg leading-none">14</span>
+              <span class="font-mono text-[9px] tracking-widest text-muted uppercase mt-1">Eventos</span>
+            </div>
+            <div class="flex flex-col items-center py-3">
+              <span class="font-display text-2xl text-fg leading-none">06</span>
+              <span class="font-mono text-[9px] tracking-widest text-muted uppercase mt-1">Medalhas</span>
+            </div>
+            <div class="flex flex-col items-center py-3">
+              <span class="font-display text-2xl text-lime leading-none">22:08</span>
+              <span class="font-mono text-[9px] tracking-widest text-muted uppercase mt-1">PR · 5K</span>
+            </div>
+          </div>
+
+          <!-- Volume ABR + Meta Mensal -->
+          <div class="flex flex-col gap-3 pb-4 border-b border-white/8">
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="font-mono text-[10px] tracking-widest text-muted uppercase">Volume ABR</span>
+                <span class="font-mono text-xs font-bold text-fg">42.6 <span class="text-muted font-medium">KM</span></span>
+              </div>
+              <div class="h-1.5 rounded-full bg-secondary overflow-hidden">
+                <div class="h-full rounded-full bg-lime" style="width:69%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="font-mono text-[10px] tracking-widest text-muted uppercase">Meta Mensal</span>
+                <span class="font-mono text-xs font-bold text-fg">62 <span class="text-muted font-medium">KM</span></span>
+              </div>
+              <div class="h-1.5 rounded-full bg-secondary overflow-hidden">
+                <div class="h-full rounded-full bg-lime/50" style="width:45%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── CONQUISTAS (dentro do card de perfil) ── -->
+          <div class="pt-4">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-mono text-[10px] tracking-widest text-muted uppercase">Conquistas</span>
+              <svg class="w-3.5 h-3.5 text-muted/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+            </div>
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center justify-between bg-zinc950 border border-white/5 rounded-lg px-3 py-2 gap-3">
+                <span class="font-mono text-[9px] font-bold tracking-widest text-lime bg-secondary border border-white/10 px-2 py-0.5 rounded shrink-0">PR 5K</span>
+                <span class="text-xs text-muted text-right leading-tight">22:08 · Meia Maratona do Aço</span>
+              </div>
+              <div class="flex items-center justify-between bg-zinc950 border border-white/5 rounded-lg px-3 py-2 gap-3">
+                <span class="font-mono text-[9px] font-bold tracking-widest text-lime bg-secondary border border-white/10 px-2 py-0.5 rounded shrink-0">STREAK 30D</span>
+                <span class="text-xs text-muted text-right leading-tight">Treinos consecutivos</span>
+              </div>
+              <div class="flex items-center justify-between bg-zinc950 border border-white/5 rounded-lg px-3 py-2 gap-3">
+                <span class="font-mono text-[9px] font-bold tracking-widest text-lime bg-secondary border border-white/10 px-2 py-0.5 rounded shrink-0">TOP 100</span>
+                <span class="text-xs text-muted text-right leading-tight">Circuito Dr. Saúde 10K</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── CALENDÁRIO (dentro do card de perfil) ── -->
+          <div class="mt-4 pt-4 border-t border-white/8">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-display text-sm text-fg">ABRIL 2026</span>
+              <div class="flex gap-1">
+                <button class="w-6 h-6 flex items-center justify-center rounded border border-white/10 text-muted text-xs hover:border-white/20 hover:text-fg transition-colors">‹</button>
+                <button class="w-6 h-6 flex items-center justify-center rounded border border-white/10 text-muted text-xs hover:border-white/20 hover:text-fg transition-colors">›</button>
+              </div>
+            </div>
+            <!-- Headers dias -->
+            <div class="grid grid-cols-7 mb-1">
+              <span class="font-mono text-[9px] text-center text-muted/50 tracking-wider">D</span>
+              <span class="font-mono text-[9px] text-center text-muted/50 tracking-wider">S</span>
+              <span class="font-mono text-[9px] text-center text-muted/50 tracking-wider">T</span>
+              <span class="font-mono text-[9px] text-center text-muted/50 tracking-wider">Q</span>
+              <span class="font-mono text-[9px] text-center text-muted/50 tracking-wider">Q</span>
+              <span class="font-mono text-[9px] text-center text-muted/50 tracking-wider">S</span>
+              <span class="font-mono text-[9px] text-center text-muted/50 tracking-wider">S</span>
+            </div>
+            <!-- Grade de dias -->
+            <div class="grid grid-cols-7 gap-0.5 text-xs font-mono text-muted">
+              <div class="h-7 flex items-center justify-center"></div>
+              <div class="h-7 flex items-center justify-center rounded">1</div>
+              <div class="h-7 flex items-center justify-center rounded">2</div>
+              <div class="h-7 flex items-center justify-center rounded">3</div>
+              <div class="h-7 flex items-center justify-center rounded">4</div>
+              <div class="h-7 flex items-center justify-center rounded">5</div>
+              <div class="h-7 flex items-center justify-center rounded">6</div>
+              <div class="h-7 flex items-center justify-center rounded">7</div>
+              <div class="h-7 flex items-center justify-center rounded">8</div>
+              <div class="h-7 flex items-center justify-center rounded">9</div>
+              <div class="h-7 flex items-center justify-center rounded">10</div>
+              <div class="h-7 flex items-center justify-center rounded">11</div>
+              <div class="h-7 flex items-center justify-center rounded bg-secondary text-muted/60 font-bold">12</div>
+              <div class="h-7 flex items-center justify-center rounded">13</div>
+              <div class="h-7 flex items-center justify-center rounded">14</div>
+              <div class="h-7 flex items-center justify-center rounded">15</div>
+              <div class="h-7 flex items-center justify-center rounded">16</div>
+              <div class="h-7 flex items-center justify-center rounded">17</div>
+              <div class="h-7 flex items-center justify-center rounded">18</div>
+              <div class="h-7 flex items-center justify-center rounded">19</div>
+              <div class="h-7 flex items-center justify-center rounded">20</div>
+              <div class="h-7 flex items-center justify-center rounded bg-lime text-zinc-900 font-bold">21</div>
+              <div class="h-7 flex items-center justify-center rounded">22</div>
+              <div class="h-7 flex items-center justify-center rounded">23</div>
+              <div class="h-7 flex items-center justify-center rounded">24</div>
+              <div class="h-7 flex items-center justify-center rounded">25</div>
+              <div class="h-7 flex items-center justify-center rounded bg-lime text-zinc-900 font-bold">26</div>
+              <div class="h-7 flex items-center justify-center rounded">27</div>
+              <div class="h-7 flex items-center justify-center rounded">28</div>
+              <div class="h-7 flex items-center justify-center rounded">29</div>
+              <div class="h-7 flex items-center justify-center rounded">30</div>
+              <div class="h-7"></div><div class="h-7"></div><div class="h-7"></div><div class="h-7"></div>
+            </div>
+            <!-- Legenda -->
+            <div class="flex gap-4 mt-3 pt-3 border-t border-white/5">
+              <div class="flex items-center gap-1.5">
+                <div class="w-2 h-2 rounded-sm bg-lime"></div>
+                <span class="font-mono text-[9px] tracking-wide text-muted uppercase">Inscrito</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <div class="w-2 h-2 rounded-sm bg-secondary border border-white/10"></div>
+                <span class="font-mono text-[9px] tracking-wide text-muted uppercase">Finalizado</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── JOGA JUNTO LIVE (dentro do card de perfil) ── -->
+          <div class="mt-4 pt-4 border-t border-white/8">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-mono text-[10px] tracking-widest text-muted uppercase">
+                Joga Junto · <span class="text-lime">LIVE</span>
+              </span>
+              <span class="w-2 h-2 rounded-full bg-lime live-pin"></span>
+            </div>
+            <!-- Mini mapa -->
+            <div class="relative bg-zinc950 border border-white/5 rounded-xl h-[72px] overflow-hidden">
+              <div class="absolute inset-0 opacity-[0.06]">
+                <div class="absolute top-1/3 left-0 right-0 border-t border-white"></div>
+                <div class="absolute top-2/3 left-0 right-0 border-t border-white"></div>
+                <div class="absolute left-1/4 top-0 bottom-0 border-l border-white"></div>
+                <div class="absolute left-1/2 top-0 bottom-0 border-l border-white"></div>
+                <div class="absolute left-3/4 top-0 bottom-0 border-l border-white"></div>
+              </div>
+              <span class="absolute top-1.5 left-2.5 font-mono text-[8px] tracking-widest text-muted/40 uppercase">Mapa · Volta Redonda</span>
+              <div class="absolute top-1/2 left-[55%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1">
+                <div class="w-2 h-2 rounded-full bg-lime live-pin"></div>
+                <div class="bg-secondary/90 border border-white/10 rounded px-2 py-0.5 whitespace-nowrap font-mono text-[8px] text-muted">12 QUADRAS ATIVAS</div>
+              </div>
+            </div>
+            <p class="mt-2 font-mono text-[9px] tracking-wider text-muted uppercase">
+              Sessão recomendada <span class="text-lime">Quadra do Aterrado</span>
+            </p>
+          </div>
+
+        </div><!-- /card perfil -->
+
+        <!-- ── MENU DE NAVEGAÇÃO ── -->
+        <div class="bg-surface border border-white/10 rounded-2xl p-2 flex flex-col gap-0.5">
+          <button class="flex items-center justify-between w-full px-3 py-3 rounded-xl bg-secondary/80 text-fg text-sm font-semibold hover:bg-secondary transition-colors">
+            <span>Painel +Sports</span>
+            <svg class="w-4 h-4 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <button class="flex items-center justify-between w-full px-3 py-3 rounded-xl text-muted text-sm font-medium hover:bg-secondary/50 hover:text-fg transition-colors">
+            <span>Minhas Inscrições</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <button class="flex items-center justify-between w-full px-3 py-3 rounded-xl text-muted text-sm font-medium hover:bg-secondary/50 hover:text-fg transition-colors">
+            <span>Histórico de Provas</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <button class="flex items-center justify-between w-full px-3 py-3 rounded-xl text-muted text-sm font-medium hover:bg-secondary/50 hover:text-fg transition-colors">
+            <span>Pagamentos</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <button class="flex items-center justify-between w-full px-3 py-3 rounded-xl text-muted text-sm font-medium hover:bg-secondary/50 hover:text-fg transition-colors">
+            <span>Configurações</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
         </div>
-        <button style="position:absolute; bottom:-6px; right:-6px; background:#222; border:1px solid #333; border-radius:5px; padding:3px 8px; font-size:10px; font-weight:600; color:#aaa; cursor:pointer; display:flex; align-items:center; gap:4px;">
-          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-          EDITAR
+
+        <!-- ── ENCERRAR SESSÃO ── -->
+        <button class="flex items-center justify-between w-full px-4 py-3 rounded-2xl bg-red-950/40 border border-red-500/20 text-red-400 text-sm font-semibold hover:bg-red-950/60 hover:border-red-500/30 transition-colors">
+          <span>Encerrar Sessão</span>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
         </button>
-      </div>
 
-      <div style="margin-bottom:4px;">
-        <div style="font-family:'Barlow Condensed',sans-serif; font-size:22px; font-weight:900; letter-spacing:0.5px; color:#fff;">BRUNO ALVES</div>
-        <div style="display:flex; align-items:center; gap:4px; margin-top:2px;">
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span style="font-size:11px; color:#555;">Volta Redonda · RJ</span>
-        </div>
-      </div>
+      </aside><!-- /aside esquerda -->
 
-      <!-- Stats -->
-      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; padding:14px 0; border-top:1px solid #1a1a1a; border-bottom:1px solid #1a1a1a; margin-top:12px;">
-        <div style="text-align:center;">
-          <div class="stat-value">14</div>
-          <div class="stat-label">Eventos</div>
-        </div>
-        <div style="text-align:center; border-left:1px solid #1a1a1a; border-right:1px solid #1a1a1a;">
-          <div class="stat-value">06</div>
-          <div class="stat-label">Medalhas</div>
-        </div>
-        <div style="text-align:center;">
-          <div class="stat-value" style="color:#CCFF00;">22:08</div>
-          <div class="stat-label">PR · 5K</div>
-        </div>
-      </div>
+      <!-- ╔══════════════════════════════════╗
+           ║   COLUNA DE CONTEÚDO             ║
+           ║   Hero + Próximos + Finalizados  ║
+           ╚══════════════════════════════════╝ -->
+      <section class="flex flex-col gap-4">
 
-      <!-- Progress -->
-      <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px;">
+        <!-- ── HERO: PRÓXIMA LARGADA ── -->
+        <div class="bg-surface border border-white/10 rounded-2xl p-5">
+
+          <!-- Topo: label + badge inscrito + countdown à direita -->
+          <div class="flex flex-wrap items-start justify-between gap-3 mb-4">
+
+            <!-- Esquerda: label + badge -->
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="font-mono text-[10px] tracking-widest text-muted uppercase">Próxima Largada · EVT-041</span>
+              <span class="inline-flex items-center gap-1.5 font-mono text-[10px] font-bold tracking-widest text-lime border border-lime/30 bg-lime/10 rounded-full px-2.5 py-0.5 uppercase">
+                <span class="w-1.5 h-1.5 rounded-full bg-lime"></span>Inscrito
+              </span>
+            </div>
+
+            <!-- Direita: countdown + peitoral -->
+            <div class="text-right">
+              <p class="font-mono text-[9px] tracking-widest text-muted uppercase mb-1">Largada Em</p>
+              <!-- Dígitos grandes — menores no mobile, grandes no sm+ -->
+              <div class="flex items-baseline gap-0.5">
+                <span id="t-days" class="font-display text-4xl sm:text-5xl text-lime leading-none tabular-nums">12</span>
+                <span class="font-display text-3xl sm:text-4xl text-white/20 leading-none px-0.5 animate-pulse">:</span>
+                <span id="t-hrs"  class="font-display text-4xl sm:text-5xl text-lime leading-none tabular-nums">08</span>
+                <span class="font-display text-3xl sm:text-4xl text-white/20 leading-none px-0.5 animate-pulse">:</span>
+                <span id="t-min"  class="font-display text-4xl sm:text-5xl text-lime leading-none tabular-nums">45</span>
+              </div>
+              <div class="flex justify-end gap-3.5 mt-1 pr-0.5">
+                <span class="font-mono text-[8px] tracking-widest text-muted/60 uppercase">DIAS</span>
+                <span class="font-mono text-[8px] tracking-widest text-muted/60 uppercase">HRS</span>
+                <span class="font-mono text-[8px] tracking-widest text-muted/60 uppercase">MIN</span>
+              </div>
+              <p class="mt-2 font-mono text-[11px]">
+                <span class="text-muted/60">PEITORAL </span>
+                <span class="text-lime font-bold">#0428</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Título da corrida -->
+          <h1 class="font-display text-3xl sm:text-4xl text-fg leading-tight mb-2">
+            Corrida do<br>Guerreiro
+          </h1>
+          <p class="text-sm text-muted leading-relaxed mb-5 max-w-md">
+            Prova mais tradicional de Volta Redonda. 5K e 10K pelo centro histórico. Largada na Praça Brasil, 06:00.
+          </p>
+
+          <!-- Botões de ação -->
+          <div class="flex flex-wrap gap-2">
+            <button class="bg-lime text-zinc-900 text-sm font-semibold px-4 py-2 rounded-lg hover:glow-lime-sm transition-all">
+              Ver Comprovante
+            </button>
+            <button class="border border-white/20 text-fg text-sm font-medium px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
+              Status Inscrição
+            </button>
+            <button class="border border-white/8 text-muted text-sm font-medium px-4 py-2 rounded-lg hover:bg-secondary hover:text-fg transition-colors">
+              Informações
+            </button>
+          </div>
+        </div>
+
+        <!-- ── PRÓXIMOS EVENTOS ── -->
         <div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <span style="font-size:10px; font-weight:700; color:#555; letter-spacing:0.08em;">VOLUME ABR</span>
-            <span style="font-size:11px; font-weight:700; color:#aaa;">42.6 <span style="color:#555;">KM</span></span>
+          <div class="flex items-center gap-2 mb-3">
+            <h2 class="font-mono text-[10px] tracking-widest text-muted uppercase">Próximos Eventos</h2>
+            <span class="w-5 h-5 flex items-center justify-center rounded-md bg-secondary border border-white/10 font-mono text-[10px] font-bold text-lime">2</span>
           </div>
-          <div class="progress-bar">
-            <div class="progress-fill" style="width:69%;"></div>
+
+          <div class="flex flex-col gap-2">
+
+            <!-- EVT-041 -->
+            <div class="bg-surface border border-white/10 rounded-xl p-4 flex items-center gap-3 cursor-pointer hover:border-white/20 transition-colors group">
+              <!-- Data -->
+              <div class="flex flex-col items-center min-w-[36px]">
+                <span class="font-display text-[28px] text-lime leading-none">21</span>
+                <span class="font-mono text-[8px] tracking-widest text-muted uppercase mt-0.5">ABR</span>
+              </div>
+              <!-- Divisor vertical -->
+              <div class="w-px h-12 bg-white/8 shrink-0"></div>
+              <!-- Info do evento -->
+              <div class="flex-1 min-w-0">
+                <div class="flex flex-wrap items-center gap-2 mb-1">
+                  <span class="font-mono text-[9px] text-muted/60">EVT-041</span>
+                  <span class="font-mono text-[9px] font-bold tracking-wider text-lime border border-lime/25 bg-lime/10 rounded-full px-2 py-0.5 uppercase">Inscrito</span>
+                </div>
+                <p class="font-display text-base text-fg truncate group-hover:text-lime transition-colors">Corrida do Guerreiro</p>
+                <div class="flex flex-wrap items-center gap-2 mt-0.5">
+                  <span class="flex items-center gap-1 font-mono text-[9px] text-muted/60">
+                    <svg class="w-2.5 h-2.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Volta Redonda · RJ
+                  </span>
+                  <span class="font-mono text-[9px] text-muted/60">Corrida 5K</span>
+                  <span class="font-mono text-[9px] text-muted/60">06:00</span>
+                </div>
+              </div>
+              <!-- Peitoral + T-minus -->
+              <div class="text-right shrink-0">
+                <p class="font-mono text-[8px] text-muted/50 uppercase">Peitoral</p>
+                <p class="font-display text-base text-lime">#0428</p>
+                <p class="font-mono text-[8px] text-muted/50 uppercase mt-1">T-Minus</p>
+                <p class="font-display text-xl text-fg">12d</p>
+              </div>
+              <svg class="w-4 h-4 text-white/20 group-hover:text-muted shrink-0 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+            </div>
+
+            <!-- EVT-046 -->
+            <div class="bg-surface border border-white/10 rounded-xl p-4 flex items-center gap-3 cursor-pointer hover:border-white/20 transition-colors group">
+              <div class="flex flex-col items-center min-w-[36px]">
+                <span class="font-display text-[28px] text-lime leading-none">26</span>
+                <span class="font-mono text-[8px] tracking-widest text-muted uppercase mt-0.5">ABR</span>
+              </div>
+              <div class="w-px h-12 bg-white/8 shrink-0"></div>
+              <div class="flex-1 min-w-0">
+                <div class="flex flex-wrap items-center gap-2 mb-1">
+                  <span class="font-mono text-[9px] text-muted/60">EVT-046</span>
+                  <span class="font-mono text-[9px] font-bold tracking-wider text-lime border border-lime/25 bg-lime/10 rounded-full px-2 py-0.5 uppercase">Inscrito</span>
+                </div>
+                <p class="font-display text-base text-fg truncate group-hover:text-lime transition-colors">Falcões de Aço 2026</p>
+                <div class="flex flex-wrap items-center gap-2 mt-0.5">
+                  <span class="flex items-center gap-1 font-mono text-[9px] text-muted/60">
+                    <svg class="w-2.5 h-2.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Volta Redonda · RJ
+                  </span>
+                  <span class="font-mono text-[9px] text-muted/60">Corrida 5K</span>
+                  <span class="font-mono text-[9px] text-muted/60">07:30</span>
+                </div>
+              </div>
+              <div class="text-right shrink-0">
+                <p class="font-mono text-[8px] text-muted/50 uppercase">Peitoral</p>
+                <p class="font-display text-base text-lime">#0521</p>
+                <p class="font-mono text-[8px] text-muted/50 uppercase mt-1">T-Minus</p>
+                <p class="font-display text-xl text-fg">17d</p>
+              </div>
+              <svg class="w-4 h-4 text-white/20 group-hover:text-muted shrink-0 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+            </div>
+
           </div>
         </div>
+
+        <!-- ── EVENTOS FINALIZADOS ── -->
         <div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <span style="font-size:10px; font-weight:700; color:#555; letter-spacing:0.08em;">META MENSAL</span>
-            <span style="font-size:11px; font-weight:700; color:#aaa;">62 <span style="color:#555;">KM</span></span>
+          <div class="flex items-center gap-2 mb-3">
+            <h2 class="font-mono text-[10px] tracking-widest text-muted uppercase">Eventos Finalizados</h2>
+            <span class="w-5 h-5 flex items-center justify-center rounded-md bg-secondary border border-white/10 font-mono text-[10px] font-bold text-muted/60">2</span>
           </div>
-          <div class="progress-bar">
-            <div class="progress-fill" style="width:45%;"></div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- MENU -->
-    <div class="card" style="padding:10px; display:flex; flex-direction:column; gap:4px;">
-      <div class="menu-item" style="color:#fff; font-weight:600;">
-        <span>Painel +Sports</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-      </div>
-      <div class="menu-item">
-        <span>Minhas Inscrições</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-      </div>
-      <div class="menu-item">
-        <span>Histórico de Provas</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-      </div>
-      <div class="menu-item">
-        <span>Pagamentos</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-      </div>
-      <div class="menu-item">
-        <span>Configurações</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-      </div>
-    </div>
+          <div class="bg-surface border border-white/10 rounded-2xl overflow-hidden">
 
-    <!-- LOGOUT -->
-    <button class="logout-btn">
-      <span>Encerrar Sessão</span>
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-    </button>
-
-  </div>
-
-  <!-- ===== CENTER COLUMN ===== -->
-  <div style="display:flex; flex-direction:column; gap:14px;">
-
-    <!-- HERO NEXT RACE -->
-    <div class="card" style="padding:22px;">
-      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
-        <div style="display:flex; align-items:center; gap:8px;">
-          <span style="font-size:10px; font-weight:700; color:#555; letter-spacing:0.1em;">PRÓXIMA LARGADA · EVT-041</span>
-          <span class="badge-green">INSCRITO</span>
-        </div>
-        <div style="text-align:right;">
-          <div style="font-size:9px; font-weight:700; color:#555; letter-spacing:0.1em; margin-bottom:4px;">LARGADA EM</div>
-          <div class="timer-container">
-            <span class="timer-digit" id="t-days">12</span>
-            <span class="timer-sep timer-sep-anim">:</span>
-            <span class="timer-digit" id="t-hrs">08</span>
-            <span class="timer-sep timer-sep-anim">:</span>
-            <span class="timer-digit" id="t-min">45</span>
-          </div>
-          <div style="display:flex; gap:22px; margin-top:3px; justify-content:flex-end; padding-right:4px;">
-            <span style="font-size:9px; color:#444; letter-spacing:0.08em;">DIAS</span>
-            <span style="font-size:9px; color:#444; letter-spacing:0.08em;">HRS</span>
-            <span style="font-size:9px; color:#444; letter-spacing:0.08em;">MIN</span>
-          </div>
-          <div style="margin-top:6px; text-align:right;">
-            <span style="font-size:10px; color:#555;">PEITORAL </span>
-            <span style="font-size:13px; font-weight:700; color:#CCFF00;">#0428</span>
-          </div>
-        </div>
-      </div>
-
-      <div style="max-width:340px; margin-bottom:16px;">
-        <div style="font-family:'Barlow Condensed',sans-serif; font-size:38px; font-weight:900; color:#fff; line-height:1.05; letter-spacing:0.5px;">Corrida do<br>Guerreiro</div>
-        <div style="margin-top:8px; font-size:12px; color:#666; line-height:1.5;">
-          Prova mais tradicional de Volta Redonda. 5K e 10K pelo centro histórico. Largada na Praça Brasil, 06:00.
-        </div>
-      </div>
-
-      <div style="display:flex; gap:8px; flex-wrap:wrap;">
-        <button class="btn-primary">Ver Comprovante</button>
-        <button class="btn-outline">Status Inscrição</button>
-        <button class="btn-ghost">Informações</button>
-      </div>
-    </div>
-
-    <!-- PRÓXIMOS EVENTOS -->
-    <div>
-      <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
-        <span class="section-title">Próximos Eventos</span>
-        <span style="font-size:10px; font-weight:800; background:#1a1a1a; border:1px solid #222; color:#CCFF00; width:18px; height:18px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center;">2</span>
-      </div>
-
-      <div style="display:flex; flex-direction:column; gap:8px;">
-        <!-- EVT-041 -->
-        <div class="event-row" style="justify-content:space-between;">
-          <div style="display:flex; align-items:center; gap:14px;">
-            <div class="event-date-box">
-              <span class="event-date-num">21</span>
-              <span class="event-date-month">ABR</span>
+            <!-- Cabeçalho de colunas — só aparece em sm+ -->
+            <div class="hidden sm:grid sm:grid-cols-[80px_1fr_130px_80px_90px_24px] gap-x-3 px-4 py-2.5 border-b border-white/5">
+              <span class="font-mono text-[9px] tracking-widest text-muted/50 uppercase">Data</span>
+              <span class="font-mono text-[9px] tracking-widest text-muted/50 uppercase">Evento</span>
+              <span class="font-mono text-[9px] tracking-widest text-muted/50 uppercase text-right">Tempo</span>
+              <span class="font-mono text-[9px] tracking-widest text-muted/50 uppercase text-right">Pace</span>
+              <span class="font-mono text-[9px] tracking-widest text-muted/50 uppercase text-right">Rank</span>
+              <span></span>
             </div>
-            <div>
-              <div style="display:flex; align-items:center; gap:6px; margin-bottom:3px;">
-                <span style="font-size:10px; color:#555;">EVT-041</span>
-                <span class="tag tag-inscrito">INSCRITO</span>
+
+            <!-- Linha 1 -->
+            <div class="cursor-pointer hover:bg-white/[0.03] transition-colors border-b border-white/5 group">
+              <!-- Mobile: card compacto -->
+              <div class="sm:hidden p-4 flex flex-col gap-2.5">
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <p class="text-sm font-semibold text-fg leading-tight">2ª Meia Maratona do Aço</p>
+                    <p class="font-mono text-[9px] text-muted/60 mt-0.5 uppercase tracking-wider">Masculino Geral 5K · Volta Redonda · RJ</p>
+                  </div>
+                  <span class="font-mono text-[10px] text-muted/50 shrink-0">12 ABR</span>
+                </div>
+                <div class="flex items-end justify-between">
+                  <div class="flex gap-4">
+                    <div>
+                      <p class="font-mono text-[8px] text-muted/50 uppercase tracking-wider mb-0.5">Tempo</p>
+                      <p class="font-display text-xl text-lime leading-none">24:18.07</p>
+                    </div>
+                    <div>
+                      <p class="font-mono text-[8px] text-muted/50 uppercase tracking-wider mb-0.5">Pace</p>
+                      <p class="text-sm text-fg font-medium">4:51/km</p>
+                    </div>
+                    <div>
+                      <p class="font-mono text-[8px] text-muted/50 uppercase tracking-wider mb-0.5">Rank</p>
+                      <p class="text-sm text-muted">087 / 412</p>
+                    </div>
+                  </div>
+                  <svg class="w-4 h-4 text-muted/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+                </div>
               </div>
-              <div style="font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:800; color:#fff;">Corrida do Guerreiro</div>
-              <div style="display:flex; align-items:center; gap:10px; margin-top:2px;">
-                <span style="font-size:10px; color:#555; display:flex; align-items:center; gap:3px;">
-                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                  Volta Redonda · RJ
-                </span>
-                <span style="font-size:10px; color:#555;">⚡ Corrida 5K</span>
-                <span style="font-size:10px; color:#555;">📅 06:00</span>
+              <!-- Desktop: linha de tabela -->
+              <div class="hidden sm:grid sm:grid-cols-[80px_1fr_130px_80px_90px_24px] gap-x-3 px-4 py-4 items-center">
+                <span class="font-mono text-xs text-muted/50">12 ABR</span>
+                <div>
+                  <p class="text-sm font-semibold text-fg group-hover:text-lime transition-colors">2ª Meia Maratona do Aço</p>
+                  <p class="font-mono text-[9px] text-muted/50 mt-0.5 uppercase tracking-wider">Masculino Geral 5K · Volta Redonda · RJ</p>
+                </div>
+                <p class="font-display text-xl text-lime text-right">24:18.07</p>
+                <p class="font-mono text-xs text-muted text-right">4:51/km</p>
+                <p class="font-mono text-xs text-muted text-right">087 / 412</p>
+                <svg class="w-4 h-4 text-muted/30 group-hover:text-muted transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
               </div>
             </div>
-          </div>
-          <div style="text-align:right; display:flex; align-items:center; gap:14px;">
-            <div>
-              <div style="font-size:9px; color:#555; letter-spacing:0.08em;">PEITORAL</div>
-              <div class="peitoral-badge">#0428</div>
-              <div style="font-size:9px; color:#555; letter-spacing:0.08em; margin-top:4px;">T-MINUS</div>
-              <div class="t-minus">12d</div>
-            </div>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-          </div>
-        </div>
 
-        <!-- EVT-046 -->
-        <div class="event-row" style="justify-content:space-between;">
-          <div style="display:flex; align-items:center; gap:14px;">
-            <div class="event-date-box">
-              <span class="event-date-num">26</span>
-              <span class="event-date-month">ABR</span>
-            </div>
-            <div>
-              <div style="display:flex; align-items:center; gap:6px; margin-bottom:3px;">
-                <span style="font-size:10px; color:#555;">EVT-046</span>
-                <span class="tag tag-inscrito">INSCRITO</span>
+            <!-- Linha 2 -->
+            <div class="cursor-pointer hover:bg-white/[0.03] transition-colors group">
+              <!-- Mobile -->
+              <div class="sm:hidden p-4 flex flex-col gap-2.5">
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <p class="text-sm font-semibold text-fg leading-tight">Circuito Dr. Saúde</p>
+                    <p class="font-mono text-[9px] text-muted/60 mt-0.5 uppercase tracking-wider">Caminhada & Corrida 10K · Ilha de São João</p>
+                  </div>
+                  <span class="font-mono text-[10px] text-muted/50 shrink-0">02 MAR</span>
+                </div>
+                <div class="flex items-end justify-between">
+                  <div class="flex gap-4">
+                    <div>
+                      <p class="font-mono text-[8px] text-muted/50 uppercase tracking-wider mb-0.5">Tempo</p>
+                      <p class="font-display text-xl text-lime leading-none">52:04.22</p>
+                    </div>
+                    <div>
+                      <p class="font-mono text-[8px] text-muted/50 uppercase tracking-wider mb-0.5">Pace</p>
+                      <p class="text-sm text-fg font-medium">5:12/km</p>
+                    </div>
+                    <div>
+                      <p class="font-mono text-[8px] text-muted/50 uppercase tracking-wider mb-0.5">Rank</p>
+                      <p class="text-sm text-muted">142 / 689</p>
+                    </div>
+                  </div>
+                  <svg class="w-4 h-4 text-muted/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+                </div>
               </div>
-              <div style="font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:800; color:#fff;">Falcões de Aço 2026</div>
-              <div style="display:flex; align-items:center; gap:10px; margin-top:2px;">
-                <span style="font-size:10px; color:#555; display:flex; align-items:center; gap:3px;">
-                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                  Volta Redonda · RJ
-                </span>
-                <span style="font-size:10px; color:#555;">⚡ Corrida 5K</span>
-                <span style="font-size:10px; color:#555;">📅 07:30</span>
+              <!-- Desktop -->
+              <div class="hidden sm:grid sm:grid-cols-[80px_1fr_130px_80px_90px_24px] gap-x-3 px-4 py-4 items-center">
+                <span class="font-mono text-xs text-muted/50">02 MAR</span>
+                <div>
+                  <p class="text-sm font-semibold text-fg group-hover:text-lime transition-colors">Circuito Dr. Saúde</p>
+                  <p class="font-mono text-[9px] text-muted/50 mt-0.5 uppercase tracking-wider">Caminhada & Corrida 10K · Ilha de São João</p>
+                </div>
+                <p class="font-display text-xl text-lime text-right">52:04.22</p>
+                <p class="font-mono text-xs text-muted text-right">5:12/km</p>
+                <p class="font-mono text-xs text-muted text-right">142 / 689</p>
+                <svg class="w-4 h-4 text-muted/30 group-hover:text-muted transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
               </div>
             </div>
-          </div>
-          <div style="text-align:right; display:flex; align-items:center; gap:14px;">
-            <div>
-              <div style="font-size:9px; color:#555; letter-spacing:0.08em;">PEITORAL</div>
-              <div class="peitoral-badge">#0521</div>
-              <div style="font-size:9px; color:#555; letter-spacing:0.08em; margin-top:4px;">T-MINUS</div>
-              <div class="t-minus">17d</div>
-            </div>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+
           </div>
         </div>
+
+      </section><!-- /coluna conteúdo -->
+
+    </div><!-- /grid principal -->
+  </main>
+
+  <!-- ═══════════════════════════════════
+       FOOTER — idêntico ao base.html
+  ═══════════════════════════════════ -->
+  <footer class="border-t border-white/10 bg-surface mt-16">
+    <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
+
+      <div class="col-span-2 md:col-span-1">
+        <a href="index.html" class="flex items-center mb-3 hover:opacity-80 transition-opacity" aria-label="Ir para a página inicial do +Sports">
+          <img src="img/logo.svg" alt="+Sports" class="h-7 w-auto" />
+        </a>
+        <p class="text-muted text-xs leading-relaxed">Conectando a comunidade de Volta Redonda aos melhores eventos esportivos da região.</p>
+        <div class="flex gap-4 mt-4 text-muted">
+          <a href="#" class="hover:text-lime transition-colors" aria-label="Acessar nosso Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="#" class="hover:text-lime transition-colors" aria-label="Acessar nosso Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+          <a href="#" class="hover:text-lime transition-colors" aria-label="Acessar nosso Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+          </a>
+        </div>
       </div>
+
+      <div>
+        <h4 class="font-mono text-xs tracking-widest text-muted uppercase mb-3">Navegação</h4>
+        <ul class="flex flex-col gap-2 text-sm text-fg/70">
+          <li><a href="index.html" class="hover:text-lime transition-colors">Home</a></li>
+          <li><a href="#"          class="hover:text-lime transition-colors">Eventos</a></li>
+          <li><a href="#"          class="hover:text-lime transition-colors">Joga Junto</a></li>
+          <li><a href="#"          class="hover:text-lime transition-colors">Mapa</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-mono text-xs tracking-widest text-muted uppercase mb-3">Conta</h4>
+        <ul class="flex flex-col gap-2 text-sm text-fg/70">
+          <li><a href="login.html"    class="hover:text-lime transition-colors">Login</a></li>
+          <li><a href="cadastro.html" class="hover:text-lime transition-colors">Cadastrar</a></li>
+          <li><a href="login.html"    class="hover:text-lime transition-colors">Meus Eventos</a></li>
+          <li><a href="#"             class="hover:text-lime transition-colors">Ajuda</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-mono text-xs tracking-widest text-muted uppercase mb-3">+Sports</h4>
+        <ul class="flex flex-col gap-2 text-sm text-fg/70">
+          <li><a href="#" class="hover:text-lime transition-colors">Sobre Nós</a></li>
+          <li><a href="#" class="hover:text-lime transition-colors">Contato</a></li>
+          <li><a href="#" class="hover:text-lime transition-colors">Política de Privacidade</a></li>
+          <li><a href="#" class="hover:text-lime transition-colors">Termos de Uso</a></li>
+        </ul>
+      </div>
+
     </div>
-
-    <!-- EVENTOS FINALIZADOS -->
-    <div>
-      <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
-        <span class="section-title">Eventos Finalizados</span>
-        <span style="font-size:10px; font-weight:800; background:#1a1a1a; border:1px solid #222; color:#aaa; width:18px; height:18px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center;">2</span>
-      </div>
-
-      <div class="card" style="overflow:hidden;">
-        <table style="width:100%; border-collapse:collapse;">
-          <thead>
-            <tr style="border-bottom:1px solid #1a1a1a;">
-              <th style="text-align:left; padding:10px 14px; font-size:9px; font-weight:700; color:#444; letter-spacing:0.1em; text-transform:uppercase;">DATA</th>
-              <th style="text-align:left; padding:10px 8px; font-size:9px; font-weight:700; color:#444; letter-spacing:0.1em; text-transform:uppercase;">EVENTO</th>
-              <th style="text-align:right; padding:10px 8px; font-size:9px; font-weight:700; color:#444; letter-spacing:0.1em; text-transform:uppercase;">TEMPO</th>
-              <th style="text-align:right; padding:10px 8px; font-size:9px; font-weight:700; color:#444; letter-spacing:0.1em; text-transform:uppercase;">PACE</th>
-              <th style="text-align:right; padding:10px 14px; font-size:9px; font-weight:700; color:#444; letter-spacing:0.1em; text-transform:uppercase;">RANK</th>
-              <th style="width:20px;"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="results-row" style="cursor:pointer;" onmouseover="this.style.background='#161616'" onmouseout="this.style.background='transparent'">
-              <td style="padding:14px; font-size:11px; color:#555; white-space:nowrap;">12 ABR</td>
-              <td style="padding:14px 8px;">
-                <div style="font-size:13px; font-weight:700; color:#ddd;">2ª Meia Maratona do Aço</div>
-                <div style="font-size:10px; color:#555; margin-top:1px;">Masculino Geral 5K · Volta Redonda · RJ</div>
-              </td>
-              <td style="padding:14px 8px; text-align:right;">
-                <span style="font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:800; color:#CCFF00;">24:18.07</span>
-              </td>
-              <td style="padding:14px 8px; text-align:right; font-size:12px; color:#888;">4:51/km</td>
-              <td style="padding:14px; text-align:right; font-size:12px; color:#777;">087 / 412</td>
-              <td style="padding:14px 0;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-              </td>
-            </tr>
-            <tr class="results-row" style="cursor:pointer;" onmouseover="this.style.background='#161616'" onmouseout="this.style.background='transparent'">
-              <td style="padding:14px; font-size:11px; color:#555; white-space:nowrap;">02 MAR</td>
-              <td style="padding:14px 8px;">
-                <div style="font-size:13px; font-weight:700; color:#ddd;">Circuito Dr. Saúde</div>
-                <div style="font-size:10px; color:#555; margin-top:1px;">Caminhada & Corrida 10K · Ilha de São João</div>
-              </td>
-              <td style="padding:14px 8px; text-align:right;">
-                <span style="font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:800; color:#CCFF00;">52:04.22</span>
-              </td>
-              <td style="padding:14px 8px; text-align:right; font-size:12px; color:#888;">5:12/km</td>
-              <td style="padding:14px; text-align:right; font-size:12px; color:#777;">142 / 689</td>
-              <td style="padding:14px 0;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="border-t border-white/10 text-center py-4">
+      <p class="text-muted text-xs font-mono">© 2026 +Sports. Todos os direitos reservados. Desenvolvido por alunos do UniFOA.</p>
     </div>
+  </footer>
 
-  </div>
+  <script src="js/global.js"></script>
+  <script>
+    // Countdown regressivo até a Corrida do Guerreiro
+    const raceTarget = new Date();
+    raceTarget.setDate(raceTarget.getDate() + 12);
+    raceTarget.setHours(6, 0, 0, 0);
 
-  <!-- ===== RIGHT COLUMN ===== -->
-  <div style="display:flex; flex-direction:column; gap:14px;">
-
-    <!-- CALENDAR -->
-    <div class="card" style="padding:16px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-        <span style="font-family:'Barlow Condensed',sans-serif; font-size:14px; font-weight:800; letter-spacing:0.05em; color:#ccc;">ABRIL 2026</span>
-        <div style="display:flex; gap:4px;">
-          <button style="background:#1a1a1a; border:1px solid #222; color:#666; width:22px; height:22px; border-radius:4px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:12px;">&lsaquo;</button>
-          <button style="background:#1a1a1a; border:1px solid #222; color:#666; width:22px; height:22px; border-radius:4px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:12px;">&rsaquo;</button>
-        </div>
-      </div>
-
-      <!-- Day headers -->
-      <div style="display:grid; grid-template-columns:repeat(7,1fr); margin-bottom:4px;">
-        <div class="cal-header">D</div>
-        <div class="cal-header">S</div>
-        <div class="cal-header">T</div>
-        <div class="cal-header">Q</div>
-        <div class="cal-header">Q</div>
-        <div class="cal-header">S</div>
-        <div class="cal-header">S</div>
-      </div>
-
-      <!-- Calendar days -->
-      <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:2px;">
-        <!-- Row 1: 1-7 (Apr 1 = Tuesday) -->
-        <div class="cal-day"></div>
-        <div class="cal-day">1</div>
-        <div class="cal-day">2</div>
-        <div class="cal-day">3</div>
-        <div class="cal-day">4</div>
-        <div class="cal-day">5</div>
-        <div class="cal-day">6</div>
-        <!-- Row 2 -->
-        <div class="cal-day">7</div>
-        <div class="cal-day">8</div>
-        <div class="cal-day">9</div>
-        <div class="cal-day">10</div>
-        <div class="cal-day">11</div>
-        <div class="cal-day event-finalizado">12</div>
-        <div class="cal-day">13</div>
-        <!-- Row 3 -->
-        <div class="cal-day">14</div>
-        <div class="cal-day">15</div>
-        <div class="cal-day">16</div>
-        <div class="cal-day">17</div>
-        <div class="cal-day">18</div>
-        <div class="cal-day">19</div>
-        <div class="cal-day">20</div>
-        <!-- Row 4 -->
-        <div class="cal-day event-inscrito">21</div>
-        <div class="cal-day">22</div>
-        <div class="cal-day">23</div>
-        <div class="cal-day">24</div>
-        <div class="cal-day">25</div>
-        <div class="cal-day event-inscrito">26</div>
-        <div class="cal-day">27</div>
-        <!-- Row 5 -->
-        <div class="cal-day">28</div>
-        <div class="cal-day">29</div>
-        <div class="cal-day">30</div>
-        <div class="cal-day"></div>
-        <div class="cal-day"></div>
-        <div class="cal-day"></div>
-        <div class="cal-day"></div>
-      </div>
-
-      <!-- Legend -->
-      <div style="margin-top:12px; display:flex; flex-direction:column; gap:4px; border-top:1px solid #1a1a1a; padding-top:10px;">
-        <div style="display:flex; align-items:center; gap:6px;">
-          <div style="width:8px; height:8px; border-radius:2px; background:#CCFF00;"></div>
-          <span style="font-size:10px; color:#555; letter-spacing:0.06em;">EVENTO INSCRITO</span>
-        </div>
-        <div style="display:flex; align-items:center; gap:6px;">
-          <div style="width:8px; height:8px; border-radius:2px; background:#333;"></div>
-          <span style="font-size:10px; color:#555; letter-spacing:0.06em;">EVENTO FINALIZADO</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- JOGA JUNTO LIVE -->
-    <div class="card" style="padding:14px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-        <span style="font-size:10px; font-weight:700; letter-spacing:0.1em; color:#888; text-transform:uppercase;">JOGA JUNTO · <span style="color:#CCFF00;">LIVE</span></span>
-        <div style="width:8px; height:8px; border-radius:50%; background:#CCFF00; box-shadow:0 0 8px #CCFF00;"></div>
-      </div>
-      <!-- Map area -->
-      <div style="background:#111; border:1px solid #1a1a1a; border-radius:8px; padding:16px; position:relative; overflow:hidden; height:100px;">
-        <!-- Grid lines simulation -->
-        <div style="position:absolute; inset:0; opacity:0.06;">
-          <div style="position:absolute; top:25%; left:0; right:0; border-top:1px solid #fff;"></div>
-          <div style="position:absolute; top:50%; left:0; right:0; border-top:1px solid #fff;"></div>
-          <div style="position:absolute; top:75%; left:0; right:0; border-top:1px solid #fff;"></div>
-          <div style="position:absolute; left:25%; top:0; bottom:0; border-left:1px solid #fff;"></div>
-          <div style="position:absolute; left:50%; top:0; bottom:0; border-left:1px solid #fff;"></div>
-          <div style="position:absolute; left:75%; top:0; bottom:0; border-left:1px solid #fff;"></div>
-        </div>
-        <div style="position:absolute; top:8px; left:10px; font-size:9px; color:#333; letter-spacing:0.1em; font-weight:700;">MAPA · VOLTA REDONDA</div>
-        <!-- Dot -->
-        <div style="position:absolute; top:50%; left:55%; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; gap:4px;">
-          <div class="map-dot"></div>
-          <div style="background:#1a1a1a; border:1px solid #333; border-radius:4px; padding:2px 7px; font-size:9px; font-weight:700; color:#888; white-space:nowrap;">12 QUADRAS ATIVAS</div>
-        </div>
-      </div>
-      <div style="margin-top:8px; font-size:11px; color:#555;">
-        SESSÃO RECOMENDADA <span style="color:#CCFF00; font-weight:700;">QUADRA DO ATERRADO</span>
-      </div>
-    </div>
-
-    <!-- CONQUISTAS -->
-    <div class="card" style="padding:14px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-        <span class="section-title">Conquistas</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:6px;">
-        <div class="conquest-badge">
-          <span class="conquest-key">PR 5K</span>
-          <span class="conquest-val">22:08 · Meia Maratona do Aço</span>
-        </div>
-        <div class="conquest-badge">
-          <span class="conquest-key">STREAK 30D</span>
-          <span class="conquest-val">Treinos consecutivos</span>
-        </div>
-        <div class="conquest-badge">
-          <span class="conquest-key">TOP 100</span>
-          <span class="conquest-val">Circuito Dr. Saúde 10K</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- FOOTER -->
-<div class="footer-bar">
-  <span class="footer-text">+Sports · Dark · Cronômetro V1.0</span>
-  <span class="footer-text">Sessão #BA-0482 · 12:08:45</span>
-</div>
-
-<script>
-  // Live countdown timer
-  const targetDate = new Date();
-  targetDate.setDate(targetDate.getDate() + 12);
-  targetDate.setHours(6, 0, 0, 0);
-
-  function updateTimer() {
-    const now = new Date();
-    const diff = targetDate - now;
-    if (diff <= 0) return;
-    const days = Math.floor(diff / (1000*60*60*24));
-    const hrs = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-    const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
-    document.getElementById('t-days').textContent = String(days).padStart(2,'0');
-    document.getElementById('t-hrs').textContent = String(hrs).padStart(2,'0');
-    document.getElementById('t-min').textContent = String(mins).padStart(2,'0');
-  }
-  updateTimer();
-  setInterval(updateTimer, 30000);
-</script>
+    function tick() {
+      const diff = raceTarget - Date.now();
+      if (diff <= 0) return;
+      const d = Math.floor(diff / 864e5);
+      const h = Math.floor((diff % 864e5) / 36e5);
+      const m = Math.floor((diff % 36e5) / 6e4);
+      document.getElementById('t-days').textContent = String(d).padStart(2, '0');
+      document.getElementById('t-hrs').textContent  = String(h).padStart(2, '0');
+      document.getElementById('t-min').textContent  = String(m).padStart(2, '0');
+    }
+    tick();
+    setInterval(tick, 30000);
+  </script>
 
 </body>
 </html>
