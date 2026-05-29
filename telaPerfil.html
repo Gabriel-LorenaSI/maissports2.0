@@ -104,9 +104,8 @@
             </span>
           </div>
 
-          <!-- Avatar com upload de foto -->
+          <!-- Avatar com upload de foto (clique no avatar abre o seletor de arquivo) -->
           <div class="relative inline-block mb-4">
-            <!-- O <label> abre o file picker. A imagem fica como background. -->
             <label for="avatarInput" id="avatarDisplay"
               class="block w-20 h-20 rounded-xl bg-secondary border-2 border-lime flex items-center justify-center transition-all hover:glow-lime-sm cursor-pointer overflow-hidden bg-cover bg-center"
               aria-label="Trocar foto de perfil">
@@ -114,16 +113,16 @@
             </label>
             <input id="avatarInput" type="file" accept="image/*" class="hidden" />
 
-            <!-- Botão pequeno de câmera (canto superior direito) -->
-            <label for="avatarInput"
+            <!-- Botão pequeno EDITAR PERFIL (canto superior direito) — lápis -->
+            <button id="editProfileBtn" type="button"
               class="absolute -top-2 -right-2 flex items-center justify-center w-7 h-7 bg-secondary border border-white/10 rounded-full text-muted hover:text-lime hover:border-lime/50 transition-colors cursor-pointer"
-              aria-label="Enviar nova foto">
+              aria-label="Editar perfil">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
-                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-                <circle cx="12" cy="13" r="4" />
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
               </svg>
-            </label>
+            </button>
 
             <!-- Botão remover foto (visível só quando há uma foto carregada) -->
             <button id="avatarRemove" type="button" hidden
@@ -138,15 +137,17 @@
               </svg>
             </button>
 
-            <!-- Botão EDITAR (abre modal) -->
-            <button id="editProfileBtn" type="button"
-              class="absolute -bottom-2 -right-2 flex items-center gap-1 bg-secondary border border-white/10 rounded-md px-2 py-1 text-[10px] font-semibold text-muted hover:text-fg hover:border-white/30 transition-colors cursor-pointer">
-              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+            <!-- Botão TROCAR FOTO (canto inferior direito) — câmera + texto EDITAR -->
+            <label for="avatarInput"
+              class="absolute -bottom-2 -right-2 flex items-center gap-1 bg-secondary border border-white/10 rounded-md px-2 py-1 text-[10px] font-semibold text-muted hover:text-fg hover:border-white/30 transition-colors cursor-pointer"
+              aria-label="Trocar foto de perfil">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                <circle cx="12" cy="13" r="4" />
               </svg>
               EDITAR
-            </button>
+            </label>
           </div>
 
           <div>
@@ -548,9 +549,22 @@
           </label>
         </div>
 
+        <div class="grid grid-cols-[minmax(0,1fr)_90px] gap-3">
+          <label class="flex flex-col gap-1">
+            <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Endereço</span>
+            <input id="inputAddress" type="text" maxlength="120" placeholder="Rua, bairro"
+              class="bg-secondary border border-white/10 rounded-lg px-3 py-2 text-sm text-fg focus:outline-none focus:border-lime/50 transition-colors" />
+          </label>
+          <label class="flex flex-col gap-1">
+            <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Número</span>
+            <input id="inputNumber" type="text" maxlength="10" placeholder="123" inputmode="numeric"
+              class="bg-secondary border border-white/10 rounded-lg px-3 py-2 text-sm text-fg focus:outline-none focus:border-lime/50 transition-colors" />
+          </label>
+        </div>
+
         <label class="flex flex-col gap-1">
-          <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Endereço</span>
-          <input id="inputAddress" type="text" maxlength="120" placeholder="Rua, número, bairro"
+          <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Complemento <span class="font-body normal-case tracking-normal text-muted/60">(apto, bloco, casa…)</span></span>
+          <input id="inputComplement" type="text" maxlength="60" placeholder="Apto 302, Bloco B…"
             class="bg-secondary border border-white/10 rounded-lg px-3 py-2 text-sm text-fg focus:outline-none focus:border-lime/50 transition-colors" />
           <span id="cepHint" class="text-[10px] text-muted/60 mt-1">Digite o CEP para preencher endereço automaticamente.</span>
         </label>
@@ -834,6 +848,8 @@
       const phoneInput = document.getElementById('inputPhone');
       const cepInput = document.getElementById('inputCep');
       const addressInput = document.getElementById('inputAddress');
+      const numberInput = document.getElementById('inputNumber');
+      const complementInput = document.getElementById('inputComplement');
       const locInput = document.getElementById('inputLocation');
       const cepHint = document.getElementById('cepHint');
       const nameOut = document.getElementById('profileName');
@@ -895,6 +911,8 @@
         if (phoneInput) phoneInput.value = profileData.phone || '';
         if (cepInput) cepInput.value = profileData.cep || '';
         if (addressInput) addressInput.value = profileData.address || '';
+        if (numberInput) numberInput.value = profileData.number || '';
+        if (complementInput) complementInput.value = profileData.complement || '';
         if (locInput) locInput.value = (profileData.location || locOut.textContent || '').trim();
         if (cepHint) cepHint.textContent = 'Digite o CEP para preencher endereço automaticamente.';
         modal.classList.remove('hidden');
@@ -921,6 +939,8 @@
           phone: phoneInput ? phoneInput.value.trim() : '',
           cep: cepInput ? cepInput.value.trim() : '',
           address: addressInput ? addressInput.value.trim() : '',
+          number: numberInput ? numberInput.value.trim() : '',
+          complement: complementInput ? complementInput.value.trim() : '',
           location: locInput ? locInput.value.trim() : ''
         };
         if (!data.name) return;
@@ -993,7 +1013,7 @@
 
     // ============ Contagem regressiva da próxima largada (data fictícia fixa) ============
     // Data alvo da Corrida do Guerreiro: 10/Jun/2026 às 06:00 (fictícia, ~12 dias do "hoje" da demo)
-    const targetDate = new Date('2026-05-29T06:00:00');
+    const targetDate = new Date('2026-06-10T06:00:00');
 
     function updateTimer() {
       const now = new Date();
