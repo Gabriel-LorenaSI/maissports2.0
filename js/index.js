@@ -151,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
       sport: 'society',
       status: 'available',
       coords: [-22.508, -44.097],
-      selected: true,
     },
     {
       title: 'Vôlei no Aterrado',
