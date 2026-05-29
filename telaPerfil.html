@@ -104,13 +104,42 @@
             </span>
           </div>
 
-          <!-- Avatar -->
+          <!-- Avatar com upload de foto -->
           <div class="relative inline-block mb-4">
-            <div
-              class="w-20 h-20 rounded-xl bg-secondary border-2 border-lime flex items-center justify-center transition-all hover:glow-lime-sm cursor-pointer">
-              <span class="font-display text-3xl text-lime">BA</span>
-            </div>
-            <button
+            <!-- O <label> abre o file picker. A imagem fica como background. -->
+            <label for="avatarInput" id="avatarDisplay"
+              class="block w-20 h-20 rounded-xl bg-secondary border-2 border-lime flex items-center justify-center transition-all hover:glow-lime-sm cursor-pointer overflow-hidden bg-cover bg-center"
+              aria-label="Trocar foto de perfil">
+              <span id="avatarInitials" class="font-display text-3xl text-lime">BA</span>
+            </label>
+            <input id="avatarInput" type="file" accept="image/*" class="hidden" />
+
+            <!-- Botão pequeno de câmera (canto superior direito) -->
+            <label for="avatarInput"
+              class="absolute -top-2 -right-2 flex items-center justify-center w-7 h-7 bg-secondary border border-white/10 rounded-full text-muted hover:text-lime hover:border-lime/50 transition-colors cursor-pointer"
+              aria-label="Enviar nova foto">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                <circle cx="12" cy="13" r="4" />
+              </svg>
+            </label>
+
+            <!-- Botão remover foto (visível só quando há uma foto carregada) -->
+            <button id="avatarRemove" type="button" hidden
+              class="absolute -bottom-2 -left-2 flex items-center justify-center w-7 h-7 bg-secondary border border-red-500/30 rounded-full text-red-400 hover:text-red-300 hover:border-red-400/60 transition-colors cursor-pointer"
+              aria-label="Remover foto de perfil">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6" />
+                <path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6" />
+                <path d="M10 11v6" />
+                <path d="M14 11v6" />
+              </svg>
+            </button>
+
+            <!-- Botão EDITAR (abre modal) -->
+            <button id="editProfileBtn" type="button"
               class="absolute -bottom-2 -right-2 flex items-center gap-1 bg-secondary border border-white/10 rounded-md px-2 py-1 text-[10px] font-semibold text-muted hover:text-fg hover:border-white/30 transition-colors cursor-pointer">
               <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
@@ -121,13 +150,13 @@
           </div>
 
           <div>
-            <div class="font-display text-2xl text-fg leading-none">BRUNO ALVES</div>
+            <div id="profileName" class="font-display text-2xl text-fg leading-none">BRUNO ALVES</div>
             <div class="flex items-center gap-1.5 mt-2 text-muted">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                 <circle cx="12" cy="10" r="3" />
               </svg>
-              <span class="text-xs">Volta Redonda · RJ</span>
+              <span id="profileLocation" class="text-xs">Volta Redonda · RJ</span>
             </div>
           </div>
 
@@ -170,18 +199,18 @@
           </div>
         </div>
 
-         <!-- MENU (Painel +Sports) — colapsável no mobile, sempre aberto no desktop -->
+        <!-- MENU (Painel +Sports) — hambúrguer funcional em mobile e desktop, começa fechado -->
         <div class="bg-surface border border-white/10 rounded-2xl p-2.5 flex flex-col gap-1">
           <button id="painelToggle" type="button" aria-expanded="false" aria-controls="painelItems"
             class="flex justify-between items-center px-3.5 py-3 rounded-lg bg-secondary text-fg text-sm font-semibold hover:bg-white/10 transition-colors cursor-pointer">
             <span>Painel +Sports</span>
             <svg id="painelChevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" class="transition-transform lg:rotate-90">
+              stroke-width="2" class="transition-transform">
               <path d="m9 18 6-6-6-6" />
             </svg>
           </button>
 
-          <div id="painelItems" class="hidden lg:flex flex-col gap-1">
+          <div id="painelItems" class="hidden flex-col gap-1">
             <a href="#"
               class="flex justify-between items-center px-3.5 py-3 rounded-lg text-muted text-sm font-medium hover:bg-secondary hover:text-fg transition-colors cursor-pointer">
               <span>Minhas Inscrições</span>
@@ -213,7 +242,7 @@
           </div>
         </div>
 
-        <!-- CONQUISTAS (logo abaixo da Meta Mensal) -->
+        <!-- CONQUISTAS -->
         <div class="bg-surface border border-white/10 rounded-2xl p-4">
           <div class="flex justify-between items-center mb-3">
             <span class="font-mono text-[10px] tracking-widest text-muted/70 uppercase">Conquistas</span>
@@ -243,7 +272,6 @@
           </div>
         </div>
 
-       
       </div>
 
       <!-- ===== COLUNA PRINCIPAL ===== -->
@@ -251,62 +279,60 @@
 
         <!-- HERO PRÓXIMA LARGADA -->
         <div class="relative overflow-hidden bg-surface border border-white/10 rounded-2xl">
-          <!-- Aba de imagem da próxima corrida (background do folheto) -->
           <div class="absolute inset-0 bg-cover bg-center"
             style="background-image:url('img/eventos/CorridaGuerreiro.jpg');"></div>
-          <!-- Overlay escuro: mantém o texto legível -->
           <div class="absolute inset-0 bg-gradient-to-br from-zinc950 via-zinc950/95 to-zinc950/70"></div>
 
           <div class="relative p-5 sm:p-6">
-          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
-            <div class="flex items-center gap-2 flex-wrap">
-              <span class="font-mono text-[10px] tracking-widest text-muted/70 uppercase">Próxima Largada · EVT-041</span>
-              <span
-                class="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase text-lime bg-lime/10 border border-lime/30 rounded-full px-2 py-0.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-lime live-pin"></span>Inscrito
-              </span>
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="font-mono text-[10px] tracking-widest text-muted/70 uppercase">Próxima Largada · EVT-041</span>
+                <span
+                  class="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase text-lime bg-lime/10 border border-lime/30 rounded-full px-2 py-0.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-lime live-pin"></span>Inscrito
+                </span>
+              </div>
+              <div class="sm:text-right">
+                <div class="font-mono text-[9px] tracking-widest text-muted/70 uppercase mb-1">Largada em</div>
+                <div class="flex items-end sm:justify-end gap-1">
+                  <span class="font-mono text-4xl sm:text-5xl font-bold text-lime leading-none tabular-nums" id="t-days">12</span>
+                  <span class="font-mono text-3xl sm:text-4xl font-bold text-muted/50 leading-none timer-sep-anim">:</span>
+                  <span class="font-mono text-4xl sm:text-5xl font-bold text-lime leading-none tabular-nums" id="t-hrs">08</span>
+                  <span class="font-mono text-3xl sm:text-4xl font-bold text-muted/50 leading-none timer-sep-anim">:</span>
+                  <span class="font-mono text-4xl sm:text-5xl font-bold text-lime leading-none tabular-nums" id="t-min">45</span>
+                </div>
+                <div class="flex sm:justify-end gap-5 mt-1.5 pr-1">
+                  <span class="font-mono text-[9px] tracking-widest text-muted/60 uppercase">Dias</span>
+                  <span class="font-mono text-[9px] tracking-widest text-muted/60 uppercase">Hrs</span>
+                  <span class="font-mono text-[9px] tracking-widest text-muted/60 uppercase">Min</span>
+                </div>
+                <div class="mt-2">
+                  <span class="text-[10px] text-muted/70">PEITORAL </span>
+                  <span class="font-mono text-sm font-bold text-lime">#0428</span>
+                </div>
+              </div>
             </div>
-            <div class="sm:text-right">
-              <div class="font-mono text-[9px] tracking-widest text-muted/70 uppercase mb-1">Largada em</div>
-              <div class="flex items-end sm:justify-end gap-1">
-                <span class="font-mono text-4xl sm:text-5xl font-bold text-lime leading-none tabular-nums" id="t-days">12</span>
-                <span class="font-mono text-3xl sm:text-4xl font-bold text-muted/50 leading-none timer-sep-anim">:</span>
-                <span class="font-mono text-4xl sm:text-5xl font-bold text-lime leading-none tabular-nums" id="t-hrs">08</span>
-                <span class="font-mono text-3xl sm:text-4xl font-bold text-muted/50 leading-none timer-sep-anim">:</span>
-                <span class="font-mono text-4xl sm:text-5xl font-bold text-lime leading-none tabular-nums" id="t-min">45</span>
-              </div>
-              <div class="flex sm:justify-end gap-5 mt-1.5 pr-1">
-                <span class="font-mono text-[9px] tracking-widest text-muted/60 uppercase">Dias</span>
-                <span class="font-mono text-[9px] tracking-widest text-muted/60 uppercase">Hrs</span>
-                <span class="font-mono text-[9px] tracking-widest text-muted/60 uppercase">Min</span>
-              </div>
-              <div class="mt-2">
-                <span class="text-[10px] text-muted/70">PEITORAL </span>
-                <span class="font-mono text-sm font-bold text-lime">#0428</span>
-              </div>
+            <div class="max-w-sm mb-5">
+              <h2 class="font-display text-3xl sm:text-4xl text-fg leading-tight">Corrida do Guerreiro</h2>
+              <p class="mt-3 text-sm text-muted leading-relaxed">
+                Prova mais tradicional de Volta Redonda. 5K e 10K pelo centro histórico. Largada na Praça Brasil, 06:00.
+              </p>
             </div>
-          </div>
-          <div class="max-w-sm mb-5">
-            <h2 class="font-display text-3xl sm:text-4xl text-fg leading-tight">Corrida do Guerreiro</h2>
-            <p class="mt-3 text-sm text-muted leading-relaxed">
-              Prova mais tradicional de Volta Redonda. 5K e 10K pelo centro histórico. Largada na Praça Brasil, 06:00.
-            </p>
-          </div>
 
-          <div class="flex gap-2 flex-wrap">
-            <button
-              class="bg-lime text-zinc-900 font-semibold text-sm px-4 py-2 rounded-lg transition-all hover:bg-lime-500 hover:scale-[1.05] active:scale-[0.98] cursor-pointer">
-              Ver Comprovante
-            </button>
-            <button
-              class="border border-white/20 text-fg font-semibold text-sm px-4 py-2 rounded-lg hover:bg-secondary transition-colors cursor-pointer">
-              Status Inscrição
-            </button>
-            <button
-              class="border border-white/10 text-muted font-semibold text-sm px-4 py-2 rounded-lg hover:text-fg hover:border-white/30 transition-colors cursor-pointer">
-              Informações
-            </button>
-          </div>
+            <div class="flex gap-2 flex-wrap">
+              <button
+                class="bg-lime text-zinc-900 font-semibold text-sm px-4 py-2 rounded-lg transition-all hover:bg-lime-500 hover:scale-[1.05] active:scale-[0.98] cursor-pointer">
+                Ver Comprovante
+              </button>
+              <button id="statusInscBtn" type="button"
+                class="border border-white/20 text-fg font-semibold text-sm px-4 py-2 rounded-lg hover:bg-secondary transition-colors cursor-pointer">
+                Status Inscrição
+              </button>
+              <button
+                class="border border-white/10 text-muted font-semibold text-sm px-4 py-2 rounded-lg hover:text-fg hover:border-white/30 transition-colors cursor-pointer">
+                Informações
+              </button>
+            </div>
           </div>
         </div>
 
@@ -319,7 +345,7 @@
           </div>
 
           <div class="flex flex-col gap-2">
-            <!-- EVT-041 — foto-pôster com degradê na lateral esquerda (estilo destaque do index.html) -->
+            <!-- EVT-041 -->
             <a href="#"
               class="relative overflow-hidden flex items-stretch rounded-xl bg-surface border border-white/10 hover:border-lime/40 transition-colors cursor-pointer">
               <div class="relative w-24 sm:w-36 md:w-48 flex-shrink-0 self-stretch">
@@ -369,7 +395,7 @@
               </div>
             </a>
 
-            <!-- EVT-046 — foto-pôster com degradê na lateral esquerda -->
+            <!-- EVT-046 -->
             <a href="#"
               class="relative overflow-hidden flex items-stretch rounded-xl bg-surface border border-white/10 hover:border-lime/40 transition-colors cursor-pointer">
               <div class="relative w-24 sm:w-36 md:w-48 flex-shrink-0 self-stretch">
@@ -486,6 +512,104 @@
     </div>
   </main>
 
+  <!-- ============ MODAL · EDITAR PERFIL ============ -->
+  <div id="editProfileModal"
+    class="hidden fixed inset-0 z-[100] bg-zinc950/80 backdrop-blur items-center justify-center p-4">
+    <div class="bg-surface border border-white/10 rounded-2xl w-full max-w-md p-5 sm:p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-display text-xl text-fg">Editar Perfil</h3>
+        <button id="editProfileClose" type="button"
+          class="text-muted hover:text-fg text-2xl leading-none w-7 h-7 flex items-center justify-center rounded-md hover:bg-secondary transition-colors"
+          aria-label="Fechar">×</button>
+      </div>
+      <form id="editProfileForm" class="flex flex-col gap-3">
+        <label class="flex flex-col gap-1">
+          <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Nome</span>
+          <input id="inputName" type="text" required maxlength="60"
+            class="bg-secondary border border-white/10 rounded-lg px-3 py-2 text-sm text-fg focus:outline-none focus:border-lime/50 transition-colors" />
+        </label>
+        <label class="flex flex-col gap-1">
+          <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Localização</span>
+          <input id="inputLocation" type="text" maxlength="60"
+            class="bg-secondary border border-white/10 rounded-lg px-3 py-2 text-sm text-fg focus:outline-none focus:border-lime/50 transition-colors" />
+        </label>
+        <div class="flex gap-2 justify-end mt-2">
+          <button type="button" id="editProfileCancel"
+            class="border border-white/20 text-fg text-sm px-4 py-2 rounded-lg hover:bg-secondary transition-colors cursor-pointer">
+            Cancelar
+          </button>
+          <button type="submit"
+            class="bg-lime text-zinc-900 font-semibold text-sm px-4 py-2 rounded-lg hover:bg-lime-500 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer">
+            Salvar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ MODAL · STATUS DA INSCRIÇÃO ============ -->
+  <div id="statusInscModal"
+    class="hidden fixed inset-0 z-[100] bg-zinc950/80 backdrop-blur items-center justify-center p-4">
+    <div class="bg-surface border border-white/10 rounded-2xl w-full max-w-md p-5 sm:p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-display text-xl text-fg">Status da Inscrição</h3>
+        <button id="statusInscClose" type="button"
+          class="text-muted hover:text-fg text-2xl leading-none w-7 h-7 flex items-center justify-center rounded-md hover:bg-secondary transition-colors"
+          aria-label="Fechar">×</button>
+      </div>
+
+      <!-- Status + ID do evento -->
+      <div class="flex items-center gap-2 mb-3 flex-wrap">
+        <span
+          class="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase text-lime bg-lime/10 border border-lime/30 rounded-full px-2 py-0.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-lime live-pin"></span>Inscrito
+        </span>
+        <span class="font-mono text-[10px] text-muted/70">EVT-041</span>
+      </div>
+
+      <h4 class="font-display text-2xl text-fg leading-tight mb-4">Corrida do Guerreiro</h4>
+
+      <!-- Lista de dados da inscrição -->
+      <div class="flex flex-col gap-px bg-white/10 border border-white/10 rounded-xl overflow-hidden">
+        <div class="flex justify-between items-center bg-surface px-3.5 py-3 gap-3">
+          <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Peitoral</span>
+          <span class="font-mono text-base font-bold text-lime">#0428</span>
+        </div>
+        <div class="flex justify-between items-center bg-surface px-3.5 py-3 gap-3">
+          <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Data</span>
+          <span class="font-mono text-sm text-fg">10 Jun 2026</span>
+        </div>
+        <div class="flex justify-between items-center bg-surface px-3.5 py-3 gap-3">
+          <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Hora · Largada</span>
+          <span class="font-mono text-sm text-fg">06:00</span>
+        </div>
+        <div class="flex justify-between items-center bg-surface px-3.5 py-3 gap-3">
+          <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Distância</span>
+          <span class="font-mono text-sm text-fg">5 KM</span>
+        </div>
+        <div class="flex justify-between items-center bg-surface px-3.5 py-3 gap-3">
+          <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Local</span>
+          <span class="font-mono text-xs text-fg text-right leading-snug">Praça Brasil<br />Volta Redonda · RJ</span>
+        </div>
+        <div class="flex justify-between items-center bg-surface px-3.5 py-3 gap-3">
+          <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Kit · Retirada</span>
+          <span class="font-mono text-xs text-fg text-right">09 Jun · 14h – 18h</span>
+        </div>
+        <div class="flex justify-between items-center bg-surface px-3.5 py-3 gap-3">
+          <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Pagamento</span>
+          <span class="font-mono text-xs font-bold text-lime">Confirmado</span>
+        </div>
+      </div>
+
+      <div class="flex gap-2 justify-end mt-5">
+        <button type="button" id="statusInscOk"
+          class="bg-lime text-zinc-900 font-semibold text-sm px-4 py-2 rounded-lg hover:bg-lime-500 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer">
+          Entendi
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- ============ FOOTER (padrão base.html) ============ -->
   <footer class="border-t border-white/10 bg-surface mt-8 sm:mt-12 lg:mt-16">
     <div
@@ -566,14 +690,13 @@
   <script src="js/global.js"></script>
 
   <script>
-    // Menu "Painel +Sports": colapsável apenas no mobile (sempre aberto no desktop)
+    // ============ Painel +Sports: hambúrguer funcional (mobile e desktop) ============
     (function () {
       const toggle = document.getElementById('painelToggle');
       const items = document.getElementById('painelItems');
       const chevron = document.getElementById('painelChevron');
       if (!toggle || !items) return;
       toggle.addEventListener('click', () => {
-        if (window.matchMedia('(min-width: 1024px)').matches) return; // no desktop não colapsa
         const open = items.classList.contains('flex');
         items.classList.toggle('flex', !open);
         items.classList.toggle('hidden', open);
@@ -582,15 +705,147 @@
       });
     })();
 
-    // Contagem regressiva da próxima largada
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 12);
-    targetDate.setHours(6, 0, 0, 0);
+    // ============ Foto de perfil: upload + remoção (persistência via localStorage) ============
+    (function () {
+      const input = document.getElementById('avatarInput');
+      const display = document.getElementById('avatarDisplay');
+      const initials = document.getElementById('avatarInitials');
+      const removeBtn = document.getElementById('avatarRemove');
+      if (!input || !display) return;
+
+      const saved = localStorage.getItem('avatarDataUrl');
+      if (saved) applyAvatar(saved);
+
+      input.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          applyAvatar(reader.result);
+          try { localStorage.setItem('avatarDataUrl', reader.result); } catch (_) {}
+        };
+        reader.readAsDataURL(file);
+      });
+
+      if (removeBtn) {
+        removeBtn.addEventListener('click', () => {
+          if (!confirm('Remover a foto de perfil?')) return;
+          clearAvatar();
+          try { localStorage.removeItem('avatarDataUrl'); } catch (_) {}
+        });
+      }
+
+      function applyAvatar(url) {
+        display.style.backgroundImage = "url('" + url + "')";
+        if (initials) initials.style.display = 'none';
+        if (removeBtn) removeBtn.hidden = false;
+      }
+      function clearAvatar() {
+        display.style.backgroundImage = '';
+        if (initials) initials.style.display = '';
+        if (removeBtn) removeBtn.hidden = true;
+        input.value = '';
+      }
+    })();
+
+    // ============ Editar perfil (modal) ============
+    (function () {
+      const editBtn = document.getElementById('editProfileBtn');
+      const modal = document.getElementById('editProfileModal');
+      const closeBtn = document.getElementById('editProfileClose');
+      const cancelBtn = document.getElementById('editProfileCancel');
+      const form = document.getElementById('editProfileForm');
+      const nameInput = document.getElementById('inputName');
+      const locInput = document.getElementById('inputLocation');
+      const nameOut = document.getElementById('profileName');
+      const locOut = document.getElementById('profileLocation');
+      const initials = document.getElementById('avatarInitials');
+      if (!editBtn || !modal || !form) return;
+
+      // Carrega dados salvos, se houver
+      try {
+        const saved = JSON.parse(localStorage.getItem('profileData') || 'null');
+        if (saved) applyProfile(saved);
+      } catch (_) {}
+
+      function openModal() {
+        nameInput.value = nameOut.textContent.trim();
+        locInput.value = locOut.textContent.trim();
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        setTimeout(() => nameInput.focus(), 50);
+      }
+      function closeModal() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+
+      editBtn.addEventListener('click', openModal);
+      closeBtn.addEventListener('click', closeModal);
+      cancelBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+      });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = {
+          name: nameInput.value.trim(),
+          location: locInput.value.trim()
+        };
+        if (!data.name) return;
+        applyProfile(data);
+        try { localStorage.setItem('profileData', JSON.stringify(data)); } catch (_) {}
+        closeModal();
+      });
+
+      function applyProfile(d) {
+        if (d.name) {
+          nameOut.textContent = d.name.toUpperCase();
+          if (initials) initials.textContent = initialsOf(d.name);
+        }
+        if (d.location) locOut.textContent = d.location;
+      }
+      function initialsOf(name) {
+        const parts = name.trim().split(/\s+/);
+        const a = (parts[0] || '')[0] || '';
+        const b = (parts[1] || '')[0] || '';
+        return (a + b).toUpperCase();
+      }
+    })();
+
+    // ============ Status da Inscrição (modal) ============
+    (function () {
+      const btn = document.getElementById('statusInscBtn');
+      const modal = document.getElementById('statusInscModal');
+      const closeBtn = document.getElementById('statusInscClose');
+      const okBtn = document.getElementById('statusInscOk');
+      if (!btn || !modal) return;
+      const open = () => { modal.classList.remove('hidden'); modal.classList.add('flex'); };
+      const close = () => { modal.classList.add('hidden'); modal.classList.remove('flex'); };
+      btn.addEventListener('click', open);
+      closeBtn && closeBtn.addEventListener('click', close);
+      okBtn && okBtn.addEventListener('click', close);
+      modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) close();
+      });
+    })();
+
+    // ============ Contagem regressiva da próxima largada (data fictícia fixa) ============
+    // Data alvo da Corrida do Guerreiro: 10/Jun/2026 às 06:00 (fictícia, ~12 dias do "hoje" da demo)
+    const targetDate = new Date('2026-06-10T06:00:00');
 
     function updateTimer() {
       const now = new Date();
       const diff = targetDate - now;
-      if (diff <= 0) return;
+      if (diff <= 0) {
+        document.getElementById('t-days').textContent = '00';
+        document.getElementById('t-hrs').textContent = '00';
+        document.getElementById('t-min').textContent = '00';
+        return;
+      }
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hrs = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
