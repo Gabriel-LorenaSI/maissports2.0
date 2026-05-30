@@ -98,71 +98,114 @@
         <h2 class="text-xl sm:text-2xl lg:text-3xl font-semibold text-fg mb-3 sm:mb-4 lg:mb-6">Comunidades destaques da
             semana</h2>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8 lg:mb-12">
-            <div
-                class="relative bg-zinc-900 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-5 hover:scale-[1.02] transition-transform">
-                <div class="bg-red-700 hover:bg-red-800 hover:shadow-[0_0_10px_rgba(185,28,28,0.5)] rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 sm:px-3 py-0.5 sm:py-1 w-max mx-auto mb-2 sm:mb-3 cursor-pointer inline-block transition-all duration-300"">
-                    Mais Popular
-                </div>
-                <div class=" flex items-center gap-2 sm:gap-3 lg:gap-4">
+        <!-- Grid fixo de 3 colunas - SEMPRE lado a lado -->
+        <div class="grid grid-cols-3 gap-2 sm:gap-3 lg:gap-6">
+
+            <!-- Card 1 - Mais Popular -->
+            <div class="flex flex-col items-center">
+                <div class="relative inline-block mx-auto block text-center group">
+                    <!-- Badge "Mais Popular" centralizado no topo -->
                     <div
-                        class="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full overflow-hidden bg-red-700 flex-shrink-0">
+                        class="absolute -top-1 sm:-top-2 left-1/2 transform -translate-x-1/2 z-10 bg-red-700 hover:bg-red-800 hover:shadow-[0_0_10px_rgba(185,28,28,0.5)] rounded-full text-[7px] sm:text-[9px] lg:text-xs text-white font-semibold px-1 sm:px-2 lg:px-3 py-0.5 sm:py-1 w-max cursor-pointer transition-all duration-300 shadow-md whitespace-nowrap">
+                        Mais Popular
+                    </div>
+
+                    <!-- Imagem com efeito hover -->
+                    <div
+                        class="relative w-10 h-10 sm:w-14 sm:h-14 lg:w-20 lg:h-20 rounded-full overflow-hidden bg-red-700 flex-shrink-0 mx-auto transition-transform duration-300 hover:scale-105 cursor-pointer">
                         <img src="img/JOGA JUNTO/volei quadra.jpeg" alt="Volei" class="w-full h-full object-cover" />
                     </div>
-                    <div>
-                        <h3 class="text-white font-semibold text-sm sm:text-base lg:text-lg">Pelada do Belves</h3>
-                        <p class="text-red-400 text-xs sm:text-sm">356 membros</p>
+
+                    <!-- Badge de membros -->
+                    <div
+                        class="absolute -bottom-0.5 sm:-bottom-1 -right-0.5 sm:-right-1 z-20 bg-zinc-700/40 backdrop-blur-sm rounded-full text-center flex items-center justify-center gap-0.5 w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 shadow-md">
+                        <span class="text-[5px] sm:text-[6px] lg:text-[7px]">👥</span>
+                        <span class="text-red-400 text-[6px] sm:text-[7px] lg:text-[8px] font-semibold">356</span>
                     </div>
+                </div>
+
+                <!-- Título abaixo da imagem -->
+                <div class="text-center mt-1 sm:mt-2 lg:mt-3">
+                    <h3 class="text-white font-semibold text-[10px] sm:text-xs lg:text-base">Pelada do Belves</h3>
                 </div>
             </div>
 
-            <div
-                class="relative bg-zinc-900 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-5 hover:scale-[1.02] transition-transform">
-                <div
-                    class="bg-green-500 hover:bg-green-600 hover:shadow-[0_0_10px_rgba(34,197,94,0.5)] rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 sm:px-3 py-0.5 sm:py-1 w-max mx-auto mb-2 sm:mb-3 cursor-pointer inline-block transition-all duration-300">
-                    Mais Ativa
-                </div>
-                <div class="flex items-center gap-2 sm:gap-3 lg:gap-4">
+            <!-- Card 2 - Mais Ativa -->
+            <div class="flex flex-col items-center">
+                <div class="relative inline-block mx-auto block text-center group">
+                    <!-- Badge "Mais Ativa" centralizado no topo -->
                     <div
-                        class="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full overflow-hidden bg-green-500 flex-shrink-0">
+                        class="absolute -top-1 sm:-top-2 left-1/2 transform -translate-x-1/2 z-10 bg-green-700 hover:bg-green-800 hover:shadow-[0_0_10px_rgba(34,197,94,0.5)] rounded-full text-[7px] sm:text-[9px] lg:text-xs text-white font-semibold px-1 sm:px-2 lg:px-3 py-0.5 sm:py-1 w-max cursor-pointer transition-all duration-300 shadow-md whitespace-nowrap">
+                        Mais Ativa
+                    </div>
+
+                    <!-- Imagem com efeito hover -->
+                    <div
+                        class="relative w-10 h-10 sm:w-14 sm:h-14 lg:w-20 lg:h-20 rounded-full overflow-hidden bg-green-700 flex-shrink-0 mx-auto transition-transform duration-300 hover:scale-105 cursor-pointer">
                         <img src="img/JOGA JUNTO/selecao.jpeg" alt="Futebol" class="w-full h-full object-cover" />
                     </div>
-                    <div>
-                        <h3 class="text-white font-semibold text-sm sm:text-base lg:text-lg">Futebol da Seleção</h3>
-                        <p class="text-green-400 text-xs sm:text-sm">26 membros</p>
+
+                    <!-- Badge de membros -->
+                    <div
+                        class="absolute -bottom-0.5 sm:-bottom-1 -right-0.5 sm:-right-1 z-20 bg-zinc-700/40 backdrop-blur-sm rounded-full text-center flex items-center justify-center gap-0.5 w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 shadow-md">
+                        <span class="text-[5px] sm:text-[6px] lg:text-[7px]">👥</span>
+                        <span class="text-green-400 text-[6px] sm:text-[7px] lg:text-[8px] font-semibold">26</span>
                     </div>
+                </div>
+
+                <!-- Título abaixo da imagem -->
+                <div class="text-center mt-1 sm:mt-2 lg:mt-3">
+                    <h3 class="text-white font-semibold text-[10px] sm:text-xs lg:text-base">Futebol da Seleção</h3>
                 </div>
             </div>
 
-            <div
-                class="relative bg-zinc-900 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-5 hover:scale-[1.02] transition-transform">
-                <div
-                    class="bg-blue-500 hover:bg-blue-600 hover:shadow-[0_0_10px_rgba(59,130,246,0.5)] rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 sm:px-3 py-0.5 sm:py-1 w-max mx-auto mb-2 sm:mb-3 cursor-pointer inline-block transition-all duration-300">
-                    Mais Recente
-                </div>
-                <div class="flex items-center gap-2 sm:gap-3 lg:gap-4">
+            <!-- Card 3 - Mais Recente -->
+            <div class="flex flex-col items-center">
+                <div class="relative inline-block mx-auto block text-center group">
+                    <!-- Badge "Mais Recente" centralizado no topo -->
                     <div
-                        class="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full overflow-hidden bg-blue-500 flex-shrink-0">
+                        class="absolute -top-1 sm:-top-2 left-1/2 transform -translate-x-1/2 z-10 bg-blue-500 hover:bg-blue-600 hover:shadow-[0_0_10px_rgba(59,130,246,0.5)] rounded-full text-[7px] sm:text-[9px] lg:text-xs text-white font-semibold px-1 sm:px-2 lg:px-3 py-0.5 sm:py-1 w-max cursor-pointer transition-all duration-300 shadow-md whitespace-nowrap">
+                        Mais Recente
+                    </div>
+
+                    <!-- Imagem com efeito hover -->
+                    <div
+                        class="relative w-10 h-10 sm:w-14 sm:h-14 lg:w-20 lg:h-20 rounded-full overflow-hidden bg-blue-500 flex-shrink-0 mx-auto transition-transform duration-300 hover:scale-105 cursor-pointer">
                         <img src="img/JOGA JUNTO/volei areia.jpeg" alt="Volei" class="w-full h-full object-cover" />
                     </div>
-                    <div>
-                        <h3 class="text-white font-semibold text-sm sm:text-base lg:text-lg">Volei de Areia 393</h3>
-                        <p class="text-blue-400 text-xs sm:text-sm">24 membros</p>
+
+                    <!-- Badge de membros -->
+                    <div
+                        class="absolute -bottom-0.5 sm:-bottom-1 -right-0.5 sm:-right-1 z-20 bg-zinc-700/40 backdrop-blur-sm rounded-full text-center flex items-center justify-center gap-0.5 w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 shadow-md">
+                        <span class="text-[5px] sm:text-[6px] lg:text-[7px]">👥</span>
+                        <span class="text-blue-400 text-[6px] sm:text-[7px] lg:text-[8px] font-semibold">24</span>
                     </div>
                 </div>
+
+                <!-- Título abaixo da imagem -->
+                <div class="text-center mt-1 sm:mt-2 lg:mt-3">
+                    <h3 class="text-white font-semibold text-[10px] sm:text-xs lg:text-base">Volei de Areia 393</h3>
+                </div>
             </div>
+
         </div>
 
+        </div>
+
+        <br>
         <h1 class="text-2xl font-bold text-white mb-4">Todas as Comunidades</h1>
-        <!-- Figure Belves -->
+
+        <!-- Todas as Comunidades - Grid única com todos os cards -->
         <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
-            <figure class="bg-zinc-900 rounded-lg pb-2 h-full flex flex-col hover:scale-[1.02] transition-transform">
+
+            <!-- Card 1 - Pelada do Belves -->
+            <figure class="bg-zinc-900/50 rounded-lg pb-2 h-full flex flex-col hover:scale-[1.02] transition-transform">
                 <div class="relative aspect-[3/1] overflow-hidden rounded-t-lg sm:rounded-t-2xl flex-shrink-0">
                     <img src="img/JOGA JUNTO/volei quadra.jpeg" alt="Volei" class="w-full h-full object-cover" />
                     <div class="absolute top-0 left-0 p-1.5 sm:p-2 lg:p-3 flex flex-wrap gap-1 sm:gap-2"></div>
                     <div class="absolute top-0 right-0 p-1.5 sm:p-2 lg:p-3">
                         <span
-                            class="bg-green-500 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 hover:bg-green-300/80 transition-colors cursor-pointer whitespace-nowrap">✅
+                            class="bg-green-500 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 hover:bg-green-300/80 transition-colors cursor-pointer whitespace-nowrap">✅
                             Aberta</span>
                     </div>
                     <div
@@ -174,7 +217,7 @@
 
                 <div
                     class="flex items-center justify-between gap-2 sm:gap-4 px-2 sm:px-3 py-2 sm:py-3 text-[10px] sm:text-xs lg:text-sm text-muted">
-                    <span class="flex items-center gap-1 sm:gap-2 ">
+                    <span class="flex items-center gap-1 sm:gap-2">
                         <img width="12" height="12" class="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5"
                             src="https://img.icons8.com/ios-filled/50/marker.png" alt="marker" />
                         <span class="text-[10px] sm:text-xs lg:text-sm">Jardim Belvedere, Volta Redonda</span>
@@ -187,139 +230,122 @@
                     </span>
                 </div>
 
-                <div class="px-2 sm:px-3 lg:px-5 py-1">
-                    <span
-                        class="bg-red-700 hover:bg-red-800 hover:shadow-[0_0_10px_rgba(185,28,28,0.5)] rounded-full text-[10px] sm:text-xs text-white font-semibold px-2 sm:px-3 py-0.5 sm:py-1 w-max mx-auto mb-2 sm:mb-3 cursor-pointer inline-block transition-all duration-300">
-                        Mais Popular
-                    </span>
-                </div>
                 <div class="px-1 sm:px-3 lg:px-5 py-1 gap-1 sm:gap-1 flex flex-wrap">
                     <span
-                        class="relative bg-gray-300/10 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 cursor-pointer overflow-hidden group">
+                        class="relative bg-zinc-600/50 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 cursor-pointer overflow-hidden group">
                         🏐 Volei
                         <span
                             class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
                     </span>
                     <span
-                        class="relative bg-gray-300/10 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 cursor-pointer overflow-hidden group">
+                        class="relative bg-zinc-600/50 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 cursor-pointer overflow-hidden group">
                         Iniciante
                         <span
                             class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
                     </span>
                     <span
-                        class="relative bg-gray-300/10 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 cursor-pointer overflow-hidden group">
+                        class="relative bg-zinc-600/50 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 cursor-pointer overflow-hidden group">
                         Intermediário
                         <span
                             class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
                     </span>
                     <span
-                        class="relative bg-gray-300/10 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 cursor-pointer overflow-hidden group">
+                        class="relative bg-zinc-600/50 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 cursor-pointer overflow-hidden group">
                         +2
                         <span
                             class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
                     </span>
                 </div>
 
-                <div class="flex justify-center px-2 sm:px-3 lg:px-4 pb-3 sm:pb-4 mt-auto">
-                    <a href="/comunidades/belves.html"
-                        class="bg-lime text-black font-semibold text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-4 lg:px-5 rounded-2xl sm:rounded-3xl transition-all hover:bg-lime-500 hover:scale-[1.05] active:scale-[0.98] cursor-pointer w-full sm:w-auto">Ver
+                <div class="flex justify-center px-2 py-2 sm:px-3 lg:px-4 pb-3 sm:pb-4 mt-auto">
+                    <a href="comunidades/belves.html"
+                        class="bg-lime text-black font-semibold text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-4 lg:px-5 rounded-2xl sm:rounded-3xl transition-all hover:bg-lime-500 hover:scale-[1.05] active:scale-[0.98] cursor-pointer w-full sm:w-auto whitespace-nowrap text-center">Ver
                         comunidade</a>
                 </div>
             </figure>
-            <!-- Fim da Figure do Belves -->
-            <!-- Figure do Volei de Areia 393 -->
-            <div>
-                <figure
-                    class="bg-zinc-900 rounded-lg pb-2 h-full flex flex-col hover:scale-[1.06] hover:shadow-lg transition-transform">
-                    <div class="relative aspect-[3/1] overflow-hidden rounded-t-lg sm:rounded-t-2xl flex-shrink-0">
-                        <img src="img/JOGA JUNTO/volei areia.jpeg" alt="Vôlei de areia"
-                            class="w-full h-full object-cover" />
-                        <div class="absolute top-0 right-0 p-1.5 sm:p-2 lg:p-3 flex flex-wrap gap-1 sm:gap-2">
-                            <span
-                                class="bg-yellow-500 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 hover:bg-yellow-300/80 transition-colors cursor-pointer whitespace-nowrap">🔒
-                                Fechada</span>
-                        </div>
-                        <div
-                            class="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-black/80 to-transparent p-1.5 sm:p-2 lg:p-3 hover:bg-black/50 transition-colors cursor-pointer">
-                            <p class="text-sm sm:text-base lg:text-lg xl:text-xl text-white font-semibold">Volei da 393
-                            </p>
-                        </div>
+
+            <!-- Card 2 - Volei de Areia 393 -->
+            <figure class="bg-zinc-900/50 rounded-lg pb-2 h-full flex flex-col hover:scale-[1.02] transition-transform">
+                <div class="relative aspect-[3/1] overflow-hidden rounded-t-lg sm:rounded-t-2xl flex-shrink-0">
+                    <img src="img/JOGA JUNTO/volei areia.jpeg" alt="Vôlei de areia"
+                        class="w-full h-full object-cover" />
+                    <div class="absolute top-0 right-0 p-1.5 sm:p-2 lg:p-3 flex flex-wrap gap-1 sm:gap-2">
+                        <span
+                            class="bg-yellow-500 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 hover:bg-yellow-300/80 transition-colors cursor-pointer whitespace-nowrap">🔒
+                            Fechada</span>
                     </div>
                     <div
-                        class="flex items-center justify-between gap-2 sm:gap-4 px-2 sm:px-3 py-2 sm:py-3 text-[10px] sm:text-xs lg:text-sm text-muted">
-                        <span class="flex items-center gap-1 sm:gap-2">
-                            <img width="12" height="12" class="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5"
-                                src="https://img.icons8.com/ios-filled/50/marker.png" alt="marker" />
-                            <span class="text-[10px] sm:text-xs lg:text-sm">Água Limpa, Volta Redonda</span>
-                        </span>
-                        <span class="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-                            <img width="12" height="12" class="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5"
-                                src="https://img.icons8.com/?size=100&id=DFygOMBBjiA7&format=png&color=000000"
-                                alt="users" />
-                            <span class="text-[10px] sm:text-xs lg:text-sm">24</span>
-                        </span>
+                        class="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-black/80 to-transparent p-1.5 sm:p-2 lg:p-3 hover:bg-black/50 transition-colors cursor-pointer">
+                        <p class="text-sm sm:text-base lg:text-lg xl:text-xl text-white font-semibold">Volei da 393</p>
                     </div>
-                    <div class="px-2 sm:px-3 lg:px-5 py-1">
-                        <span
-                            class="bg-blue-700 hover:bg-blue-800 hover:shadow-[0_0_10px_rgba(29,78,216,0.5)] rounded-full text-[10px] sm:text-xs text-white font-semibold px-2 sm:px-3 py-0.5 sm:py-1 w-max mx-auto mb-2 sm:mb-3 cursor-pointer inline-block transition-all duration-300">
-                            Mais Recente
-                        </span>
-                    </div>
-                    <div class="px-1 sm:px-3 lg:px-5 py-1 gap-1 sm:gap-1 flex flex-wrap">
-                        <span
-                            class="relative bg-gray-300/10 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 cursor-pointer overflow-hidden group">
-                            🏐 Volei
-                            <span
-                                class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
-                        </span>
-                        <span
-                            class="relative bg-gray-300/10 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 cursor-pointer overflow-hidden group">
-                            Iniciante
-                            <span
-                                class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
-                        </span>
-                        <span
-                            class="relative bg-gray-300/10 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 cursor-pointer overflow-hidden group">
-                            Intermediário
-                            <span
-                                class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
-                        </span>
-                        <span
-                            class="relative bg-gray-300/10 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 cursor-pointer overflow-hidden group">
-                            +1
-                            <span
-                                class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
-                        </span>
-                    </div>
+                </div>
+                <div
+                    class="flex items-center justify-between gap-2 sm:gap-4 px-2 sm:px-3 py-2 sm:py-3 text-[10px] sm:text-xs lg:text-sm text-muted">
+                    <span class="flex items-center gap-1 sm:gap-2">
+                        <img width="12" height="12" class="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5"
+                            src="https://img.icons8.com/ios-filled/50/marker.png" alt="marker" />
+                        <span class="text-[10px] sm:text-xs lg:text-sm">Água Limpa, Volta Redonda</span>
+                    </span>
+                    <span class="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                        <img width="12" height="12" class="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5"
+                            src="https://img.icons8.com/?size=100&id=DFygOMBBjiA7&format=png&color=000000"
+                            alt="users" />
+                        <span class="text-[10px] sm:text-xs lg:text-sm">24</span>
+                    </span>
+                </div>
 
-                    <div class="flex justify-center px-2 sm:px-3 lg:px-4 pb-3 sm:pb-4 mt-auto">
-                        <a href="/comunidades/393.html"
-                            class="bg-lime text-black font-semibold text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-4 lg:px-5 rounded-2xl sm:rounded-3xl transition-all hover:bg-lime-500 hover:scale-[1.05] active:scale-[0.98] cursor-pointer w-full sm:w-auto">Ver
-                            comunidade</a>
-                    </div>
-                </figure>
-            </div>
-            <!-- Fim da Figure Volei de areia 393 -->
-            <!-- Figure da Seleção -->
-            <figure class="bg-zinc-900 rounded-lg pb-2 h-full flex flex-col hover:scale-[1.02] transition-transform">
+                <div class="px-1 sm:px-3 lg:px-5 py-1 gap-1 sm:gap-1 flex flex-wrap">
+                    <span
+                        class="relative bg-zinc-600/50 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 cursor-pointer overflow-hidden group">
+                        🏐 Volei
+                        <span
+                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
+                    </span>
+                    <span
+                        class="relative bg-zinc-600/50 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 cursor-pointer overflow-hidden group">
+                        Iniciante
+                        <span
+                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
+                    </span>
+                    <span
+                        class="relative bg-zinc-600/50 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 cursor-pointer overflow-hidden group">
+                        Intermediário
+                        <span
+                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
+                    </span>
+                    <span
+                        class="relative bg-zinc-600/50 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 cursor-pointer overflow-hidden group">
+                        +1
+                        <span
+                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
+                    </span>
+                </div>
+
+                <div class="flex justify-center px-2 py-2 sm:px-3 lg:px-4 pb-3 sm:pb-4 mt-auto">
+                    <a href="393.html"
+                        class="bg-lime text-black font-semibold text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-4 lg:px-5 rounded-2xl sm:rounded-3xl transition-all hover:bg-lime-500 hover:scale-[1.05] active:scale-[0.98] cursor-pointer w-full sm:w-auto whitespace-nowrap text-center">Ver
+                        comunidade</a>
+                </div>
+            </figure>
+
+            <!-- Card 3 - Futebol da Seleção -->
+            <figure class="bg-zinc-900/50 rounded-lg pb-2 h-full flex flex-col hover:scale-[1.02] transition-transform">
                 <div class="relative aspect-[3/1] overflow-hidden rounded-t-lg sm:rounded-t-2xl flex-shrink-0">
                     <img src="img/JOGA JUNTO/selecao.jpeg" alt="Futebol" class="w-full h-full object-cover" />
                     <div class="absolute top-1 left-0 p-1.5 sm:p-2 lg:p-3 flex flex-wrap gap-1 sm:gap-2">
                         <span
-                            class="bg-green-500 rounded-full text-[10px] sm:text-xs text-white font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 hover:bg-green-300/80 transition-colors cursor-pointer whitespace-nowrap">
-                            ⭐ Verificado
-                        </span>
+                            class="bg-green-500 rounded-full text-[10px] sm:text-xs text-white font-semibold px-2 lg:px-3 py-1 hover:bg-green-300/80 transition-colors cursor-pointer whitespace-nowrap">⭐
+                            Verificado</span>
                     </div>
                     <div class="absolute top-0 right-0 p-1.5 sm:p-2 lg:p-3 flex flex-wrap gap-1 sm:gap-2">
                         <span
-                            class="bg-yellow-500 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 hover:bg-yellow-300/80 transition-colors cursor-pointer whitespace-nowrap">🔒
+                            class="bg-yellow-500 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 hover:bg-yellow-300/80 transition-colors cursor-pointer whitespace-nowrap">🔒
                             Fechada</span>
                     </div>
                     <div
                         class="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-black/80 to-transparent p-1.5 sm:p-2 lg:p-3 hover:bg-black/50 transition-colors cursor-pointer">
                         <p class="text-sm sm:text-base lg:text-lg xl:text-xl text-white font-semibold">Futebol da
-                            Seleção
-                        </p>
+                            Seleção</p>
                     </div>
                 </div>
                 <div
@@ -336,67 +362,55 @@
                         <span class="text-[10px] sm:text-xs lg:text-sm">26</span>
                     </span>
                 </div>
-                <div class="px-2 sm:px-3 lg:px-5 py-1">
-                    <span
-                        class="bg-green-500 hover:bg-green-600 hover:shadow-[0_0_10px_rgba(34,197,94,0.5)] rounded-full text-[10px] sm:text-xs text-white font-semibold px-2 sm:px-3 py-0.5 sm:py-1 w-max mx-auto mb-2 sm:mb-3 cursor-pointer inline-block transition-all duration-300">
-                        Mais Ativa
-                    </span>
-                </div>
+
                 <div class="px-1 sm:px-3 lg:px-5 py-1 gap-1 sm:gap-1 flex flex-wrap">
                     <span
-                        class="relative bg-gray-300/10 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 cursor-pointer overflow-hidden group">
+                        class="relative bg-zinc-600/50 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 cursor-pointer overflow-hidden group">
                         ⚽ Futebol
                         <span
                             class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
                     </span>
                     <span
-                        class="relative bg-gray-300/10 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 cursor-pointer overflow-hidden group">
+                        class="relative bg-zinc-600/50 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 cursor-pointer overflow-hidden group">
                         Intermediario
                         <span
                             class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
                     </span>
                     <span
-                        class="relative bg-gray-300/10 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 cursor-pointer overflow-hidden group">
+                        class="relative bg-zinc-600/50 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 cursor-pointer overflow-hidden group">
                         Profissional
                         <span
                             class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
                     </span>
                     <span
-                        class="relative bg-gray-300/10 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 cursor-pointer overflow-hidden group">
+                        class="relative bg-zinc-600/50 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 cursor-pointer overflow-hidden group">
                         +1
                         <span
                             class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
                     </span>
                 </div>
 
-                <div class="flex justify-center px-2 sm:px-3 lg:px-4 pb-3 sm:pb-4 mt-auto">
-                    <a href="/comunidades/selecao.html"
-                        class="bg-lime text-black font-semibold text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-4 lg:px-5 rounded-2xl sm:rounded-3xl transition-all hover:bg-lime-500 hover:scale-[1.05] active:scale-[0.98] cursor-pointer w-full sm:w-auto">Ver
+                <div class="flex justify-center px-2 py-2 sm:px-3 lg:px-4 pb-3 sm:pb-4 mt-auto">
+                    <a href="comunidades/selecao.html"
+                        class="bg-lime text-black font-semibold text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-4 lg:px-5 rounded-2xl sm:rounded-3xl transition-all hover:bg-lime-500 hover:scale-[1.05] active:scale-[0.98] cursor-pointer w-full sm:w-auto whitespace-nowrap text-center">Ver
                         comunidade</a>
                 </div>
             </figure>
-        </div>
-        </figure>
-        <!-- Fim da Figure da Seleção -->
-        <br>
-        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
-            <figure class="bg-zinc-900 rounded-lg pb-2 h-full flex flex-col hover:scale-[1.02] transition-transform">
+
+            <!-- Card 4 - Padel da Vila -->
+            <figure class="bg-zinc-900/50 rounded-lg pb-2 h-full flex flex-col hover:scale-[1.02] transition-transform">
                 <div class="relative aspect-[3/1] overflow-hidden rounded-t-lg sm:rounded-t-2xl flex-shrink-0">
                     <img src="img/JOGA JUNTO/padel.jpeg" alt="Padel da Vila" class="w-full h-full object-cover" />
-
                     <div class="absolute top-0 right-0 p-1.5 sm:p-2 lg:p-3 flex flex-wrap gap-1 sm:gap-2">
                         <span
-                            class="bg-yellow-500 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 hover:bg-yellow-300/80 transition-colors cursor-pointer whitespace-nowrap">
-                            🔒 Fechada
-                        </span>
+                            class="bg-yellow-500 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 hover:bg-yellow-300/80 transition-colors cursor-pointer whitespace-nowrap">🔒
+                            Fechada</span>
                     </div>
-
                     <div
                         class="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-black/80 to-transparent p-1.5 sm:p-2 lg:p-3 hover:bg-black/50 transition-colors cursor-pointer">
                         <p class="text-sm sm:text-base lg:text-lg xl:text-xl text-white font-semibold">Padel da Vila</p>
                     </div>
                 </div>
-
                 <div
                     class="flex items-center justify-between gap-2 sm:gap-4 px-2 sm:px-3 py-2 sm:py-3 text-[10px] sm:text-xs lg:text-sm text-muted">
                     <span class="flex items-center gap-1 sm:gap-2">
@@ -412,106 +426,108 @@
                     </span>
                 </div>
 
-                <div class="px-2 sm:px-3 lg:px-5 py-1">
-                    <span
-                        class="bg-purple-700 hover:bg-purple-800 hover:shadow-[0_0_10px_rgba(147,51,234,0.5)] rounded-full text-[10px] sm:text-xs text-white font-semibold px-2 sm:px-3 py-0.5 sm:py-1 w-max mx-auto mb-2 sm:mb-3 cursor-pointer inline-block transition-all duration-300">
-                        Nova
-                    </span>
-                </div>
-
                 <div class="px-1 sm:px-3 lg:px-5 py-1 gap-1 sm:gap-1 flex flex-wrap">
                     <span
-                        class="relative bg-gray-300/10 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 cursor-pointer overflow-hidden group">
+                        class="relative bg-zinc-600/50 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 cursor-pointer overflow-hidden group">
                         🎾 Padel
                         <span
                             class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
                     </span>
                     <span
-                        class="relative bg-gray-300/10 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 cursor-pointer overflow-hidden group">
+                        class="relative bg-zinc-600/50 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 cursor-pointer overflow-hidden group">
                         Iniciante
                         <span
                             class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
                     </span>
                 </div>
 
-                <div class="flex justify-center px-2 sm:px-3 lg:px-4 pb-3 sm:pb-4 mt-auto">
-                    <a href="/comunidades/vila.html"
-                        class="bg-lime text-black font-semibold text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-4 lg:px-5 rounded-2xl sm:rounded-3xl transition-all hover:bg-lime-500 hover:scale-[1.05] active:scale-[0.98] cursor-pointer w-full sm:w-auto">Ver
+                <div class="flex justify-center px-2 py-2 sm:px-3 lg:px-4 pb-3 sm:pb-4 mt-auto">
+                    <a href="comunidades/vila.html"
+                        class="bg-lime text-black font-semibold text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-4 lg:px-5 rounded-2xl sm:rounded-3xl transition-all hover:bg-lime-500 hover:scale-[1.05] active:scale-[0.98] cursor-pointer w-full sm:w-auto whitespace-nowrap text-center">Ver
                         comunidade</a>
                 </div>
             </figure>
 
-            <figure class="bg-zinc-900 rounded-lg pb-2 h-full flex flex-col hover:scale-[1.02] transition-transform">
+            <!-- Card 5 - Card de Exemplo 1 -->
+            <figure class="bg-zinc-900/50 rounded-lg pb-2 h-full flex flex-col hover:scale-[1.02] transition-transform">
                 <div class="relative aspect-[3/1] overflow-hidden rounded-t-lg sm:rounded-t-2xl flex-shrink-0">
                     <img src="img/JOGA JUNTO/" alt="Padel da Vila" class="w-full h-full object-cover" />
-
                     <div class="absolute top-0 right-0 p-1.5 sm:p-2 lg:p-3 flex flex-wrap gap-1 sm:gap-2">
-                        <!--Se a comunidade for fechada é assim-->
                         <span
-                            class="bg-yellow-500 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 hover:bg-yellow-300/80 transition-colors cursor-pointer whitespace-nowrap">
-                            🔒 Fechada
-                        </span>
+                            class="bg-yellow-500 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 hover:bg-yellow-300/80 transition-colors cursor-pointer whitespace-nowrap">🔒
+                            Fechada</span>
                     </div>
-
                     <div
                         class="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-black/80 to-transparent p-1.5 sm:p-2 lg:p-3 hover:bg-black/50 transition-colors cursor-pointer">
                         <p class="text-sm sm:text-base lg:text-lg xl:text-xl text-white font-semibold">Nome da
-                            Comunidade</p> <!--Nome da Comunidade-->
+                            Comunidade</p>
                     </div>
                 </div>
-
                 <div
                     class="flex items-center justify-between gap-2 sm:gap-4 px-2 sm:px-3 py-2 sm:py-3 text-[10px] sm:text-xs lg:text-sm text-muted">
                     <span class="flex items-center gap-1 sm:gap-2">
                         <img width="12" height="12" class="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5"
-                            src="https://img.icons8.com/ios-filled/50/marker.png" alt="marker" /> <!--endereço-->
+                            src="https://img.icons8.com/ios-filled/50/marker.png" alt="marker" />
                         <span class="text-[10px] sm:text-xs lg:text-sm">Bairro Y, Cidade X</span>
                     </span>
-                    <span class="flex items-center gap-1 sm:gap-2 flex-shrink-0"> <!--numeros de membros-->
+                    <span class="flex items-center gap-1 sm:gap-2 flex-shrink-0">
                         <img width="12" height="12" class="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5"
                             src="https://img.icons8.com/?size=100&id=DFygOMBBjiA7&format=png&color=000000"
                             alt="users" />
                         <span class="text-[10px] sm:text-xs lg:text-sm">XXX membros</span>
                     </span>
                 </div>
-
-                <div class="px-2 sm:px-3 lg:px-5 py-1"> <!--Cor que eu queira mudar no botão da categoria-->
-                    <span
-                        class="bg-purple-700 hover:bg-purple-800 hover:shadow-[0_0_10px_rgba(147,51,234,0.5)] rounded-full text-[10px] sm:text-xs text-white font-semibold px-2 sm:px-3 py-0.5 sm:py-1 w-max mx-auto mb-2 sm:mb-3 cursor-pointer inline-block transition-all duration-300">
-                        Nova
-                    </span>
-                </div>
-
-                <div class="px-1 sm:px-3 lg:px-5 py-1 gap-1 sm:gap-1 flex flex-wrap">
-                    <!--icone do esporte que a comunidade pratica-->
-                    <span
-                        class="relative bg-gray-300/10 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 cursor-pointer overflow-hidden group">
-                        🎾 Padel
-                        <span
-                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
-                    </span>
-                    <span
-                        class="relative bg-gray-300/10 rounded-full text-[10px] sm:text-xs text-black font-semibold px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 cursor-pointer overflow-hidden group">
-                        Iniciante
-                        <span
-                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
-                    </span>
-                </div>
-
-                <div class="flex justify-center px-2 sm:px-3 lg:px-4 pb-3 sm:pb-4 mt-auto">
-                    <a href="/comunidades/belves.html"
-                        class="bg-lime text-black font-semibold text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-4 lg:px-5 rounded-2xl sm:rounded-3xl transition-all hover:bg-lime-500 hover:scale-[1.05] active:scale-[0.98] cursor-pointer w-full sm:w-auto">Ver
+                <div class="flex justify-center px-2 py-2 sm:px-3 lg:px-4 pb-3 sm:pb-4 mt-auto">
+                    <a href="comunidades/belves.html"
+                        class="bg-lime text-black font-semibold text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-4 lg:px-5 rounded-2xl sm:rounded-3xl transition-all hover:bg-lime-500 hover:scale-[1.05] active:scale-[0.98] cursor-pointer w-full sm:w-auto whitespace-nowrap text-center">Ver
                         comunidade</a>
                 </div>
             </figure>
+
+            <!-- Card 6 - Card de Exemplo 2 -->
+            <figure class="bg-zinc-900/50 rounded-lg pb-2 h-full flex flex-col hover:scale-[1.02] transition-transform">
+                <div class="relative aspect-[3/1] overflow-hidden rounded-t-lg sm:rounded-t-2xl flex-shrink-0">
+                    <img src="img/JOGA JUNTO/" alt="Comunidade" class="w-full h-full object-cover" />
+                    <div class="absolute top-0 right-0 p-1.5 sm:p-2 lg:p-3 flex flex-wrap gap-1 sm:gap-2">
+                        <span
+                            class="bg-yellow-500 rounded-full text-[10px] sm:text-xs text-black font-semibold px-2 lg:px-3 py-1 hover:bg-yellow-300/80 transition-colors cursor-pointer whitespace-nowrap">🔒
+                            Fechada</span>
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-black/80 to-transparent p-1.5 sm:p-2 lg:p-3 hover:bg-black/50 transition-colors cursor-pointer">
+                        <p class="text-sm sm:text-base lg:text-lg xl:text-xl text-white font-semibold">Nome da
+                            Comunidade</p>
+                    </div>
+                </div>
+                <div
+                    class="flex items-center justify-between gap-2 sm:gap-4 px-2 sm:px-3 py-2 sm:py-3 text-[10px] sm:text-xs lg:text-sm text-muted">
+                    <span class="flex items-center gap-1 sm:gap-2">
+                        <img width="12" height="12" class="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5"
+                            src="https://img.icons8.com/ios-filled/50/marker.png" alt="marker" />
+                        <span class="text-[10px] sm:text-xs lg:text-sm">Bairro Y, Cidade X</span>
+                    </span>
+                    <span class="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                        <img width="12" height="12" class="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5"
+                            src="https://img.icons8.com/?size=100&id=DFygOMBBjiA7&format=png&color=000000"
+                            alt="users" />
+                        <span class="text-[10px] sm:text-xs lg:text-sm">XXX membros</span>
+                    </span>
+                </div>
+                <div class="flex justify-center px-2 py-2 sm:px-3 lg:px-4 pb-3 sm:pb-4 mt-auto">
+                    <a href="comunidades/belves.html"
+                        class="bg-lime text-black font-semibold text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-4 lg:px-5 rounded-2xl sm:rounded-3xl transition-all hover:bg-lime-500 hover:scale-[1.05] active:scale-[0.98] cursor-pointer w-full sm:w-auto whitespace-nowrap text-center">Ver
+                        comunidade</a>
+                </div>
+            </figure>
+
         </div>
 
     </main>
-    <!-- Inicio do Footer -->
+
+    <!-- Footer -->
     <footer class="border-t border-white/10 bg-surface mt-8 sm:mt-12 lg:mt-16">
         <div
             class="max-w-7xl mx-auto px-4 py-6 sm:py-8 lg:py-10 grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-
             <div class="xs:col-span-2 lg:col-span-1">
                 <a href="index.html" class="flex items-center mb-2 sm:mb-3 hover:opacity-80 transition-opacity"
                     aria-label="Ir para a página inicial do +Sports">
@@ -559,39 +575,3 @@
                     <li><a href="#" class="hover:text-lime transition-colors">Mapa</a></li>
                 </ul>
             </div>
-
-            <div>
-                <h4 class="font-mono text-[10px] sm:text-xs tracking-widest text-muted uppercase mb-2 sm:mb-3">Conta
-                </h4>
-                <ul class="flex flex-col gap-1.5 sm:gap-2 text-xs sm:text-sm text-fg/70">
-                    <li><a href="login.html" class="hover:text-lime transition-colors">Login</a></li>
-                    <li><a href="cadastro.html" class="hover:text-lime transition-colors">Cadastrar</a></li>
-                    <li><a href="login.html" class="hover:text-lime transition-colors">Meus Eventos</a></li>
-                    <li><a href="#" class="hover:text-lime transition-colors">Ajuda</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-mono text-[10px] sm:text-xs tracking-widest text-muted uppercase mb-2 sm:mb-3">+Sports
-                </h4>
-                <ul class="flex flex-col gap-1.5 sm:gap-2 text-xs sm:text-sm text-fg/70">
-                    <li><a href="#" class="hover:text-lime transition-colors">Sobre Nós</a></li>
-                    <li><a href="#" class="hover:text-lime transition-colors">Contato</a></li>
-                    <li><a href="#" class="hover:text-lime transition-colors">Política de Privacidade</a></li>
-                    <li><a href="#" class="hover:text-lime transition-colors">Termos de Uso</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-        <div class="border-t border-white/10 text-center py-3 sm:py-4 px-3">
-            <p class="text-muted text-[10px] sm:text-xs font-mono">© 2026 +Sports. Todos os direitos reservados.
-                Desenvolvido por alunos do UniFOA.</p>
-        </div>
-    </footer>
-
-    <script src="js/global.js"></script>
-
-</body>
-
-</html>
