@@ -446,7 +446,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b border-white/5 hover:bg-secondary/60 transition-colors cursor-pointer">
+                <tr class="border-b border-white/5 hover:bg-secondary/60 transition-colors cursor-pointer open-result-modal"
+                  data-evento="2ª Meia Maratona do Aço" data-id="EVT-039" data-data="12 Abr 2026"
+                  data-categoria="Masculino Geral · 5K" data-local="Volta Redonda · RJ"
+                  data-peitoral="#0312" data-tempo-bruto="24:21.54" data-tempo-liq="24:18.07"
+                  data-pace="4:51/km" data-posicao="087" data-total="412"
+                  data-fotos="https://www.focoradical.com.br/">
                   <td class="px-4 py-3.5 text-xs text-muted/70 whitespace-nowrap">12 ABR</td>
                   <td class="px-2 py-3.5">
                     <div class="text-sm font-semibold text-fg">2ª Meia Maratona do Aço</div>
@@ -464,7 +469,12 @@
                     </svg>
                   </td>
                 </tr>
-                <tr class="hover:bg-secondary/60 transition-colors cursor-pointer">
+                <tr class="hover:bg-secondary/60 transition-colors cursor-pointer open-result-modal"
+                  data-evento="Circuito Dr. Saúde" data-id="EVT-031" data-data="02 Mar 2026"
+                  data-categoria="Caminhada & Corrida · 10K" data-local="Ilha de São João · RJ"
+                  data-peitoral="#0198" data-tempo-bruto="52:09.11" data-tempo-liq="52:04.22"
+                  data-pace="5:12/km" data-posicao="142" data-total="689"
+                  data-fotos="https://exemplo.com/fotos/evt031">
                   <td class="px-4 py-3.5 text-xs text-muted/70 whitespace-nowrap">02 MAR</td>
                   <td class="px-2 py-3.5">
                     <div class="text-sm font-semibold text-fg">Circuito Dr. Saúde</div>
@@ -489,6 +499,96 @@
       </div>
     </div>
   </main>
+
+  <!-- ============ MODAL · RESULTADO DA PROVA ============ -->
+  <div id="resultModal"
+    class="hidden fixed inset-0 z-[100] bg-zinc950/80 backdrop-blur items-center justify-center p-4">
+    <div class="bg-surface border border-white/10 rounded-2xl w-full max-w-md p-5 sm:p-6">
+
+      <!-- Cabeçalho -->
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-display text-xl text-fg">Resultado da Prova</h3>
+        <button id="resultModalClose" type="button"
+          class="text-muted hover:text-fg text-2xl leading-none w-7 h-7 flex items-center justify-center rounded-md hover:bg-secondary transition-colors"
+          aria-label="Fechar">×</button>
+      </div>
+
+      <!-- Badge Finalizado + ID -->
+      <div class="flex items-center gap-2 mb-3 flex-wrap">
+        <span class="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase text-muted bg-secondary border border-white/20 rounded-full px-2 py-0.5">
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Finalizado
+        </span>
+        <span id="rm-id" class="font-mono text-[10px] text-muted/70">EVT-000</span>
+      </div>
+
+      <!-- Nome do evento -->
+      <h4 id="rm-evento" class="font-display text-2xl text-fg leading-tight mb-1">—</h4>
+      <div id="rm-categoria" class="text-xs text-muted/70 mb-4">—</div>
+
+      <!-- Grid de dados -->
+      <div class="flex flex-col gap-px bg-white/10 border border-white/10 rounded-xl overflow-hidden mb-4">
+
+        <div class="flex justify-between items-center bg-surface px-3.5 py-3 gap-3">
+          <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Peitoral</span>
+          <span id="rm-peitoral" class="font-mono text-base font-bold text-lime">—</span>
+        </div>
+
+        <div class="flex justify-between items-center bg-surface px-3.5 py-3 gap-3">
+          <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Data</span>
+          <span id="rm-data" class="font-mono text-sm text-fg">—</span>
+        </div>
+
+        <div class="flex justify-between items-center bg-surface px-3.5 py-3 gap-3">
+          <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Local</span>
+          <span id="rm-local" class="font-mono text-xs text-fg text-right">—</span>
+        </div>
+
+        <div class="flex justify-between items-center bg-surface px-3.5 py-3 gap-3">
+          <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Tempo Bruto</span>
+          <span id="rm-tempo-bruto" class="font-mono text-sm text-fg">—</span>
+        </div>
+
+        <div class="flex justify-between items-center bg-surface px-3.5 py-3 gap-3">
+          <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Tempo Líquido</span>
+          <span id="rm-tempo-liq" class="font-mono text-base font-bold text-lime">—</span>
+        </div>
+
+        <div class="flex justify-between items-center bg-surface px-3.5 py-3 gap-3">
+          <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Pace</span>
+          <span id="rm-pace" class="font-mono text-sm text-fg">—</span>
+        </div>
+
+        <div class="flex justify-between items-center bg-surface px-3.5 py-3 gap-3">
+          <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Posição Geral</span>
+          <div class="flex items-baseline gap-1">
+            <span id="rm-posicao" class="font-mono text-base font-bold text-lime">—</span>
+            <span class="text-[10px] text-muted/60">/ </span>
+            <span id="rm-total" class="font-mono text-sm text-muted">—</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Botões -->
+      <div class="flex gap-2 justify-end">
+        <a id="rm-fotos-link" href="#" target="_blank" rel="noopener noreferrer"
+          class="flex items-center gap-1.5 border border-white/20 text-fg font-semibold text-sm px-4 py-2 rounded-lg hover:bg-secondary transition-colors cursor-pointer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+          Veja suas fotos
+        </a>
+        <button type="button" id="resultModalOk"
+          class="bg-lime text-zinc-900 font-semibold text-sm px-4 py-2 rounded-lg hover:bg-lime-500 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer">
+          Fechar
+        </button>
+      </div>
+
+    </div>
+  </div>
 
   <!-- ============ MODAL · EDITAR PERFIL ============ -->
   <div id="editProfileModal"
@@ -1039,6 +1139,49 @@
       btn.addEventListener('click', open);
       closeBtn && closeBtn.addEventListener('click', close);
       okBtn && okBtn.addEventListener('click', close);
+      modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) close();
+      });
+    })();
+
+
+    // ============ Resultado da Prova (modal) ============
+    (function () {
+      const modal = document.getElementById('resultModal');
+      const closeBtn = document.getElementById('resultModalClose');
+      const okBtn = document.getElementById('resultModalOk');
+      if (!modal) return;
+
+      function open(tr) {
+        const d = tr.dataset;
+        document.getElementById('rm-id').textContent        = d.id        || '';
+        document.getElementById('rm-evento').textContent    = d.evento    || '';
+        document.getElementById('rm-categoria').textContent = d.categoria || '';
+        document.getElementById('rm-peitoral').textContent  = d.peitoral  || '';
+        document.getElementById('rm-data').textContent      = d.data      || '';
+        document.getElementById('rm-local').textContent     = d.local     || '';
+        document.getElementById('rm-tempo-bruto').textContent = d.tempoBruto || '';
+        document.getElementById('rm-tempo-liq').textContent  = d.tempoLiq  || '';
+        document.getElementById('rm-pace').textContent      = d.pace      || '';
+        document.getElementById('rm-posicao').textContent   = d.posicao   || '';
+        document.getElementById('rm-total').textContent     = d.total     || '';
+        const fotosLink = document.getElementById('rm-fotos-link');
+        if (fotosLink) fotosLink.href = d.fotos || '#';
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+      function close() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+
+      document.querySelectorAll('tr.open-result-modal').forEach(tr => {
+        tr.addEventListener('click', () => open(tr));
+      });
+
+      closeBtn && closeBtn.addEventListener('click', close);
+      okBtn    && okBtn.addEventListener('click', close);
       modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && !modal.classList.contains('hidden')) close();
