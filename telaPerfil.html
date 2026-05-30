@@ -106,12 +106,10 @@
 
           <!-- Avatar com upload de foto (clique no avatar abre o seletor de arquivo) -->
           <div class="relative inline-block mb-4">
-            <label for="avatarInput" id="avatarDisplay"
-              class="block w-20 h-20 rounded-xl bg-secondary border-2 border-lime flex items-center justify-center transition-all hover:glow-lime-sm cursor-pointer overflow-hidden bg-cover bg-center"
-              aria-label="Trocar foto de perfil">
+            <div id="avatarDisplay"
+              class="block w-20 h-20 rounded-xl bg-secondary border-2 border-lime flex items-center justify-center transition-all overflow-hidden bg-cover bg-center">
               <span id="avatarInitials" class="font-display text-3xl text-lime">BA</span>
-            </label>
-            <input id="avatarInput" type="file" accept="image/*" class="hidden" />
+            </div>
 
             <!-- Botão pequeno EDITAR PERFIL (canto superior direito) — lápis -->
             <button id="editProfileBtn" type="button"
@@ -124,30 +122,9 @@
               </svg>
             </button>
 
-            <!-- Botão remover foto (visível só quando há uma foto carregada) -->
-            <button id="avatarRemove" type="button" hidden
-              class="absolute -bottom-2 -left-2 flex items-center justify-center w-7 h-7 bg-secondary border border-red-500/30 rounded-full text-red-400 hover:text-red-300 hover:border-red-400/60 transition-colors cursor-pointer"
-              aria-label="Remover foto de perfil">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="3 6 5 6 21 6" />
-                <path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6" />
-                <path d="M10 11v6" />
-                <path d="M14 11v6" />
-              </svg>
-            </button>
 
-            <!-- Botão TROCAR FOTO (canto inferior direito) — câmera + texto EDITAR -->
-            <label for="avatarInput"
-              class="absolute -bottom-2 -right-2 flex items-center gap-1 bg-secondary border border-white/10 rounded-md px-2 py-1 text-[10px] font-semibold text-muted hover:text-fg hover:border-white/30 transition-colors cursor-pointer"
-              aria-label="Trocar foto de perfil">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-                <circle cx="12" cy="13" r="4" />
-              </svg>
-              EDITAR
-            </label>
+
+
           </div>
 
           <div>
@@ -524,6 +501,39 @@
           aria-label="Fechar">×</button>
       </div>
       <form id="editProfileForm" class="flex flex-col gap-3">
+
+        <!-- Seção Foto de Perfil -->
+        <div class="flex items-center gap-4 p-3 bg-secondary rounded-xl border border-white/10">
+          <div id="modalAvatarPreview"
+            class="w-16 h-16 rounded-xl bg-zinc950 border-2 border-lime flex items-center justify-center flex-shrink-0 overflow-hidden bg-cover bg-center">
+            <span id="modalAvatarInitials" class="font-display text-2xl text-lime">BA</span>
+          </div>
+          <div class="flex flex-col gap-2 flex-1">
+            <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Foto de Perfil</span>
+            <div class="flex gap-2 flex-wrap">
+              <label for="avatarInput"
+                class="flex items-center gap-1.5 bg-lime/10 border border-lime/30 text-lime text-[11px] font-semibold px-3 py-1.5 rounded-lg hover:bg-lime/20 transition-colors cursor-pointer">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                  <circle cx="12" cy="13" r="4"/>
+                </svg>
+                Editar foto
+              </label>
+              <button id="avatarRemove" type="button" hidden
+                class="flex items-center gap-1.5 border border-red-500/30 text-red-400 text-[11px] font-semibold px-3 py-1.5 rounded-lg hover:bg-red-500/10 hover:border-red-400/60 transition-colors cursor-pointer"
+                aria-label="Remover foto de perfil">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6"/>
+                  <path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/>
+                  <path d="M10 11v6"/><path d="M14 11v6"/>
+                </svg>
+                Remover
+              </button>
+            </div>
+          </div>
+        </div>
+        <input id="avatarInput" type="file" accept="image/*" class="hidden" />
+
         <label class="flex flex-col gap-1">
           <span class="text-[10px] font-bold tracking-widest text-muted/70 uppercase">Nome</span>
           <input id="inputName" type="text" required maxlength="60"
@@ -788,6 +798,8 @@
       const input = document.getElementById('avatarInput');
       const display = document.getElementById('avatarDisplay');
       const initials = document.getElementById('avatarInitials');
+      const modalPreview = document.getElementById('modalAvatarPreview');
+      const modalInitials = document.getElementById('modalAvatarInitials');
       const removeBtn = document.getElementById('avatarRemove');
       if (!input || !display) return;
 
@@ -827,14 +839,32 @@
       function applyAvatar(url) {
         display.style.backgroundImage = "url('" + url + "')";
         if (initials) initials.style.display = 'none';
+        if (modalPreview) { modalPreview.style.backgroundImage = "url('" + url + "')"; }
+        if (modalInitials) modalInitials.style.display = 'none';
         if (removeBtn) removeBtn.hidden = false;
       }
       function clearAvatar() {
         display.style.backgroundImage = '';
         if (initials) initials.style.display = '';
+        if (modalPreview) modalPreview.style.backgroundImage = '';
+        if (modalInitials) modalInitials.style.display = '';
         if (removeBtn) removeBtn.hidden = true;
         input.value = '';
       }
+
+      // Expõe função para sincronizar preview do modal ao abrir
+      window._syncModalAvatar = function() {
+        const saved = localStorage.getItem('avatarDataUrl');
+        if (saved) {
+          if (modalPreview) { modalPreview.style.backgroundImage = "url('" + saved + "')"; }
+          if (modalInitials) modalInitials.style.display = 'none';
+          if (removeBtn) removeBtn.hidden = false;
+        } else {
+          if (modalPreview) modalPreview.style.backgroundImage = '';
+          if (modalInitials) modalInitials.style.display = '';
+          if (removeBtn) removeBtn.hidden = true;
+        }
+      };
     })();
 
     // ============ Editar perfil (modal) — nome, telefone, CEP, endereço, cidade/UF ============
@@ -917,6 +947,7 @@
         if (cepHint) cepHint.textContent = 'Digite o CEP para preencher endereço automaticamente.';
         modal.classList.remove('hidden');
         modal.classList.add('flex');
+        if (typeof window._syncModalAvatar === 'function') window._syncModalAvatar();
         setTimeout(() => nameInput.focus(), 50);
       }
       function closeModal() {
@@ -953,7 +984,10 @@
       function applyProfile(d) {
         if (d.name) {
           nameOut.textContent = d.name.toUpperCase();
-          if (initials) initials.textContent = initialsOf(d.name);
+          const ini = initialsOf(d.name);
+          if (initials) initials.textContent = ini;
+          const modalIni = document.getElementById('modalAvatarInitials');
+          if (modalIni) modalIni.textContent = ini;
         }
         if (d.location) locOut.textContent = d.location;
       }
