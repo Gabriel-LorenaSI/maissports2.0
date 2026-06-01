@@ -46,6 +46,19 @@
       grid-template-rows: 1fr;
       opacity: 1;
     }
+    .order-menu {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px) scale(0.98);
+      pointer-events: none;
+      transition: opacity 170ms ease, transform 170ms ease, visibility 170ms ease;
+    }
+    .order-menu.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
     @media (min-width: 1024px) {
       #eventos-layout { position: relative; }
       #eventos-content {
@@ -148,10 +161,21 @@
           Filtros
         </button>
         <span class="w-px h-5 bg-white/15"></span>
-        <button class="hover:text-lime transition-colors inline-flex items-center gap-2">
-          Ordenar por
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
-        </button>
+        <div class="relative">
+          <button id="btnOrderMenu" type="button" aria-expanded="false" class="hover:text-lime transition-colors inline-flex items-center gap-2">
+            <span id="orderLabel">Ordenar por</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+          </button>
+          <div id="orderMenu" class="order-menu absolute right-0 top-[calc(100%+0.55rem)] z-40 w-72 rounded-xl border border-white/15 bg-surface/95 backdrop-blur-md p-2 shadow-[0_18px_32px_rgba(0,0,0,0.5)]">
+            <button type="button" data-order-option="Preco: menor para maior" class="w-full text-left px-3 py-2 rounded-lg text-sm text-fg/90 hover:bg-secondary hover:text-lime transition-colors">Preco: menor para maior</button>
+            <button type="button" data-order-option="Preco: maior para menor" class="w-full text-left px-3 py-2 rounded-lg text-sm text-fg/90 hover:bg-secondary hover:text-lime transition-colors">Preco: maior para menor</button>
+            <button type="button" data-order-option="Distancia: menor para maior" class="w-full text-left px-3 py-2 rounded-lg text-sm text-fg/90 hover:bg-secondary hover:text-lime transition-colors">Distancia: menor para maior</button>
+            <button type="button" data-order-option="Distancia: maior para menor" class="w-full text-left px-3 py-2 rounded-lg text-sm text-fg/90 hover:bg-secondary hover:text-lime transition-colors">Distancia: maior para menor</button>
+            <button type="button" data-order-option="Data: mais proxima" class="w-full text-left px-3 py-2 rounded-lg text-sm text-fg/90 hover:bg-secondary hover:text-lime transition-colors">Data: mais proxima</button>
+            <button type="button" data-order-option="Vagas: mais vagas primeiro" class="w-full text-left px-3 py-2 rounded-lg text-sm text-fg/90 hover:bg-secondary hover:text-lime transition-colors">Vagas: mais vagas primeiro</button>
+            <button type="button" data-order-option="Gratuitos primeiro" class="w-full text-left px-3 py-2 rounded-lg text-sm text-fg/90 hover:bg-secondary hover:text-lime transition-colors">Gratuitos primeiro</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -568,11 +592,15 @@
       const toggleBtn = document.getElementById("btnToggleFilters");
       const filtersPanel = document.getElementById("filters-panel");
       const eventosLayout = document.getElementById("eventos-layout");
+      const orderBtn = document.getElementById("btnOrderMenu");
+      const orderMenu = document.getElementById("orderMenu");
+      const orderLabel = document.getElementById("orderLabel");
       const desktopQuery = window.matchMedia("(min-width: 1024px)");
 
       if (!toggleBtn || !filtersPanel || !eventosLayout) return;
 
       let isOpen = false;
+      let orderOpen = false;
 
       const syncFiltersState = () => {
         if (!desktopQuery.matches) {
@@ -581,6 +609,12 @@
           eventosLayout.classList.remove("filters-open");
           toggleBtn.setAttribute("aria-expanded", "false");
           toggleBtn.classList.remove("text-lime");
+          if (orderMenu && orderBtn) {
+            orderMenu.classList.remove("is-open");
+            orderBtn.setAttribute("aria-expanded", "false");
+            orderBtn.classList.remove("text-lime");
+            orderOpen = false;
+          }
           return;
         }
 
@@ -592,18 +626,58 @@
         toggleBtn.classList.toggle("text-lime", isOpen);
       };
 
+      const syncOrderState = () => {
+        if (!orderBtn || !orderMenu || !desktopQuery.matches) return;
+        orderMenu.classList.toggle("is-open", orderOpen);
+        orderBtn.setAttribute("aria-expanded", orderOpen ? "true" : "false");
+        orderBtn.classList.toggle("text-lime", orderOpen);
+      };
+
       toggleBtn.addEventListener("click", () => {
         if (!desktopQuery.matches) return;
         isOpen = !isOpen;
         syncFiltersState();
       });
 
+      if (orderBtn && orderMenu && orderLabel) {
+        orderBtn.addEventListener("click", (event) => {
+          if (!desktopQuery.matches) return;
+          event.stopPropagation();
+          orderOpen = !orderOpen;
+          syncOrderState();
+        });
+
+        orderMenu.querySelectorAll("[data-order-option]").forEach((optionBtn) => {
+          optionBtn.addEventListener("click", () => {
+            orderLabel.textContent = "Ordenar por";
+            orderOpen = false;
+            syncOrderState();
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!orderOpen) return;
+          if (orderMenu.contains(event.target) || orderBtn.contains(event.target)) return;
+          orderOpen = false;
+          syncOrderState();
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key !== "Escape" || !orderOpen) return;
+          orderOpen = false;
+          syncOrderState();
+        });
+      }
+
       desktopQuery.addEventListener("change", () => {
         if (!desktopQuery.matches) isOpen = false;
+        if (!desktopQuery.matches) orderOpen = false;
         syncFiltersState();
+        syncOrderState();
       });
 
       syncFiltersState();
+      syncOrderState();
     })();
   </script>
 
