@@ -101,7 +101,7 @@
 
       <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-6 text-[15px] font-medium text-muted">
         <a href="index.html" class="hover:text-lime transition-colors whitespace-nowrap">Home</a>
-        <a href="eventos.html" class="text-lime transition-colors whitespace-nowrap">Eventos</a>
+        <a href="eventos.html" class="hover:text-lime transition-colors whitespace-nowrap">Eventos</a>
         <a href="jj.html" class="hover:text-lime transition-colors whitespace-nowrap">Joga Junto</a>
       </div>
 
@@ -291,7 +291,7 @@
       </aside>
 
       <div id="eventos-content">
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div id="eventsGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
 
           <article class="group bg-surface border border-lime/35 rounded-2xl overflow-hidden hover:border-lime/60 transition-colors">
             <div class="relative h-44 overflow-hidden">
@@ -509,12 +509,165 @@
             </div>
           </article>
 
+          <!-- Lote extra (inicia oculto) -->
+          <article class="extra-event hidden group bg-surface border border-white/10 rounded-2xl overflow-hidden hover:border-lime/40 transition-colors">
+            <div class="relative h-44 overflow-hidden">
+              <img src="img/eventos/CorridaGuerreiro.jpg" alt="Corrida da Ponte" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/45 to-transparent"></div>
+              <span class="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-widest bg-zinc-950/85 text-lime border border-lime/45 rounded-md px-2 py-1">Inscricoes abertas</span>
+              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">&#9825;</button>
+            </div>
+            <div class="p-4">
+              <div class="flex gap-3 min-w-0">
+                <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-zinc950/70 border border-white/15 flex flex-col items-center justify-center leading-none">
+                  <span class="text-2xl font-semibold">12</span><span class="text-[11px] text-muted uppercase">MAI</span>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="font-display text-lg sm:text-xl leading-tight whitespace-nowrap overflow-hidden text-ellipsis">Corrida da Ponte</h3>
+                  <p class="text-muted">5K - Barra Mansa, RJ</p>
+                </div>
+              </div>
+              <div class="mt-4 flex items-end justify-between gap-4">
+                <p class="font-mono text-lg sm:text-xl text-lime font-bold">R$ 95,00</p>
+                <p class="text-muted text-sm">144 / 220 vagas</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="extra-event hidden group bg-surface border border-white/10 rounded-2xl overflow-hidden hover:border-lime/40 transition-colors">
+            <div class="relative h-44 overflow-hidden">
+              <img src="img/JOGA JUNTO/padel.jpeg" alt="Padel Sunset Cup" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/45 to-transparent"></div>
+              <span class="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-widest bg-zinc-950/85 text-amber-300 border border-amber-300/40 rounded-md px-2 py-1">Ultimas vagas</span>
+              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">&#9825;</button>
+            </div>
+            <div class="p-4">
+              <div class="flex gap-3 min-w-0">
+                <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-zinc950/70 border border-white/15 flex flex-col items-center justify-center leading-none">
+                  <span class="text-2xl font-semibold">16</span><span class="text-[11px] text-muted uppercase">MAI</span>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="font-display text-lg sm:text-xl leading-tight whitespace-nowrap overflow-hidden text-ellipsis">Padel Sunset Cup</h3>
+                  <p class="text-muted">Padel - Volta Redonda, RJ</p>
+                </div>
+              </div>
+              <div class="mt-4 flex items-end justify-between gap-4">
+                <p class="font-mono text-lg sm:text-xl text-lime font-bold">R$ 110,00</p>
+                <p class="text-muted text-sm">10 / 16 vagas</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="extra-event hidden group bg-surface border border-white/10 rounded-2xl overflow-hidden hover:border-lime/40 transition-colors">
+            <div class="relative h-44 overflow-hidden">
+              <img src="img/eventos/RoyalRun.jpg" alt="Night Run Sider" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/45 to-transparent"></div>
+              <span class="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-widest bg-zinc-950/85 text-lime border border-lime/45 rounded-md px-2 py-1">Inscricoes abertas</span>
+              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">&#9825;</button>
+            </div>
+            <div class="p-4">
+              <div class="flex gap-3 min-w-0">
+                <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-zinc950/70 border border-white/15 flex flex-col items-center justify-center leading-none">
+                  <span class="text-2xl font-semibold">20</span><span class="text-[11px] text-muted uppercase">MAI</span>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="font-display text-lg sm:text-xl leading-tight whitespace-nowrap overflow-hidden text-ellipsis">Night Run Sider</h3>
+                  <p class="text-muted">10K - Resende, RJ</p>
+                </div>
+              </div>
+              <div class="mt-4 flex items-end justify-between gap-4">
+                <p class="font-mono text-lg sm:text-xl text-lime font-bold">R$ 135,00</p>
+                <p class="text-muted text-sm">188 / 260 vagas</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="extra-event hidden group bg-surface border border-white/10 rounded-2xl overflow-hidden hover:border-lime/40 transition-colors">
+            <div class="relative h-44 overflow-hidden">
+              <img src="img/JOGA JUNTO/volei areia.jpeg" alt="Torneio Beach Tennis VR" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/45 to-transparent"></div>
+              <span class="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-widest bg-zinc-950/85 text-lime border border-lime/45 rounded-md px-2 py-1">Inscricoes abertas</span>
+              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">&#9825;</button>
+            </div>
+            <div class="p-4">
+              <div class="flex gap-3 min-w-0">
+                <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-zinc950/70 border border-white/15 flex flex-col items-center justify-center leading-none">
+                  <span class="text-2xl font-semibold">22</span><span class="text-[11px] text-muted uppercase">MAI</span>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="font-display text-lg sm:text-xl leading-tight whitespace-nowrap overflow-hidden text-ellipsis">Torneio Beach Tennis VR</h3>
+                  <p class="text-muted">Beach Tennis - Volta Redonda, RJ</p>
+                </div>
+              </div>
+              <div class="mt-4 flex items-end justify-between gap-4">
+                <p class="font-mono text-lg sm:text-xl text-lime font-bold">R$ 85,00</p>
+                <p class="text-muted text-sm">42 / 80 vagas</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="extra-event hidden group bg-surface border border-white/10 rounded-2xl overflow-hidden hover:border-lime/40 transition-colors">
+            <div class="relative h-44 overflow-hidden">
+              <img src="img/eventos/Caicara.jpg" alt="Festival Futsociety Aco" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/45 to-transparent"></div>
+              <span class="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-widest bg-zinc-950/85 text-lime border border-lime/45 rounded-md px-2 py-1">Inscricoes abertas</span>
+              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">&#9825;</button>
+            </div>
+            <div class="p-4">
+              <div class="flex gap-3 min-w-0">
+                <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-zinc950/70 border border-white/15 flex flex-col items-center justify-center leading-none">
+                  <span class="text-2xl font-semibold">25</span><span class="text-[11px] text-muted uppercase">MAI</span>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="font-display text-lg sm:text-xl leading-tight whitespace-nowrap overflow-hidden text-ellipsis">Festival Futsociety Aco</h3>
+                  <p class="text-muted">Futebol Society - Porto Real, RJ</p>
+                </div>
+              </div>
+              <div class="mt-4 flex items-end justify-between gap-4">
+                <p class="font-mono text-lg sm:text-xl text-lime font-bold">R$ 140,00</p>
+                <p class="text-muted text-sm">60 / 100 vagas</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="extra-event hidden group bg-surface border border-white/10 rounded-2xl overflow-hidden hover:border-lime/40 transition-colors">
+            <div class="relative h-44 overflow-hidden">
+              <img src="img/eventos/Economize.jpg" alt="Kart Challenge Resende" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/45 to-transparent"></div>
+              <span class="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-widest bg-zinc-950/85 text-amber-300 border border-amber-300/40 rounded-md px-2 py-1">Ultimas vagas</span>
+              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">&#9825;</button>
+            </div>
+            <div class="p-4">
+              <div class="flex gap-3 min-w-0">
+                <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-zinc950/70 border border-white/15 flex flex-col items-center justify-center leading-none">
+                  <span class="text-2xl font-semibold">29</span><span class="text-[11px] text-muted uppercase">MAI</span>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="font-display text-lg sm:text-xl leading-tight whitespace-nowrap overflow-hidden text-ellipsis">Kart Challenge Resende</h3>
+                  <p class="text-muted">Kart - Resende, RJ</p>
+                </div>
+              </div>
+              <div class="mt-4 flex items-end justify-between gap-4">
+                <p class="font-mono text-lg sm:text-xl text-lime font-bold">R$ 170,00</p>
+                <p class="text-muted text-sm">8 / 12 vagas</p>
+              </div>
+            </div>
+          </article>
+
         </div>
 
-        <div class="pt-4 flex justify-center">
-          <button class="w-full md:w-auto min-w-56 px-6 py-3 rounded-xl border border-white/15 bg-surface text-lime font-semibold hover:border-lime/50 hover:bg-secondary transition-colors">
-            Carregar mais
-          </button>
+        <div class="pt-4 flex flex-col items-center gap-2">
+          <div id="loadControls" class="flex flex-wrap justify-center gap-3 w-full md:w-auto">
+            <button id="loadMoreBtn" type="button" class="w-full md:w-auto min-w-56 px-6 py-3 rounded-xl border border-white/15 bg-surface text-lime font-semibold hover:border-lime/50 hover:bg-secondary transition-colors">
+              Carregar mais
+            </button>
+            <button id="loadLessBtn" type="button" class="hidden w-full md:w-auto min-w-56 px-6 py-3 rounded-xl border border-white/15 bg-surface text-lime font-semibold hover:border-lime/50 hover:bg-secondary transition-colors">
+              Carregar menos
+            </button>
+          </div>
+          <p id="loadMoreDone" class="hidden text-sm text-muted font-mono tracking-wide">
+            Todos os eventos disponiveis ja foram exibidos.
+          </p>
         </div>
       </div>
     </section>
@@ -557,6 +710,7 @@
           <li><a href="index.html" class="hover:text-lime transition-colors">Home</a></li>
           <li><a href="eventos.html" class="hover:text-lime transition-colors">Eventos</a></li>
           <li><a href="jj.html" class="hover:text-lime transition-colors">Joga Junto</a></li>
+          <li><a href="#" class="hover:text-lime transition-colors">Mapa</a></li>
         </ul>
       </div>
 
@@ -582,7 +736,7 @@
 
     </div>
     <div class="border-t border-white/10 text-center py-4">
-      <p class="text-muted text-xs font-mono">&copy; 2026 +Sports. Todos os direitos reservados. Desenvolvido por alunos da UniFOA.</p>
+      <p class="text-muted text-xs font-mono">&copy; 2026 +Sports. Todos os direitos reservados. Desenvolvido por alunos do UniFOA.</p>
     </div>
   </footer>
 
@@ -594,7 +748,13 @@
       const orderBtn = document.getElementById("btnOrderMenu");
       const orderMenu = document.getElementById("orderMenu");
       const orderLabel = document.getElementById("orderLabel");
+      const eventsGrid = document.getElementById("eventsGrid");
+      const loadMoreBtn = document.getElementById("loadMoreBtn");
+      const loadLessBtn = document.getElementById("loadLessBtn");
+      const loadMoreDone = document.getElementById("loadMoreDone");
+      const allEventCards = eventsGrid ? Array.from(eventsGrid.querySelectorAll("article")) : [];
       const desktopQuery = window.matchMedia("(min-width: 1024px)");
+      const mobileQuery = window.matchMedia("(max-width: 767px)");
 
       if (!toggleBtn || !filtersPanel || !eventosLayout) return;
 
@@ -630,6 +790,48 @@
         orderMenu.classList.toggle("is-open", orderOpen);
         orderBtn.setAttribute("aria-expanded", orderOpen ? "true" : "false");
         orderBtn.classList.toggle("text-lime", orderOpen);
+      };
+
+      const setupLoadMore = () => {
+        if (!loadMoreBtn || !loadLessBtn || !loadMoreDone || !allEventCards.length) return;
+        const batchSize = 6;
+        const totalCards = allEventCards.length;
+        const getBaseline = () => (mobileQuery.matches ? 5 : 9);
+        let visibleCount = getBaseline();
+
+        const syncLoadMore = () => {
+          const baseline = getBaseline();
+          const hasMore = visibleCount < totalCards;
+          const canLoadLess = visibleCount > baseline;
+
+          allEventCards.forEach((card, index) => {
+            card.classList.toggle("hidden", index >= visibleCount);
+          });
+
+          loadMoreBtn.classList.toggle("hidden", !hasMore);
+          loadLessBtn.classList.toggle("hidden", !canLoadLess);
+          loadMoreDone.classList.toggle("hidden", hasMore);
+        };
+
+        loadMoreBtn.addEventListener("click", () => {
+          visibleCount = Math.min(visibleCount + batchSize, totalCards);
+          syncLoadMore();
+        });
+
+        loadLessBtn.addEventListener("click", () => {
+          const baseline = getBaseline();
+          visibleCount = Math.max(visibleCount - batchSize, baseline);
+          syncLoadMore();
+        });
+
+        mobileQuery.addEventListener("change", () => {
+          const baseline = getBaseline();
+          if (visibleCount < baseline) visibleCount = baseline;
+          if (visibleCount > totalCards) visibleCount = totalCards;
+          syncLoadMore();
+        });
+
+        syncLoadMore();
       };
 
       toggleBtn.addEventListener("click", () => {
@@ -677,6 +879,7 @@
 
       syncFiltersState();
       syncOrderState();
+      setupLoadMore();
     })();
   </script>
 
