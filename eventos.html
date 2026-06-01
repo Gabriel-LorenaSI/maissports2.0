@@ -47,8 +47,27 @@
       opacity: 1;
     }
     @media (min-width: 1024px) {
-      #eventos-layout.filters-open {
-        grid-template-columns: 280px minmax(0, 1fr);
+      #eventos-layout { position: relative; }
+      #eventos-content {
+        width: calc(100% - 304px);
+        margin-left: auto;
+        margin-right: auto;
+        transition: transform 220ms ease;
+        will-change: transform;
+      }
+      #eventos-layout.filters-open #eventos-content {
+        transform: translateX(152px);
+      }
+      #filters-panel {
+        opacity: 0;
+        transform: translateX(-14px);
+        pointer-events: none;
+        transition: opacity 220ms ease, transform 220ms ease;
+      }
+      #filters-panel.is-visible {
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
       }
     }
   </style>
@@ -163,7 +182,7 @@
     </details>
 
     <section id="eventos-layout" class="mt-5 grid grid-cols-1 gap-4 lg:gap-6">
-      <aside id="filters-panel" class="hidden bg-surface/95 border border-white/10 rounded-2xl p-4 h-fit lg:sticky lg:top-20">
+      <aside id="filters-panel" class="hidden lg:block lg:absolute lg:left-0 lg:top-0 lg:w-[280px] bg-surface/95 border border-white/10 rounded-2xl p-4 h-fit">
         <details open class="filter-group border-b border-white/10 pb-4 mb-4">
           <summary class="cursor-pointer flex items-center justify-between font-semibold">
             Modalidade
@@ -247,7 +266,7 @@
         </details>
       </aside>
 
-      <div>
+      <div id="eventos-content">
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
 
           <article class="group bg-surface border border-lime/35 rounded-2xl overflow-hidden hover:border-lime/60 transition-colors">
@@ -268,7 +287,7 @@
                 </div>
               </div>
               <div class="mt-4 flex items-end justify-between gap-4">
-                <p class="font-mono text-xl sm:text-2xl text-lime font-bold">R$ 130,90</p>
+                <p class="font-mono text-lg sm:text-xl text-lime font-bold">R$ 130,90</p>
                 <p class="text-muted text-sm">368 / 500 vagas</p>
               </div>
             </div>
@@ -292,7 +311,7 @@
                 </div>
               </div>
               <div class="mt-4 flex items-end justify-between gap-4">
-                <p class="font-mono text-xl sm:text-2xl text-lime font-bold">R$ 250,00</p>
+                <p class="font-mono text-lg sm:text-xl text-lime font-bold">R$ 250,00</p>
                 <p class="text-muted text-sm">28 / 32 vagas</p>
               </div>
             </div>
@@ -316,7 +335,7 @@
                 </div>
               </div>
               <div class="mt-4 flex items-end justify-between gap-4">
-                <p class="font-mono text-xl sm:text-2xl text-lime font-bold">R$ 180,00</p>
+                <p class="font-mono text-lg sm:text-xl text-lime font-bold">R$ 180,00</p>
                 <p class="text-muted text-sm">18 / 24 vagas</p>
               </div>
             </div>
@@ -340,7 +359,7 @@
                 </div>
               </div>
               <div class="mt-4 flex items-end justify-between gap-4">
-                <p class="font-mono text-xl sm:text-2xl text-lime font-bold">R$ 120,00</p>
+                <p class="font-mono text-lg sm:text-xl text-lime font-bold">R$ 120,00</p>
                 <p class="text-muted text-sm">16 / 32 vagas</p>
               </div>
             </div>
@@ -364,7 +383,7 @@
                 </div>
               </div>
               <div class="mt-4 flex items-end justify-between gap-4">
-                <p class="font-mono text-xl sm:text-2xl text-lime font-bold">R$ 80,00</p>
+                <p class="font-mono text-lg sm:text-xl text-lime font-bold">R$ 80,00</p>
                 <p class="text-muted text-sm">20 / 40 vagas</p>
               </div>
             </div>
@@ -388,7 +407,7 @@
                 </div>
               </div>
               <div class="mt-4 flex items-end justify-between gap-4">
-                <p class="font-mono text-xl sm:text-2xl text-lime font-bold">Gratis</p>
+                <p class="font-mono text-lg sm:text-xl text-lime font-bold">Gratis</p>
                 <p class="text-muted text-sm">32 / 64 vagas</p>
               </div>
             </div>
@@ -412,7 +431,7 @@
                 </div>
               </div>
               <div class="mt-4 flex items-end justify-between gap-4">
-                <p class="font-mono text-xl sm:text-2xl text-lime font-bold">R$ 250,00</p>
+                <p class="font-mono text-lg sm:text-xl text-lime font-bold">R$ 250,00</p>
                 <p class="text-muted text-sm">8 / 16 vagas</p>
               </div>
             </div>
@@ -436,7 +455,7 @@
                 </div>
               </div>
               <div class="mt-4 flex items-end justify-between gap-4">
-                <p class="font-mono text-xl sm:text-2xl text-muted font-bold">--</p>
+                <p class="font-mono text-lg sm:text-xl text-muted font-bold">--</p>
                 <p class="text-muted text-sm">120 participantes</p>
               </div>
             </div>
@@ -460,7 +479,7 @@
                 </div>
               </div>
               <div class="mt-4 flex items-end justify-between gap-4">
-                <p class="font-mono text-xl sm:text-2xl text-lime font-bold">Gratis</p>
+                <p class="font-mono text-lg sm:text-xl text-lime font-bold">Gratis</p>
                 <p class="text-muted text-sm">85 / 200 vagas</p>
               </div>
             </div>
@@ -549,22 +568,42 @@
       const toggleBtn = document.getElementById("btnToggleFilters");
       const filtersPanel = document.getElementById("filters-panel");
       const eventosLayout = document.getElementById("eventos-layout");
+      const desktopQuery = window.matchMedia("(min-width: 1024px)");
 
       if (!toggleBtn || !filtersPanel || !eventosLayout) return;
 
-      const setFiltersState = (open) => {
-        filtersPanel.classList.toggle("hidden", !open);
-        filtersPanel.classList.toggle("block", open);
-        eventosLayout.classList.toggle("filters-open", open);
-        toggleBtn.setAttribute("aria-expanded", open ? "true" : "false");
-        toggleBtn.classList.toggle("text-lime", open);
+      let isOpen = false;
+
+      const syncFiltersState = () => {
+        if (!desktopQuery.matches) {
+          filtersPanel.classList.add("hidden");
+          filtersPanel.classList.remove("block", "is-visible");
+          eventosLayout.classList.remove("filters-open");
+          toggleBtn.setAttribute("aria-expanded", "false");
+          toggleBtn.classList.remove("text-lime");
+          return;
+        }
+
+        filtersPanel.classList.remove("hidden");
+        filtersPanel.classList.add("block");
+        filtersPanel.classList.toggle("is-visible", isOpen);
+        eventosLayout.classList.toggle("filters-open", isOpen);
+        toggleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        toggleBtn.classList.toggle("text-lime", isOpen);
       };
 
-      setFiltersState(false);
       toggleBtn.addEventListener("click", () => {
-        const shouldOpen = filtersPanel.classList.contains("hidden");
-        setFiltersState(shouldOpen);
+        if (!desktopQuery.matches) return;
+        isOpen = !isOpen;
+        syncFiltersState();
       });
+
+      desktopQuery.addEventListener("change", () => {
+        if (!desktopQuery.matches) isOpen = false;
+        syncFiltersState();
+      });
+
+      syncFiltersState();
     })();
   </script>
 
