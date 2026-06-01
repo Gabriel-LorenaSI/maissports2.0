@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
@@ -24,6 +24,33 @@
     }
 
     .glow-lime-sm { box-shadow: 0 0 12px rgba(190, 242, 100, 0.6); }
+
+    .filter-group > summary::-webkit-details-marker { display: none; }
+    .filter-group > summary { list-style: none; }
+    .filter-chevron {
+      transition: transform 180ms ease, color 180ms ease;
+      transform: rotate(0deg);
+    }
+    .filter-group[open] .filter-chevron {
+      transform: rotate(180deg);
+      color: var(--color-lime);
+    }
+    .filter-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition: grid-template-rows 180ms ease, opacity 180ms ease;
+    }
+    .filter-content > div { overflow: hidden; }
+    .filter-group[open] .filter-content {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+    @media (min-width: 1024px) {
+      #eventos-layout.filters-open {
+        grid-template-columns: 280px minmax(0, 1fr);
+      }
+    }
   </style>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -42,11 +69,16 @@
 
       <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-6 text-[15px] font-medium text-muted">
         <a href="index.html" class="hover:text-lime transition-colors whitespace-nowrap">Home</a>
-        <a href="evento.html" class="text-lime relative whitespace-nowrap after:content-[''] after:absolute after:-bottom-3 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-lime after:rounded-full">Eventos</a>
+        <a href="eventos.html" class="text-lime relative whitespace-nowrap after:content-[''] after:absolute after:-bottom-3 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-lime after:rounded-full">Eventos</a>
         <a href="jj.html" class="hover:text-lime transition-colors whitespace-nowrap">Joga Junto</a>
       </div>
 
       <div class="flex items-center gap-2 ml-auto z-10">
+        <input
+          type="text"
+          placeholder="Pesquisar..."
+          class="hidden lg:block bg-surface border border-white/10 rounded-lg text-sm text-fg placeholder-muted px-3 py-1.5 w-44 focus:outline-none focus:border-lime/50 transition-colors"
+        />
         <a href="telaPerfil.html" class="hidden md:block text-sm border border-white/20 text-fg px-3 py-1.5 rounded-lg hover:bg-surface transition-colors whitespace-nowrap">Entrar</a>
         <a href="cadastro.html" class="hidden md:block text-sm bg-lime text-zinc-900 font-semibold px-3 py-1.5 rounded-lg hover:glow-lime-sm transition-all whitespace-nowrap">Criar Conta</a>
 
@@ -56,7 +88,7 @@
 
     <div id="menuMobile" class="hidden md:hidden bg-surface border-b border-white/10 px-4 py-4 flex flex-col gap-3 text-sm font-medium">
       <a href="index.html" class="text-fg hover:text-lime transition-colors">Home</a>
-      <a href="evento.html" class="text-lime">Eventos</a>
+      <a href="eventos.html" class="text-lime">Eventos</a>
       <a href="jj.html" class="text-fg hover:text-lime transition-colors">Joga Junto</a>
       <hr class="border-white/10" />
       <a href="telaPerfil.html" class="text-muted hover:text-fg transition-colors">Login</a>
@@ -68,7 +100,7 @@
     <p class="text-sm text-muted">Inicio <span class="text-fg/40 px-1">/</span> Eventos</p>
 
     <div class="mt-2 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-      <h1 class="font-display text-3xl sm:text-4xl text-fg leading-tight">Eventos esportivos <span class="text-fg/65 text-2xl align-middle">(124)</span></h1>
+      <h1 class="font-display text-xl sm:text-2xl text-fg leading-tight">Eventos esportivos <span class="text-fg/65 text-base sm:text-lg align-middle">(124)</span></h1>
 
       <div class="w-full lg:flex-1 lg:flex lg:justify-center">
         <label class="w-full lg:max-w-2xl flex items-center gap-3 bg-surface/90 border border-white/15 rounded-2xl px-4 py-3 focus-within:border-lime/50 transition-colors">
@@ -92,7 +124,7 @@
           Compartilhar
         </button>
         <span class="w-px h-5 bg-white/15"></span>
-        <button class="hover:text-lime transition-colors inline-flex items-center gap-2">
+        <button id="btnToggleFilters" type="button" aria-expanded="false" class="hover:text-lime transition-colors inline-flex items-center gap-2">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M7 12h10"></path><path d="M10 18h4"></path></svg>
           Filtros
         </button>
@@ -130,38 +162,89 @@
       </div>
     </details>
 
-    <section class="mt-5 grid grid-cols-1 lg:grid-cols-[280px_minmax(0,1fr)] gap-4 lg:gap-6">
-      <aside class="hidden lg:block bg-surface/95 border border-white/10 rounded-2xl p-4 h-fit sticky top-20">
-        <details open class="border-b border-white/10 pb-4 mb-4">
-          <summary class="list-none cursor-pointer flex items-center justify-between font-semibold">Modalidade <span class="text-muted">⌃</span></summary>
-          <div class="mt-3 space-y-2 text-muted text-[15px]">
-            <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" checked class="accent-lime" /> Corrida</span><span>42</span></label>
-            <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Futebol</span><span>28</span></label>
-            <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Padel</span><span>16</span></label>
-            <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Kart</span><span>12</span></label>
-            <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Beach Tennis</span><span>9</span></label>
-            <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Futvolei</span><span>8</span></label>
-            <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Gratis</span><span>18</span></label>
+    <section id="eventos-layout" class="mt-5 grid grid-cols-1 gap-4 lg:gap-6">
+      <aside id="filters-panel" class="hidden bg-surface/95 border border-white/10 rounded-2xl p-4 h-fit lg:sticky lg:top-20">
+        <details open class="filter-group border-b border-white/10 pb-4 mb-4">
+          <summary class="cursor-pointer flex items-center justify-between font-semibold">
+            Modalidade
+            <svg class="filter-chevron w-4 h-4 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+          </summary>
+          <div class="filter-content">
+            <div class="mt-3 space-y-2 text-muted text-[15px]">
+              <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" checked class="accent-lime" /> Corrida</span><span>42</span></label>
+              <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Futebol</span><span>28</span></label>
+              <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Padel</span><span>16</span></label>
+              <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Kart</span><span>12</span></label>
+              <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Beach Tennis</span><span>9</span></label>
+              <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Futvolei</span><span>8</span></label>
+              <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Gratis</span><span>18</span></label>
+            </div>
           </div>
         </details>
 
-        <details open class="border-b border-white/10 pb-4 mb-4">
-          <summary class="list-none cursor-pointer flex items-center justify-between font-semibold">Data <span class="text-muted">⌃</span></summary>
-          <div class="mt-3 space-y-2 text-muted text-[15px]">
-            <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" checked class="accent-lime" /> Este fim de semana</span><span>24</span></label>
-            <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Proximos 7 dias</span><span>36</span></label>
-            <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Proximos 30 dias</span><span>84</span></label>
-            <button class="w-full text-left text-fg/80 hover:text-lime transition-colors mt-1">Escolher data</button>
+        <details open class="filter-group border-b border-white/10 pb-4 mb-4">
+          <summary class="cursor-pointer flex items-center justify-between font-semibold">
+            Data
+            <svg class="filter-chevron w-4 h-4 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+          </summary>
+          <div class="filter-content">
+            <div class="mt-3 space-y-2 text-muted text-[15px]">
+              <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" checked class="accent-lime" /> Este fim de semana</span><span>24</span></label>
+              <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Proximos 7 dias</span><span>36</span></label>
+              <label class="flex items-center justify-between"><span class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Proximos 30 dias</span><span>84</span></label>
+              <button class="w-full text-left text-fg/80 hover:text-lime transition-colors mt-1">Escolher data</button>
+            </div>
           </div>
         </details>
 
-        <details class="border-b border-white/10 py-3"><summary class="list-none cursor-pointer flex items-center justify-between font-semibold">Local <span class="text-muted">⌄</span></summary></details>
-        <details class="border-b border-white/10 py-3"><summary class="list-none cursor-pointer flex items-center justify-between font-semibold">Preco <span class="text-muted">⌄</span></summary></details>
-        <details class="border-b border-white/10 py-3"><summary class="list-none cursor-pointer flex items-center justify-between font-semibold">Distancia <span class="text-muted">⌄</span></summary></details>
-        <details class="border-b border-white/10 py-3"><summary class="list-none cursor-pointer flex items-center justify-between font-semibold">Status <span class="text-muted">⌄</span></summary></details>
-        <details class="border-b border-white/10 py-3"><summary class="list-none cursor-pointer flex items-center justify-between font-semibold">Nivel <span class="text-muted">⌄</span></summary></details>
-        <details class="border-b border-white/10 py-3"><summary class="list-none cursor-pointer flex items-center justify-between font-semibold">Organizador <span class="text-muted">⌄</span></summary></details>
-        <details class="pt-3"><summary class="list-none cursor-pointer flex items-center justify-between font-semibold">Tipo de evento <span class="text-muted">⌄</span></summary></details>
+        <details class="filter-group border-b border-white/10 pb-4 mb-4">
+          <summary class="cursor-pointer flex items-center justify-between font-semibold">
+            Local
+            <svg class="filter-chevron w-4 h-4 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+          </summary>
+          <div class="filter-content">
+            <div class="mt-3 space-y-2 text-muted text-[15px]">
+              <label class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Volta Redonda/RJ</label>
+              <label class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Barra Mansa/RJ</label>
+              <label class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Resende/RJ</label>
+              <label class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Rio Claro/RJ</label>
+              <label class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Itatiaia/RJ</label>
+              <label class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Pinheiral/RJ</label>
+              <label class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Porto Real/RJ</label>
+              <label class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Piraí/RJ</label>
+            </div>
+          </div>
+        </details>
+
+        <details class="filter-group border-b border-white/10 pb-4 mb-4">
+          <summary class="cursor-pointer flex items-center justify-between font-semibold">
+            Preco
+            <svg class="filter-chevron w-4 h-4 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+          </summary>
+          <div class="filter-content">
+            <div class="mt-3 space-y-2 text-muted text-[15px]">
+              <label class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Gratis</label>
+              <label class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Ate R$ 50</label>
+              <label class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> R$ 50 - R$ 100</label>
+              <label class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> R$ 100 - R$ 150</label>
+              <label class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> R$ 150+</label>
+            </div>
+          </div>
+        </details>
+
+        <details class="filter-group">
+          <summary class="cursor-pointer flex items-center justify-between font-semibold">
+            Status
+            <svg class="filter-chevron w-4 h-4 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+          </summary>
+          <div class="filter-content">
+            <div class="mt-3 space-y-2 text-muted text-[15px]">
+              <label class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Disponivel</label>
+              <label class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Ultimas vagas</label>
+              <label class="flex items-center gap-2"><input type="checkbox" class="accent-lime" /> Encerrado</label>
+            </div>
+          </div>
+        </details>
       </aside>
 
       <div>
@@ -172,20 +255,20 @@
               <img src="img/eventos/CorridaGuerreiro.jpg" alt="Corrida do Guerreiro" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/45 to-transparent"></div>
               <span class="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-widest bg-zinc-950/85 text-lime border border-lime/45 rounded-md px-2 py-1">Inscricoes abertas</span>
-              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">♡</button>
+              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">&#9825;</button>
             </div>
             <div class="p-4">
-              <div class="flex gap-3">
+              <div class="flex gap-3 min-w-0">
                 <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-zinc950/70 border border-white/15 flex flex-col items-center justify-center leading-none">
                   <span class="text-2xl font-semibold">21</span><span class="text-[11px] text-muted uppercase">ABR</span>
                 </div>
-                <div>
-                  <h3 class="font-display text-2xl leading-tight">Corrida do Guerreiro</h3>
+                <div class="min-w-0">
+                  <h3 class="font-display text-lg sm:text-xl leading-tight whitespace-nowrap overflow-hidden text-ellipsis">Corrida do Guerreiro</h3>
                   <p class="text-muted">3K e 5K - Volta Redonda, RJ</p>
                 </div>
               </div>
               <div class="mt-4 flex items-end justify-between gap-4">
-                <p class="font-mono text-3xl text-lime font-bold">R$ 130,90</p>
+                <p class="font-mono text-xl sm:text-2xl text-lime font-bold">R$ 130,90</p>
                 <p class="text-muted text-sm">368 / 500 vagas</p>
               </div>
             </div>
@@ -196,20 +279,20 @@
               <img src="img/eventos/RoyalRun.jpg" alt="Falcoes de Aco 2026" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/45 to-transparent"></div>
               <span class="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-widest bg-zinc-950/85 text-amber-300 border border-amber-300/40 rounded-md px-2 py-1">Ultimas vagas</span>
-              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">♡</button>
+              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">&#9825;</button>
             </div>
             <div class="p-4">
-              <div class="flex gap-3">
+              <div class="flex gap-3 min-w-0">
                 <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-zinc950/70 border border-white/15 flex flex-col items-center justify-center leading-none">
                   <span class="text-2xl font-semibold">25</span><span class="text-[11px] text-muted uppercase">ABR</span>
                 </div>
-                <div>
-                  <h3 class="font-display text-2xl leading-tight">Falcoes de Aco 2026</h3>
+                <div class="min-w-0">
+                  <h3 class="font-display text-lg sm:text-xl leading-tight whitespace-nowrap overflow-hidden text-ellipsis">Falcoes de Aco 2026</h3>
                   <p class="text-muted">Futebol Society - Volta Redonda, RJ</p>
                 </div>
               </div>
               <div class="mt-4 flex items-end justify-between gap-4">
-                <p class="font-mono text-3xl text-lime font-bold">R$ 250,00</p>
+                <p class="font-mono text-xl sm:text-2xl text-lime font-bold">R$ 250,00</p>
                 <p class="text-muted text-sm">28 / 32 vagas</p>
               </div>
             </div>
@@ -220,20 +303,20 @@
               <img src="img/JOGA JUNTO/padel.jpeg" alt="Campeonato de Kart VR" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/45 to-transparent"></div>
               <span class="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-widest bg-zinc-950/85 text-lime border border-lime/45 rounded-md px-2 py-1">Inscricoes abertas</span>
-              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">♡</button>
+              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">&#9825;</button>
             </div>
             <div class="p-4">
-              <div class="flex gap-3">
+              <div class="flex gap-3 min-w-0">
                 <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-zinc950/70 border border-white/15 flex flex-col items-center justify-center leading-none">
                   <span class="text-2xl font-semibold">27</span><span class="text-[11px] text-muted uppercase">ABR</span>
                 </div>
-                <div>
-                  <h3 class="font-display text-2xl leading-tight">Campeonato de Kart VR</h3>
+                <div class="min-w-0">
+                  <h3 class="font-display text-lg sm:text-xl leading-tight whitespace-nowrap overflow-hidden text-ellipsis">Campeonato de Kart VR</h3>
                   <p class="text-muted">Kart - Volta Redonda, RJ</p>
                 </div>
               </div>
               <div class="mt-4 flex items-end justify-between gap-4">
-                <p class="font-mono text-3xl text-lime font-bold">R$ 180,00</p>
+                <p class="font-mono text-xl sm:text-2xl text-lime font-bold">R$ 180,00</p>
                 <p class="text-muted text-sm">18 / 24 vagas</p>
               </div>
             </div>
@@ -244,20 +327,20 @@
               <img src="img/JOGA JUNTO/selecao.jpeg" alt="Open Padel Volta Redonda" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/45 to-transparent"></div>
               <span class="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-widest bg-zinc-950/85 text-lime border border-lime/45 rounded-md px-2 py-1">Inscricoes abertas</span>
-              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">♡</button>
+              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">&#9825;</button>
             </div>
             <div class="p-4">
-              <div class="flex gap-3">
+              <div class="flex gap-3 min-w-0">
                 <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-zinc950/70 border border-white/15 flex flex-col items-center justify-center leading-none">
                   <span class="text-2xl font-semibold">28</span><span class="text-[11px] text-muted uppercase">ABR</span>
                 </div>
-                <div>
-                  <h3 class="font-display text-2xl leading-tight">Open Padel Volta Redonda</h3>
+                <div class="min-w-0">
+                  <h3 class="font-display text-lg sm:text-xl leading-tight whitespace-nowrap overflow-hidden text-ellipsis">Open Padel Volta Redonda</h3>
                   <p class="text-muted">Padel - Volta Redonda, RJ</p>
                 </div>
               </div>
               <div class="mt-4 flex items-end justify-between gap-4">
-                <p class="font-mono text-3xl text-lime font-bold">R$ 120,00</p>
+                <p class="font-mono text-xl sm:text-2xl text-lime font-bold">R$ 120,00</p>
                 <p class="text-muted text-sm">16 / 32 vagas</p>
               </div>
             </div>
@@ -268,20 +351,20 @@
               <img src="img/JOGA JUNTO/volei areia.jpeg" alt="Circuito Beach Tennis" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/45 to-transparent"></div>
               <span class="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-widest bg-zinc-950/85 text-lime border border-lime/45 rounded-md px-2 py-1">Inscricoes abertas</span>
-              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">♡</button>
+              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">&#9825;</button>
             </div>
             <div class="p-4">
-              <div class="flex gap-3">
+              <div class="flex gap-3 min-w-0">
                 <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-zinc950/70 border border-white/15 flex flex-col items-center justify-center leading-none">
                   <span class="text-2xl font-semibold">03</span><span class="text-[11px] text-muted uppercase">MAI</span>
                 </div>
-                <div>
-                  <h3 class="font-display text-2xl leading-tight">Circuito Beach Tennis</h3>
+                <div class="min-w-0">
+                  <h3 class="font-display text-lg sm:text-xl leading-tight whitespace-nowrap overflow-hidden text-ellipsis">Circuito Beach Tennis</h3>
                   <p class="text-muted">Beach Tennis - Volta Redonda, RJ</p>
                 </div>
               </div>
               <div class="mt-4 flex items-end justify-between gap-4">
-                <p class="font-mono text-3xl text-lime font-bold">R$ 80,00</p>
+                <p class="font-mono text-xl sm:text-2xl text-lime font-bold">R$ 80,00</p>
                 <p class="text-muted text-sm">20 / 40 vagas</p>
               </div>
             </div>
@@ -292,20 +375,20 @@
               <img src="img/JOGA JUNTO/volei quadra.jpeg" alt="Futvolei na Ilha" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/45 to-transparent"></div>
               <span class="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-widest bg-zinc-950/85 text-lime border border-lime/45 rounded-md px-2 py-1">Gratis</span>
-              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">♡</button>
+              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">&#9825;</button>
             </div>
             <div class="p-4">
-              <div class="flex gap-3">
+              <div class="flex gap-3 min-w-0">
                 <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-zinc950/70 border border-white/15 flex flex-col items-center justify-center leading-none">
                   <span class="text-2xl font-semibold">04</span><span class="text-[11px] text-muted uppercase">MAI</span>
                 </div>
-                <div>
-                  <h3 class="font-display text-2xl leading-tight">Futvolei na Ilha</h3>
+                <div class="min-w-0">
+                  <h3 class="font-display text-lg sm:text-xl leading-tight whitespace-nowrap overflow-hidden text-ellipsis">Futvolei na Ilha</h3>
                   <p class="text-muted">Futvolei - Volta Redonda, RJ</p>
                 </div>
               </div>
               <div class="mt-4 flex items-end justify-between gap-4">
-                <p class="font-mono text-3xl text-lime font-bold">Gratis</p>
+                <p class="font-mono text-xl sm:text-2xl text-lime font-bold">Gratis</p>
                 <p class="text-muted text-sm">32 / 64 vagas</p>
               </div>
             </div>
@@ -316,20 +399,20 @@
               <img src="img/eventos/Caicara.jpg" alt="Copa Society Noturna" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/45 to-transparent"></div>
               <span class="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-widest bg-zinc-950/85 text-lime border border-lime/45 rounded-md px-2 py-1">Inscricoes abertas</span>
-              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">♡</button>
+              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">&#9825;</button>
             </div>
             <div class="p-4">
-              <div class="flex gap-3">
+              <div class="flex gap-3 min-w-0">
                 <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-zinc950/70 border border-white/15 flex flex-col items-center justify-center leading-none">
                   <span class="text-2xl font-semibold">11</span><span class="text-[11px] text-muted uppercase">MAI</span>
                 </div>
-                <div>
-                  <h3 class="font-display text-2xl leading-tight">Copa Society Noturna</h3>
+                <div class="min-w-0">
+                  <h3 class="font-display text-lg sm:text-xl leading-tight whitespace-nowrap overflow-hidden text-ellipsis">Copa Society Noturna</h3>
                   <p class="text-muted">Futebol Society - Volta Redonda, RJ</p>
                 </div>
               </div>
               <div class="mt-4 flex items-end justify-between gap-4">
-                <p class="font-mono text-3xl text-lime font-bold">R$ 250,00</p>
+                <p class="font-mono text-xl sm:text-2xl text-lime font-bold">R$ 250,00</p>
                 <p class="text-muted text-sm">8 / 16 vagas</p>
               </div>
             </div>
@@ -340,20 +423,20 @@
               <img src="img/eventos/nerdRun.jpg" alt="Desafio MTB Aco" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/45 to-transparent"></div>
               <span class="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-widest bg-zinc-950/85 text-fg border border-white/30 rounded-md px-2 py-1">Encerrado</span>
-              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">♡</button>
+              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">&#9825;</button>
             </div>
             <div class="p-4">
-              <div class="flex gap-3">
+              <div class="flex gap-3 min-w-0">
                 <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-zinc950/70 border border-white/15 flex flex-col items-center justify-center leading-none">
                   <span class="text-2xl font-semibold">19</span><span class="text-[11px] text-muted uppercase">MAI</span>
                 </div>
-                <div>
-                  <h3 class="font-display text-2xl leading-tight">Desafio MTB Aco</h3>
+                <div class="min-w-0">
+                  <h3 class="font-display text-lg sm:text-xl leading-tight whitespace-nowrap overflow-hidden text-ellipsis">Desafio MTB Aco</h3>
                   <p class="text-muted">MTB - Volta Redonda, RJ</p>
                 </div>
               </div>
               <div class="mt-4 flex items-end justify-between gap-4">
-                <p class="font-mono text-3xl text-muted font-bold">--</p>
+                <p class="font-mono text-xl sm:text-2xl text-muted font-bold">--</p>
                 <p class="text-muted text-sm">120 participantes</p>
               </div>
             </div>
@@ -364,20 +447,20 @@
               <img src="img/eventos/Economize.jpg" alt="Festival Esportivo Sul Fluminense" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/45 to-transparent"></div>
               <span class="absolute top-3 left-3 text-[10px] font-mono uppercase tracking-widest bg-zinc-950/85 text-lime border border-lime/45 rounded-md px-2 py-1">Gratis</span>
-              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">♡</button>
+              <button class="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/35 bg-zinc950/60 text-fg hover:border-lime hover:text-lime transition-colors" aria-label="Salvar evento">&#9825;</button>
             </div>
             <div class="p-4">
-              <div class="flex gap-3">
+              <div class="flex gap-3 min-w-0">
                 <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-zinc950/70 border border-white/15 flex flex-col items-center justify-center leading-none">
                   <span class="text-2xl font-semibold">10</span><span class="text-[11px] text-muted uppercase">MAI</span>
                 </div>
-                <div>
-                  <h3 class="font-display text-2xl leading-tight">Festival Esportivo Sul Fluminense</h3>
+                <div class="min-w-0">
+                  <h3 class="font-display text-lg sm:text-xl leading-tight whitespace-nowrap overflow-hidden text-ellipsis">Festival Esportivo Sul Fluminense</h3>
                   <p class="text-muted">Multiesportivo - Volta Redonda, RJ</p>
                 </div>
               </div>
               <div class="mt-4 flex items-end justify-between gap-4">
-                <p class="font-mono text-3xl text-lime font-bold">Gratis</p>
+                <p class="font-mono text-xl sm:text-2xl text-lime font-bold">Gratis</p>
                 <p class="text-muted text-sm">85 / 200 vagas</p>
               </div>
             </div>
@@ -429,7 +512,7 @@
         <h4 class="font-mono text-xs tracking-widest text-muted uppercase mb-3">Navegacao</h4>
         <ul class="flex flex-col gap-2 text-sm text-fg/70">
           <li><a href="index.html" class="hover:text-lime transition-colors">Home</a></li>
-          <li><a href="evento.html" class="hover:text-lime transition-colors">Eventos</a></li>
+          <li><a href="eventos.html" class="hover:text-lime transition-colors">Eventos</a></li>
           <li><a href="jj.html" class="hover:text-lime transition-colors">Joga Junto</a></li>
           <li><a href="#" class="hover:text-lime transition-colors">Mapa</a></li>
         </ul>
@@ -461,7 +544,33 @@
     </div>
   </footer>
 
+  <script>
+    (() => {
+      const toggleBtn = document.getElementById("btnToggleFilters");
+      const filtersPanel = document.getElementById("filters-panel");
+      const eventosLayout = document.getElementById("eventos-layout");
+
+      if (!toggleBtn || !filtersPanel || !eventosLayout) return;
+
+      const setFiltersState = (open) => {
+        filtersPanel.classList.toggle("hidden", !open);
+        filtersPanel.classList.toggle("block", open);
+        eventosLayout.classList.toggle("filters-open", open);
+        toggleBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        toggleBtn.classList.toggle("text-lime", open);
+      };
+
+      setFiltersState(false);
+      toggleBtn.addEventListener("click", () => {
+        const shouldOpen = filtersPanel.classList.contains("hidden");
+        setFiltersState(shouldOpen);
+      });
+    })();
+  </script>
+
   <script src="js/global.js"></script>
 
 </body>
 </html>
+
+
