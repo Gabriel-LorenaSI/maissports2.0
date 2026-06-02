@@ -24,10 +24,18 @@
     }
 
     .glow-lime-sm { box-shadow: 0 0 12px rgba(190, 242, 100, 0.6); }
+
     .hero-scrim {
       background:
-        linear-gradient(90deg, rgba(12, 12, 14, 0.9) 0%, rgba(12, 12, 14, 0.72) 40%, rgba(12, 12, 14, 0.45) 72%, rgba(12, 12, 14, 0.25) 100%),
-        linear-gradient(180deg, rgba(12, 12, 14, 0.1) 0%, rgba(12, 12, 14, 0.55) 100%);
+        linear-gradient(90deg, #0c0c0e 0%, rgba(12, 12, 14, 0.96) 6%, rgba(12, 12, 14, 0.78) 18%, rgba(12, 12, 14, 0.42) 40%, rgba(12, 12, 14, 0.38) 62%, rgba(12, 12, 14, 0.82) 84%, #0c0c0e 100%),
+        linear-gradient(180deg, rgba(12, 12, 14, 0.08) 0%, rgba(12, 12, 14, 0.45) 60%, #0c0c0e 100%);
+    }
+    .status-dot {
+      animation: statusPulse 2s ease-in-out infinite;
+    }
+    @keyframes statusPulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(190, 242, 100, 0.55); }
+      50% { opacity: 0.45; box-shadow: 0 0 0 6px rgba(190, 242, 100, 0); }
     }
     .fade-up {
       animation: fadeUp 420ms ease-out both;
@@ -80,15 +88,17 @@
     </div>
   </header>
 
-  <main class="max-w-[1500px] mx-auto px-4 py-5 md:py-6 min-h-[65vh]">
-    <section class="rounded-2xl border border-white/10 overflow-hidden relative fade-up">
+  <main class="min-h-[65vh]">
+    <section class="relative left-1/2 right-1/2 w-screen -translate-x-1/2 overflow-hidden fade-up">
       <img src="img/eventos/CorridaGuerreiro.jpg" alt="Corredores em prova de rua" class="absolute inset-0 w-full h-full object-cover" />
       <div class="absolute inset-0 hero-scrim"></div>
+      <div class="pointer-events-none absolute inset-y-0 left-0 w-20 sm:w-32 lg:w-56 bg-gradient-to-r from-zinc950 via-zinc950/85 to-transparent"></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 w-20 sm:w-32 lg:w-56 bg-gradient-to-l from-zinc950 via-zinc950/85 to-transparent"></div>
 
-      <div class="relative p-5 sm:p-7 lg:p-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_330px] lg:items-end">
+      <div class="relative max-w-[1500px] mx-auto min-h-[620px] px-4 py-8 sm:py-10 lg:py-12 grid gap-6 lg:grid-cols-[minmax(0,1fr)_330px] lg:items-end">
         <div class="max-w-2xl">
           <span class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-widest bg-zinc-950/85 text-lime border border-lime/45 rounded-md px-3 py-1">
-            <span class="w-2 h-2 rounded-full bg-lime"></span>
+            <span class="status-dot w-1.5 h-1.5 rounded-full bg-lime"></span>
             Inscrições abertas
           </span>
           <h1 class="mt-4 font-display text-4xl sm:text-5xl leading-[1.05]">Corrida do Guerreiro</h1>
@@ -111,7 +121,7 @@
           </div>
         </div>
 
-        <aside class="bg-zinc-950/72 border border-white/15 rounded-2xl p-5 sm:p-6 backdrop-blur-sm">
+        <aside class="bg-zinc-950/78 border border-white/15 rounded-2xl p-5 sm:p-6">
           <p class="text-xs uppercase tracking-widest text-muted font-mono">Valor da inscrição</p>
           <p class="mt-2 font-display text-4xl sm:text-5xl text-fg">R$ 130,90</p>
 
@@ -134,7 +144,7 @@
       </div>
     </section>
 
-    <section class="mt-4 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_330px] gap-4">
+    <section class="max-w-[1500px] mx-auto px-4 mt-4 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_330px] gap-4">
       <div class="space-y-4">
         <article class="rounded-2xl border border-white/10 bg-surface/80 p-5 sm:p-6">
           <h2 class="font-semibold text-2xl flex items-center gap-2">
