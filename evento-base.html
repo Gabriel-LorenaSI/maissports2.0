@@ -23,6 +23,7 @@
       --font-mono: "JetBrains Mono", monospace;
     }
 
+    .glow-lime { box-shadow: 0 0 24px #bef264; }
     .glow-lime-sm { box-shadow: 0 0 12px rgba(190, 242, 100, 0.6); }
 
     .hero-scrim {
@@ -31,11 +32,11 @@
         linear-gradient(180deg, rgba(12, 12, 14, 0.08) 0%, rgba(12, 12, 14, 0.45) 60%, #0c0c0e 100%);
     }
     .status-dot {
-      animation: statusPulse 2s ease-in-out infinite;
+      animation: pulse-lime 2s infinite;
     }
-    @keyframes statusPulse {
-      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(190, 242, 100, 0.55); }
-      50% { opacity: 0.45; box-shadow: 0 0 0 6px rgba(190, 242, 100, 0); }
+    @keyframes pulse-lime {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(190, 242, 100, 0.7); }
+      50% { box-shadow: 0 0 0 10px rgba(190, 242, 100, 0); }
     }
     .fade-up {
       animation: fadeUp 420ms ease-out both;
@@ -97,21 +98,21 @@
 
       <div class="relative max-w-[1500px] mx-auto min-h-[620px] px-4 py-8 sm:py-10 lg:py-12 grid gap-6 lg:grid-cols-[minmax(0,1fr)_330px] lg:items-end">
         <div class="max-w-2xl">
-          <span class="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-widest bg-zinc-950/85 text-lime border border-lime/45 rounded-md px-3 py-1">
+          <span class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold uppercase tracking-widest bg-zinc-950/50 text-lime border border-lime/40 rounded-md px-2.5 py-1 w-fit">
             <span class="status-dot w-1.5 h-1.5 rounded-full bg-lime"></span>
             Inscrições abertas
           </span>
-          <h1 class="mt-4 font-display text-4xl sm:text-5xl leading-[1.05]">Corrida do Guerreiro</h1>
-          <p class="mt-3 text-xl text-fg/80">21 ABR · Volta Redonda, RJ · 3K e 5K</p>
-          <p class="mt-4 text-base sm:text-lg text-fg/85 max-w-xl">
+          <h1 class="mt-4 font-display text-3xl md:text-5xl text-fg leading-tight">Corrida do Guerreiro</h1>
+          <p class="mt-3 text-sm sm:text-base text-muted">21 ABR · Volta Redonda, RJ · 3K e 5K</p>
+          <p class="mt-4 text-sm sm:text-base text-muted max-w-xl leading-relaxed">
             Desafie seus limites com percursos de 3K e 5K pelas ruas de Volta Redonda. Um evento para todos os níveis, com estrutura completa e experiência pensada para quem ama esporte.
           </p>
           <div class="mt-6 flex flex-wrap items-center gap-3">
-            <button class="h-12 px-7 rounded-xl bg-lime text-zinc-900 font-semibold hover:brightness-110 transition-colors inline-flex items-center gap-2">
+            <button class="bg-lime text-zinc-900 font-display text-sm px-6 py-3 rounded-xl hover:glow-lime transition-all uppercase tracking-wide w-fit inline-flex items-center gap-2">
               Inscrever-se
               <span aria-hidden="true">→</span>
             </button>
-            <button class="h-12 px-6 rounded-xl border border-white/25 bg-zinc-950/35 text-fg font-semibold hover:border-lime hover:text-lime transition-colors inline-flex items-center gap-2">
+            <button class="border border-white/20 text-fg px-6 py-3 rounded-xl hover:bg-white/5 transition-colors text-sm font-semibold inline-flex items-center gap-2">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 20h18"></path>
                 <path d="M6 20V10l6-6 6 6v10"></path>
@@ -121,12 +122,12 @@
           </div>
         </div>
 
-        <aside class="bg-zinc-950/78 border border-white/15 rounded-2xl p-5 sm:p-6">
-          <p class="text-xs uppercase tracking-widest text-muted font-mono">Valor da inscrição</p>
+        <aside class="bg-surface/90 border border-white/10 rounded-2xl p-5 sm:p-6">
+          <p class="text-[10px] text-muted font-mono uppercase tracking-widest">Valor da inscrição</p>
           <p class="mt-2 font-display text-4xl sm:text-5xl text-fg">R$ 130,90</p>
 
           <div class="mt-5 pt-4 border-t border-white/10">
-            <p class="text-xs uppercase tracking-widest text-muted font-mono">Largada em</p>
+            <p class="text-[10px] text-muted font-mono uppercase tracking-widest">Largada em</p>
             <div class="mt-2 font-mono text-lime text-3xl sm:text-4xl font-bold tracking-wide">12:08:45:32</div>
             <div class="mt-2 grid grid-cols-4 text-[10px] uppercase text-muted font-mono tracking-wider">
               <span>Dias</span><span>Hrs</span><span>Min</span><span>Seg</span>
@@ -134,7 +135,7 @@
           </div>
 
           <div class="mt-5 pt-4 border-t border-white/10">
-            <p class="text-xs uppercase tracking-widest text-muted font-mono">Vagas disponíveis</p>
+            <p class="text-[10px] text-muted font-mono uppercase tracking-widest">Vagas disponíveis</p>
             <p class="mt-2 text-3xl font-mono text-fg"><span class="text-lime">368</span> / 500</p>
             <div class="mt-3 h-2 rounded-full bg-white/10 overflow-hidden">
               <div class="h-full w-[73%] bg-lime"></div>
@@ -146,9 +147,9 @@
 
     <section class="max-w-[1500px] mx-auto px-4 mt-4 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_330px] gap-4">
       <div class="space-y-4">
-        <article class="rounded-2xl border border-white/10 bg-surface/80 p-5 sm:p-6">
-          <h2 class="font-semibold text-2xl flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-lime"></span>
+        <article class="bg-surface rounded-2xl border border-white/10 p-5 sm:p-6">
+          <h2 class="font-display text-2xl text-fg leading-tight flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-lime flex-shrink-0"></span>
             Sobre o evento
           </h2>
           <p class="mt-3 text-fg/80 leading-relaxed">
@@ -170,13 +171,13 @@
           </div>
         </article>
 
-        <article class="rounded-2xl border border-white/10 bg-surface/80 p-5 sm:p-6">
-          <h2 class="font-semibold text-2xl flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-lime"></span>
+        <article class="bg-surface rounded-2xl border border-white/10 p-5 sm:p-6">
+          <h2 class="font-display text-2xl text-fg leading-tight flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-lime flex-shrink-0"></span>
             Modalidades
           </h2>
           <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="rounded-xl border border-white/10 bg-zinc-950/45 p-4">
+            <div class="bg-secondary rounded-xl p-4 border border-white/5">
               <p class="font-display text-5xl text-lime leading-none">3K</p>
               <p class="mt-2 text-lg">Corrida 3K</p>
               <ul class="mt-2 text-sm text-muted space-y-1">
@@ -185,7 +186,7 @@
               </ul>
               <p class="mt-3 text-2xl font-mono text-lime">R$ 110,90</p>
             </div>
-            <div class="rounded-xl border border-white/10 bg-zinc-950/45 p-4">
+            <div class="bg-secondary rounded-xl p-4 border border-white/5">
               <p class="font-display text-5xl text-lime leading-none">5K</p>
               <p class="mt-2 text-lg">Corrida 5K</p>
               <ul class="mt-2 text-sm text-muted space-y-1">
@@ -197,35 +198,35 @@
           </div>
         </article>
 
-        <article class="rounded-2xl border border-white/10 bg-surface/80 p-5 sm:p-6">
-          <h2 class="font-semibold text-2xl flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-lime"></span>
+        <article class="bg-surface rounded-2xl border border-white/10 p-5 sm:p-6">
+          <h2 class="font-display text-2xl text-fg leading-tight flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-lime flex-shrink-0"></span>
             Kit do atleta
           </h2>
           <p class="mt-2 text-fg/80">Todos os atletas inscritos recebem um kit completo.</p>
           <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-            <div class="rounded-xl border border-white/10 bg-zinc-950/45 p-4 text-center"><p class="font-mono text-sm text-lime">Camiseta</p></div>
-            <div class="rounded-xl border border-white/10 bg-zinc-950/45 p-4 text-center"><p class="font-mono text-sm text-lime">Número</p></div>
-            <div class="rounded-xl border border-white/10 bg-zinc-950/45 p-4 text-center"><p class="font-mono text-sm text-lime">Chip</p></div>
-            <div class="rounded-xl border border-white/10 bg-zinc-950/45 p-4 text-center"><p class="font-mono text-sm text-lime">Sacola</p></div>
-            <div class="rounded-xl border border-white/10 bg-zinc-950/45 p-4 text-center"><p class="font-mono text-sm text-lime">Medalha</p></div>
+            <div class="bg-secondary rounded-xl p-4 border border-white/5 text-center"><p class="font-mono text-sm text-lime">Camiseta</p></div>
+            <div class="bg-secondary rounded-xl p-4 border border-white/5 text-center"><p class="font-mono text-sm text-lime">Número</p></div>
+            <div class="bg-secondary rounded-xl p-4 border border-white/5 text-center"><p class="font-mono text-sm text-lime">Chip</p></div>
+            <div class="bg-secondary rounded-xl p-4 border border-white/5 text-center"><p class="font-mono text-sm text-lime">Sacola</p></div>
+            <div class="bg-secondary rounded-xl p-4 border border-white/5 text-center"><p class="font-mono text-sm text-lime">Medalha</p></div>
           </div>
         </article>
 
-        <article class="rounded-2xl border border-white/10 bg-surface/80 p-5 sm:p-6">
-          <h2 class="font-semibold text-2xl flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-lime"></span>
+        <article class="bg-surface rounded-2xl border border-white/10 p-5 sm:p-6">
+          <h2 class="font-display text-2xl text-fg leading-tight flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-lime flex-shrink-0"></span>
             Percurso
           </h2>
 
-          <div class="mt-4 inline-flex rounded-xl border border-white/10 bg-zinc-950/40 p-1">
-            <button type="button" data-route-button="3k" class="route-btn h-9 px-5 rounded-lg text-sm font-semibold bg-lime text-zinc-900">3K</button>
-            <button type="button" data-route-button="5k" class="route-btn h-9 px-5 rounded-lg text-sm font-semibold text-fg/80 hover:text-lime transition-colors">5K</button>
+          <div class="mt-4 flex gap-2 flex-wrap">
+            <button type="button" data-route-button="3k" class="route-btn font-mono text-xs font-semibold px-4 py-1.5 rounded-full bg-lime text-zinc-900 transition-all">3K</button>
+            <button type="button" data-route-button="5k" class="route-btn font-mono text-xs font-semibold px-4 py-1.5 rounded-full border border-white/20 text-muted hover:border-lime hover:text-lime transition-all">5K</button>
           </div>
 
           <div class="mt-4 space-y-4">
             <div data-route-panel="3k" class="route-panel">
-              <div class="rounded-xl border border-white/10 bg-zinc-950/50 p-4 overflow-hidden">
+              <div class="bg-secondary rounded-xl p-4 border border-white/5 overflow-hidden">
                 <svg viewBox="0 0 600 220" class="w-full h-auto">
                   <rect x="0" y="0" width="600" height="220" fill="#111216"></rect>
                   <path d="M40 140 L95 92 L160 78 L245 112 L300 70 L380 128 L470 102 L560 150" fill="none" stroke="#bef264" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -243,7 +244,7 @@
             </div>
 
             <div data-route-panel="5k" class="route-panel hidden">
-              <div class="rounded-xl border border-white/10 bg-zinc-950/50 p-4 overflow-hidden">
+              <div class="bg-secondary rounded-xl p-4 border border-white/5 overflow-hidden">
                 <svg viewBox="0 0 600 220" class="w-full h-auto">
                   <rect x="0" y="0" width="600" height="220" fill="#111216"></rect>
                   <path d="M35 150 L86 104 L170 84 L244 120 L310 54 L392 98 L458 82 L566 140" fill="none" stroke="#bef264" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -264,9 +265,9 @@
       </div>
 
       <aside class="space-y-4">
-        <article class="rounded-2xl border border-white/10 bg-surface/80 p-5 sm:p-6">
-          <h2 class="font-semibold text-2xl flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-lime"></span>
+        <article class="bg-surface rounded-2xl border border-white/10 p-5 sm:p-6">
+          <h2 class="font-display text-2xl text-fg leading-tight flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-lime flex-shrink-0"></span>
             Organizador
           </h2>
           <div class="mt-4 flex items-center gap-4">
@@ -286,14 +287,14 @@
           </div>
         </article>
 
-        <article class="rounded-2xl border border-white/10 bg-surface/80 p-5 sm:p-6">
-          <h2 class="font-semibold text-2xl flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-lime"></span>
+        <article class="bg-surface rounded-2xl border border-white/10 p-5 sm:p-6">
+          <h2 class="font-display text-2xl text-fg leading-tight flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-lime flex-shrink-0"></span>
             Localização
           </h2>
           <p class="mt-3 text-fg">Praça Brasil</p>
           <p class="text-muted">Volta Redonda, RJ</p>
-          <div class="mt-4 rounded-xl border border-white/10 bg-zinc-950/45 p-3">
+          <div class="mt-4 bg-secondary rounded-xl p-3 border border-white/5">
             <svg viewBox="0 0 320 180" class="w-full h-auto rounded-lg">
               <rect width="320" height="180" fill="#111216"></rect>
               <path d="M0 120 L320 120 M0 70 L320 70 M60 0 L60 180 M140 0 L140 180 M250 0 L250 180" stroke="#27272a" stroke-width="1"></path>
@@ -304,9 +305,9 @@
           <a href="#" class="mt-3 inline-flex text-lime hover:text-lime-hover transition-colors">Ver no Google Maps →</a>
         </article>
 
-        <article class="rounded-2xl border border-white/10 bg-surface/80 p-5 sm:p-6">
-          <h2 class="font-semibold text-2xl flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-lime"></span>
+        <article class="bg-surface rounded-2xl border border-white/10 p-5 sm:p-6">
+          <h2 class="font-display text-2xl text-fg leading-tight flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-lime flex-shrink-0"></span>
             Informações do evento
           </h2>
           <ul class="mt-4 space-y-3 text-sm">
@@ -319,9 +320,9 @@
           </ul>
         </article>
 
-        <article class="rounded-2xl border border-white/10 bg-zinc-950/70 p-5 sm:p-6">
+        <article class="bg-surface rounded-2xl border border-white/10 p-5 sm:p-6">
           <p class="text-center text-fg/80">Garanta sua vaga agora</p>
-          <button class="mt-4 w-full h-12 rounded-xl bg-lime text-zinc-900 font-semibold hover:brightness-110 transition-colors">
+          <button class="mt-4 w-full bg-lime text-zinc-900 font-display text-sm px-6 py-3.5 rounded-xl hover:glow-lime transition-all uppercase tracking-wide">
             Inscrever-se agora →
           </button>
           <p class="mt-3 text-center text-sm text-muted">Pagamento 100% seguro</p>
@@ -405,7 +406,11 @@
           const active = btn.dataset.routeButton === route;
           btn.classList.toggle("bg-lime", active);
           btn.classList.toggle("text-zinc-900", active);
-          btn.classList.toggle("text-fg/80", !active);
+          btn.classList.toggle("border", !active);
+          btn.classList.toggle("border-white/20", !active);
+          btn.classList.toggle("text-muted", !active);
+          btn.classList.toggle("hover:border-lime", !active);
+          btn.classList.toggle("hover:text-lime", !active);
         });
         routePanels.forEach((panel) => {
           panel.classList.toggle("hidden", panel.dataset.routePanel !== route);
