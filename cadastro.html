@@ -52,6 +52,30 @@
       .input-error {
         border-color: rgba(248, 113, 113, 0.6) !important;
       }
+      .select-field {
+        background: #1f2024;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0.75rem;
+        color: #f3f3f3;
+        font-family: "Barlow", sans-serif;
+        font-size: 0.875rem;
+        padding: 0.75rem 2.5rem 0.75rem 1rem;
+        width: 100%;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        outline: none;
+        cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+      .select-field:focus {
+        border-color: rgba(190, 242, 100, 0.5);
+        box-shadow: 0 0 0 3px rgba(190, 242, 100, 0.08);
+      }
+      .select-field option {
+        background: #1f2024;
+        color: #f3f3f3;
+      }
 
       /* Chips de esporte */
       .sport-chip input[type="checkbox"] {
@@ -97,6 +121,33 @@
       .fade-in-up {
         animation: fadeInUp 0.45s ease both;
       }
+
+      /* Modal de sucesso */
+      @keyframes scaleIn {
+        from { opacity: 0; transform: scale(0.82) translateY(12px); }
+        to   { opacity: 1; transform: scale(1) translateY(0); }
+      }
+      .scale-in {
+        animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      }
+
+      @keyframes checkDraw {
+        from { stroke-dashoffset: 50; }
+        to   { stroke-dashoffset: 0; }
+      }
+      .check-draw {
+        stroke-dasharray: 50;
+        stroke-dashoffset: 0;
+        animation: checkDraw 0.55s ease 0.25s both;
+      }
+
+      @keyframes glowPulse {
+        0%, 100% { box-shadow: 0 0 20px rgba(190,242,100,0.2); }
+        50%       { box-shadow: 0 0 40px rgba(190,242,100,0.45); }
+      }
+      .glow-pulse {
+        animation: glowPulse 2s ease-in-out infinite;
+      }
     </style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -109,7 +160,57 @@
 
   <body class="bg-zinc950 text-fg font-body antialiased min-h-screen flex flex-col">
 
-    <!-- NAV -->
+    <!-- ══ MODAL DE CONFIRMAÇÃO DE CADASTRO ══════════════════════════════════════ -->
+    <div
+      id="modalSucesso"
+      class="fixed inset-0 z-[100] flex items-center justify-center p-4 hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+      <!-- Overlay -->
+      <div class="absolute inset-0 bg-zinc950/85 backdrop-blur-sm"></div>
+
+      <!-- Card -->
+      <div class="relative bg-surface border border-white/10 rounded-2xl p-8 max-w-sm w-full text-center scale-in">
+
+        <!-- Ícone animado -->
+        <div
+          class="w-20 h-20 rounded-full bg-lime/10 border-2 border-lime/40 flex items-center justify-center mx-auto mb-6 glow-pulse"
+        >
+          <svg class="w-10 h-10 text-lime" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path class="check-draw" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+
+        <!-- Conteúdo -->
+        <p class="font-mono text-xs tracking-widest text-lime uppercase mb-2">Sucesso!</p>
+        <h2 id="modalTitle" class="font-display text-2xl text-fg mb-3">Conta criada!</h2>
+        <p class="text-muted text-sm leading-relaxed mb-1">
+          Bem-vindo(a) à comunidade <span class="text-fg font-semibold">+Sports</span>,
+          <span id="modalNome" class="text-lime font-semibold"></span>!
+        </p>
+        <p class="text-muted text-sm leading-relaxed mb-7">
+          Sua conta foi criada com sucesso. Agora você tem acesso a eventos, quadras e partidas próximas a você.
+        </p>
+
+        <!-- CTA -->
+        <a
+          href="telaPerfil.html"
+          class="w-full inline-flex items-center justify-center gap-2 bg-lime text-zinc-900 font-display text-sm px-6 py-3.5 rounded-xl hover:glow-lime transition-all uppercase tracking-wide mb-3"
+        >
+          Ir para meu perfil
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+        <a href="index.html" class="block text-sm text-muted hover:text-fg transition-colors">
+          Ir para a página inicial
+        </a>
+      </div>
+    </div>
+
+    <!-- ══ NAV ════════════════════════════════════════════════════════════════════ -->
     <header class="sticky top-0 z-50 bg-zinc950/90 backdrop-blur border-b border-white/10">
       <nav class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
         <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity" aria-label="Ir para a página inicial">
@@ -124,7 +225,7 @@
       </nav>
     </header>
 
-    <!-- MAIN -->
+    <!-- ══ MAIN ═══════════════════════════════════════════════════════════════════ -->
     <main class="flex-1 flex">
 
       <!-- Painel esquerdo — branding (lg+) -->
@@ -155,7 +256,6 @@
               Crie sua conta e acesse eventos, quadras e partidas informais próximas a você.
             </p>
 
-            <!-- Benefícios -->
             <div class="flex flex-col gap-3">
               <div class="flex items-center gap-3">
                 <div class="w-7 h-7 rounded-lg bg-lime/10 border border-lime/20 flex items-center justify-center flex-shrink-0">
@@ -190,14 +290,12 @@
       <div class="flex-1 flex items-start justify-center px-5 py-10 overflow-y-auto">
         <div class="w-full max-w-md fade-in-up">
 
-          <!-- Cabeçalho -->
           <div class="mb-7">
             <p class="font-mono text-xs tracking-widest text-lime uppercase mb-2">É rápido e gratuito</p>
             <h1 class="font-display text-3xl text-fg">Criar conta</h1>
             <p class="text-muted text-sm mt-2">Preencha os dados abaixo para começar.</p>
           </div>
 
-          <!-- Card formulário -->
           <div class="bg-surface border border-white/10 rounded-2xl p-6 md:p-8">
             <form id="formCadastro" novalidate>
 
@@ -209,11 +307,28 @@
                   id="nome"
                   name="nome"
                   class="input-field"
-                  placeholder="Seu nome"
+                  placeholder="Seu nome completo"
                   autocomplete="name"
                   required
                 />
-                <p class="text-red-400 text-xs mt-1 hidden" id="err-nome">Insira seu nome completo.</p>
+                <p class="text-red-400 text-xs mt-1 hidden" id="err-nome">Insira seu nome completo (somente letras, mínimo 2 palavras).</p>
+              </div>
+
+              <!-- Telefone -->
+              <div class="mb-5">
+                <label for="telefone" class="block text-sm font-medium text-fg mb-1.5">Telefone</label>
+                <input
+                  type="tel"
+                  id="telefone"
+                  name="telefone"
+                  class="input-field"
+                  placeholder="(00) 00000-0000"
+                  autocomplete="tel"
+                  maxlength="15"
+                  inputmode="numeric"
+                  required
+                />
+                <p class="text-red-400 text-xs mt-1 hidden" id="err-telefone">Insira um telefone válido com DDD.</p>
               </div>
 
               <!-- Email -->
@@ -231,20 +346,42 @@
                 <p class="text-red-400 text-xs mt-1 hidden" id="err-email">Insira um e-mail válido.</p>
               </div>
 
-              <!-- Cidade -->
+              <!-- Localização -->
               <div class="mb-5">
-                <label for="cidade" class="block text-sm font-medium text-fg mb-1.5">
-                  Cidade
+                <p class="text-sm font-medium text-fg mb-3">
+                  Localização
                   <span class="text-muted font-normal ml-1">(opcional)</span>
-                </label>
-                <input
-                  type="text"
-                  id="cidade"
-                  name="cidade"
-                  class="input-field"
-                  placeholder="Ex: Volta Redonda, RJ"
-                  autocomplete="address-level2"
-                />
+                </p>
+                <div class="grid grid-cols-2 gap-3">
+                  <!-- Estado -->
+                  <div>
+                    <label for="estado" class="block text-xs text-muted mb-1.5">Estado</label>
+                    <div class="relative">
+                      <select id="estado" name="estado" class="select-field" autocomplete="address-level1">
+                        <option value="RJ">Rio de Janeiro</option>
+                      </select>
+                      <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-muted">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                  <!-- Cidade -->
+                  <div>
+                    <label for="cidade" class="block text-xs text-muted mb-1.5">Cidade</label>
+                    <div class="relative">
+                      <select id="cidade" name="cidade" class="select-field" autocomplete="address-level2">
+                        <option value="VR">Volta Redonda</option>
+                      </select>
+                      <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-muted">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <!-- Senha -->
@@ -275,7 +412,6 @@
                     </svg>
                   </button>
                 </div>
-                <!-- Barra de força -->
                 <div class="flex gap-1 mt-2" id="strengthBars">
                   <div class="strength-bar" id="bar1"></div>
                   <div class="strength-bar" id="bar2"></div>
@@ -367,7 +503,6 @@
             </form>
           </div>
 
-          <!-- Rodapé -->
           <p class="text-center text-sm text-muted mt-6">
             Já tem uma conta?
             <a href="login.html" class="text-lime hover:text-lime-hover transition-colors font-semibold ml-1">Entrar</a>
@@ -377,10 +512,39 @@
     </main>
 
     <script>
-      // Toggle senha
-      const toggleBtn = document.getElementById('toggleSenha');
+      // ── Máscara nome: somente letras e espaços ────────────────────────────────
+      const nomeInput = document.getElementById('nome');
+      nomeInput.addEventListener('keydown', function (e) {
+        if (e.key.length === 1 && /[^a-zA-ZÀ-ÖØ-öø-ÿ\s]/.test(e.key)) {
+          e.preventDefault();
+        }
+      });
+      nomeInput.addEventListener('input', function () {
+        const pos  = this.selectionStart;
+        const prev = this.value;
+        this.value = prev.replace(/[^a-zA-ZÀ-ÖØ-öø-ÿ\s]/g, '');
+        const diff = prev.length - this.value.length;
+        this.setSelectionRange(Math.max(0, pos - diff), Math.max(0, pos - diff));
+      });
+
+      // ── Máscara telefone: (XX) XXXXX-XXXX / (XX) XXXX-XXXX ───────────────────
+      const telefoneInput = document.getElementById('telefone');
+      telefoneInput.addEventListener('input', function () {
+        let v = this.value.replace(/\D/g, '').slice(0, 11);
+        if (!v) { this.value = ''; return; }
+        if (v.length <= 2)  { this.value = '(' + v; return; }
+        if (v.length <= 6)  { this.value = '(' + v.slice(0,2) + ') ' + v.slice(2); return; }
+        if (v.length <= 10) {
+          this.value = '(' + v.slice(0,2) + ') ' + v.slice(2,6) + '-' + v.slice(6);
+          return;
+        }
+        this.value = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+      });
+
+      // ── Toggle visibilidade da senha ──────────────────────────────────────────
+      const toggleBtn  = document.getElementById('toggleSenha');
       const senhaInput = document.getElementById('senha');
-      const iconEye = document.getElementById('iconEye');
+      const iconEye    = document.getElementById('iconEye');
       const iconEyeOff = document.getElementById('iconEyeOff');
 
       toggleBtn.addEventListener('click', () => {
@@ -390,93 +554,124 @@
         iconEyeOff.classList.toggle('hidden', !show);
       });
 
-      // Barra de força da senha
-      const bars = [
-        document.getElementById('bar1'),
-        document.getElementById('bar2'),
-        document.getElementById('bar3'),
-        document.getElementById('bar4'),
-      ];
-      const strengthLabel = document.getElementById('strengthLabel');
-      const strengthColors = ['#ef4444', '#f97316', '#eab308', '#bef264'];
-      const strengthLabels = ['Muito fraca', 'Fraca', 'Boa', 'Forte'];
+      // ── Barra de força da senha ───────────────────────────────────────────────
+      const bars = ['bar1','bar2','bar3','bar4'].map(id => document.getElementById(id));
+      const strengthLabel  = document.getElementById('strengthLabel');
+      const strengthColors = ['#ef4444','#f97316','#eab308','#bef264'];
+      const strengthLabels = ['Muito fraca','Fraca','Boa','Forte'];
 
       senhaInput.addEventListener('input', () => {
         const v = senhaInput.value;
         let score = 0;
-        if (v.length >= 8) score++;
-        if (/[A-Z]/.test(v)) score++;
-        if (/[0-9]/.test(v)) score++;
+        if (v.length >= 8)          score++;
+        if (/[A-Z]/.test(v))        score++;
+        if (/[0-9]/.test(v))        score++;
         if (/[^A-Za-z0-9]/.test(v)) score++;
-
         bars.forEach((b, i) => {
-          b.style.background = i < score ? strengthColors[score - 1] : 'rgba(255,255,255,0.08)';
+          b.style.background = i < score ? strengthColors[score-1] : 'rgba(255,255,255,0.08)';
         });
-        strengthLabel.textContent = v.length > 0 ? strengthLabels[score - 1] || '' : '';
-        strengthLabel.style.color = v.length > 0 ? strengthColors[score - 1] : '';
+        strengthLabel.textContent = v.length > 0 ? (strengthLabels[score-1] || '') : '';
+        strengthLabel.style.color = v.length > 0 ? strengthColors[score-1] : '';
       });
 
-      // Validação
-      function setError(input, errEl, show) {
+      // ── Helpers de validação ──────────────────────────────────────────────────
+      function setError(input, errId, show) {
         input.classList.toggle('input-error', show);
-        errEl.classList.toggle('hidden', !show);
+        document.getElementById(errId).classList.toggle('hidden', !show);
       }
 
+      // ── Envio do formulário ───────────────────────────────────────────────────
       document.getElementById('formCadastro').addEventListener('submit', function (e) {
         e.preventDefault();
 
-        const nome     = document.getElementById('nome');
-        const email    = document.getElementById('email');
-        const senha    = document.getElementById('senha');
+        const nome      = document.getElementById('nome');
+        const telefone  = document.getElementById('telefone');
+        const email     = document.getElementById('email');
+        const senha     = document.getElementById('senha');
         const confirmar = document.getElementById('confirmar');
-        const termos   = document.getElementById('termos');
+        const termos    = document.getElementById('termos');
 
         let valid = true;
 
-        if (!nome.value.trim() || nome.value.trim().split(' ').length < 2) {
-          setError(nome, document.getElementById('err-nome'), true);
-          valid = false;
+        // Nome: mín. 2 palavras, somente letras/espaços/acentos
+        const nomeVal = nome.value.trim();
+        if (!nomeVal || nomeVal.split(/\s+/).length < 2 || /[^a-zA-ZÀ-ÖØ-öø-ÿ\s]/.test(nomeVal)) {
+          setError(nome, 'err-nome', true); valid = false;
         } else {
-          setError(nome, document.getElementById('err-nome'), false);
+          setError(nome, 'err-nome', false);
         }
 
+        // Telefone: mín. 10 dígitos (com DDD)
+        if (telefone.value.replace(/\D/g, '').length < 10) {
+          setError(telefone, 'err-telefone', true); valid = false;
+        } else {
+          setError(telefone, 'err-telefone', false);
+        }
+
+        // E-mail
         if (!email.value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-          setError(email, document.getElementById('err-email'), true);
-          valid = false;
+          setError(email, 'err-email', true); valid = false;
         } else {
-          setError(email, document.getElementById('err-email'), false);
+          setError(email, 'err-email', false);
         }
 
+        // Senha
         if (!senha.value || senha.value.length < 8) {
-          setError(senha, document.getElementById('err-senha'), true);
-          valid = false;
+          setError(senha, 'err-senha', true); valid = false;
         } else {
-          setError(senha, document.getElementById('err-senha'), false);
+          setError(senha, 'err-senha', false);
         }
 
+        // Confirmar senha
         if (confirmar.value !== senha.value) {
-          setError(confirmar, document.getElementById('err-confirmar'), true);
-          valid = false;
+          setError(confirmar, 'err-confirmar', true); valid = false;
         } else {
-          setError(confirmar, document.getElementById('err-confirmar'), false);
+          setError(confirmar, 'err-confirmar', false);
         }
 
+        // Termos
         if (!termos.checked) {
-          document.getElementById('err-termos').classList.remove('hidden');
-          valid = false;
+          document.getElementById('err-termos').classList.remove('hidden'); valid = false;
         } else {
           document.getElementById('err-termos').classList.add('hidden');
         }
 
-        if (valid) {
-          document.getElementById('btnCadastroText').textContent = 'Criando conta...';
-          document.getElementById('btnCadastroSpinner').classList.remove('hidden');
-          // Simula loading — substituir por fetch real
-          setTimeout(() => {
-            window.location.href = 'telaPerfil.html';
-          }, 1400);
-        }
+        if (!valid) return;
+
+        // Loading
+        const btnText    = document.getElementById('btnCadastroText');
+        const btnSpinner = document.getElementById('btnCadastroSpinner');
+        btnText.textContent = 'Criando conta...';
+        btnSpinner.classList.remove('hidden');
+
+        // Simula requisição — substituir por fetch real
+        setTimeout(() => {
+          btnText.textContent = 'Criar Conta Grátis';
+          btnSpinner.classList.add('hidden');
+          // Salva sessão no localStorage
+          const emailVal = document.getElementById('email').value;
+          window.SportsAuth
+            ? window.SportsAuth.setUser({ nome: nomeVal, email: emailVal })
+            : localStorage.setItem('sportsUser', JSON.stringify({ nome: nomeVal, email: emailVal }));
+          showSuccessModal(nomeVal.split(/\s+/)[0]);
+        }, 1400);
       });
+
+      // ── Modal de confirmação ──────────────────────────────────────────────────
+      function showSuccessModal(primeiroNome) {
+        document.getElementById('modalNome').textContent = primeiroNome;
+
+        const modal = document.getElementById('modalSucesso');
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+
+        // Re-dispara a animação do checkmark
+        const path = modal.querySelector('.check-draw');
+        path.classList.remove('check-draw');
+        void path.offsetWidth;
+        path.classList.add('check-draw');
+      }
     </script>
+    <script src="./js/auth.js"></script>
   </body>
 </html>

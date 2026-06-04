@@ -293,10 +293,19 @@
           document.getElementById('btnLoginSpinner').classList.remove('hidden');
           // Simula loading — substituir por fetch real
           setTimeout(() => {
+            // Deriva nome de exibição a partir do e-mail
+            var nomeDerived = email.value.split('@')[0]
+              .replace(/[._\-+]/g, ' ')
+              .replace(/\b\w/g, function(c) { return c.toUpperCase(); })
+              .trim() || 'Usuário';
+            window.SportsAuth
+              ? window.SportsAuth.setUser({ nome: nomeDerived, email: email.value })
+              : localStorage.setItem('sportsUser', JSON.stringify({ nome: nomeDerived, email: email.value }));
             window.location.href = 'telaPerfil.html';
           }, 1200);
         }
       });
     </script>
+    <script src="./js/auth.js"></script>
   </body>
 </html>

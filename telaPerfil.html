@@ -62,6 +62,7 @@
         <a href="index.html" class="hover:text-lime transition-colors whitespace-nowrap">Home</a>
         <a href="index.html#eventos" class="hover:text-lime transition-colors whitespace-nowrap">Eventos</a>
         <a href="jj.html" class="hover:text-lime transition-colors whitespace-nowrap">Joga Junto</a>
+        <a href="mapa.html" class="hover:text-lime transition-colors whitespace-nowrap">Mapa</a>
       </div>
 
       <div class="flex items-center gap-1 sm:gap-2 ml-auto z-10">
@@ -81,6 +82,7 @@
       <a href="index.html" class="text-fg hover:text-lime transition-colors">Home</a>
       <a href="index.html#eventos" class="text-fg hover:text-lime transition-colors">Eventos</a>
       <a href="jj.html" class="text-fg hover:text-lime transition-colors">Joga Junto</a>
+      <a href="mapa.html" class="text-fg hover:text-lime transition-colors">Mapa</a>
       <hr class="border-white/10" />
       <a href="login.html" id="logoutBtnMobile" class="bg-lime text-zinc-900 font-semibold px-4 py-2 rounded-lg text-center">Encerrar Sessão</a>
     </div>
@@ -1078,6 +1080,11 @@
         profileData = data;
         applyProfile(data);
         try { localStorage.setItem('profileData', JSON.stringify(data)); } catch (_) {}
+        // Sincroniza o nome com sportsUser para o widget da nav ficar atualizado
+        try {
+          const su = JSON.parse(localStorage.getItem('sportsUser') || 'null');
+          if (su) { su.nome = data.name; localStorage.setItem('sportsUser', JSON.stringify(su)); }
+        } catch (_) {}
         closeModal();
       });
 
@@ -1211,6 +1218,7 @@
     updateTimer();
     setInterval(updateTimer, 30000);
   </script>
+  <script src="./js/auth.js"></script>
 
 </body>
 
