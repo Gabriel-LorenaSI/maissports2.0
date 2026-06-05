@@ -35,6 +35,11 @@
       50%       { box-shadow: 0 0 0 10px rgba(190, 242, 100, 0);   }
     }
     .live-pin { animation: pulse-lime 2s infinite; }
+
+    /* Smooth scroll para toda a página */
+    html {
+        scroll-behavior: smooth;
+    }
   </style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -103,92 +108,72 @@
         <!-- Grid fixo de 3 colunas - SEMPRE lado a lado -->
         <div class="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6">
 
-            <!-- Card 1 - Mais Popular -->
-            <div class="flex flex-col items-center">
+            <!-- Card 1 - Mais Popular (link para Pelada do Belves) -->
+            <a href="#card-belves" class="flex flex-col items-center no-underline hover:no-underline cursor-pointer">
                 <div class="relative inline-block mx-auto block text-center group">
-                    <!-- Badge "Mais Popular" centralizado no topo - TAMANHO AUMENTADO NO CELULAR -->
                     <div
-                        class="absolute -top-1 sm:-top-2 lg:-top-3 left-1/2 transform -translate-x-1/2 z-10 bg-red-700 hover:bg-red-800 hover:shadow-[0_0_10px_rgba(185,28,28,0.5)] rounded-full text-[9px] sm:text-[9px] lg:text-xs text-white font-semibold px-2 sm:px-2 lg:px-3 py-1 sm:py-1 lg:py-1.5 w-max cursor-pointer transition-all duration-300 shadow-md whitespace-nowrap">
+                        class="absolute -top-1 sm:-top-2 lg:-top-3 left-1/2 transform -translate-x-1/2 z-10 bg-red-700 hover:bg-red-800 hover:shadow-[0_0_10px_rgba(185,28,28,0.5)] rounded-full text-[9px] sm:text-[9px] lg:text-xs text-white font-semibold px-2 sm:px-2 lg:px-3 py-1 sm:py-1 lg:py-1.5 w-max transition-all duration-300 shadow-md whitespace-nowrap">
                         Mais Popular
                     </div>
 
-                    <!-- Imagem com efeito hover - responsiva -->
-                    <div
-                        class="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-28 lg:h-28 rounded-full overflow-hidden bg-red-700 flex-shrink-0 mx-auto transition-transform duration-300 hover:scale-105 cursor-pointer">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-28 lg:h-28 rounded-full overflow-hidden bg-red-700 flex-shrink-0 mx-auto transition-transform duration-300 hover:scale-105">
                         <img src="img/JOGA JUNTO/volei quadra.jpeg" alt="Volei" class="w-full h-full object-cover" />
                     </div>
 
-                    <!-- Badge de membros - responsivo (tamanhos proporcionais) -->
-                    <div
-                        class="absolute -bottom-0.5 sm:-bottom-1 lg:-bottom-1.5 -right-0.5 sm:-right-1 lg:-right-1.5 z-20 bg-zinc-700/40 backdrop-blur-sm rounded-full text-center flex items-center justify-center gap-0.5 w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 shadow-md">
+                    <div class="absolute -bottom-0.5 sm:-bottom-1 lg:-bottom-1.5 -right-0.5 sm:-right-1 lg:-right-1.5 z-20 bg-zinc-700/40 backdrop-blur-sm rounded-full text-center flex items-center justify-center gap-0.5 w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 shadow-md">
                         <span class="text-[6px] sm:text-[7px] lg:text-[9px]">👥</span>
                         <span class="text-red-400 text-[7px] sm:text-[8px] lg:text-[10px] font-semibold">356</span>
                     </div>
                 </div>
 
-                <!-- Título abaixo da imagem -->
                 <div class="text-center mt-1 sm:mt-2 lg:mt-3">
                     <h3 class="text-white font-semibold text-[10px] sm:text-xs lg:text-base">Pelada do Belves</h3>
                 </div>
-            </div>
+            </a>
 
-            <!-- Card 2 - Mais Ativa -->
-            <div class="flex flex-col items-center">
+            <!-- Card 2 - Mais Ativa (link para Futebol da Seleção) -->
+            <a href="#card-selecao" class="flex flex-col items-center no-underline hover:no-underline cursor-pointer">
                 <div class="relative inline-block mx-auto block text-center group">
-                    <!-- Badge "Mais Ativa" centralizado no topo - TAMANHO AUMENTADO NO CELULAR -->
-                    <div
-                        class="absolute -top-1 sm:-top-2 lg:-top-3 left-1/2 transform -translate-x-1/2 z-10 bg-green-700 hover:bg-green-800 hover:shadow-[0_0_10px_rgba(34,197,94,0.5)] rounded-full text-[9px] sm:text-[9px] lg:text-xs text-white font-semibold px-2 sm:px-2 lg:px-3 py-1 sm:py-1 lg:py-1.5 w-max cursor-pointer transition-all duration-300 shadow-md whitespace-nowrap">
+                    <div class="absolute -top-1 sm:-top-2 lg:-top-3 left-1/2 transform -translate-x-1/2 z-10 bg-green-700 hover:bg-green-800 hover:shadow-[0_0_10px_rgba(34,197,94,0.5)] rounded-full text-[9px] sm:text-[9px] lg:text-xs text-white font-semibold px-2 sm:px-2 lg:px-3 py-1 sm:py-1 lg:py-1.5 w-max transition-all duration-300 shadow-md whitespace-nowrap">
                         Mais Ativa
                     </div>
 
-                    <!-- Imagem com efeito hover - responsiva -->
-                    <div
-                        class="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-28 lg:h-28 rounded-full overflow-hidden bg-green-700 flex-shrink-0 mx-auto transition-transform duration-300 hover:scale-105 cursor-pointer">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-28 lg:h-28 rounded-full overflow-hidden bg-green-700 flex-shrink-0 mx-auto transition-transform duration-300 hover:scale-105">
                         <img src="img/JOGA JUNTO/selecao.jpeg" alt="Futebol" class="w-full h-full object-cover" />
                     </div>
 
-                    <!-- Badge de membros - responsivo (tamanhos proporcionais) -->
-                    <div
-                        class="absolute -bottom-0.5 sm:-bottom-1 lg:-bottom-1.5 -right-0.5 sm:-right-1 lg:-right-1.5 z-20 bg-zinc-700/40 backdrop-blur-sm rounded-full text-center flex items-center justify-center gap-0.5 w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 shadow-md">
+                    <div class="absolute -bottom-0.5 sm:-bottom-1 lg:-bottom-1.5 -right-0.5 sm:-right-1 lg:-right-1.5 z-20 bg-zinc-700/40 backdrop-blur-sm rounded-full text-center flex items-center justify-center gap-0.5 w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 shadow-md">
                         <span class="text-[6px] sm:text-[7px] lg:text-[9px]">👥</span>
                         <span class="text-green-400 text-[7px] sm:text-[8px] lg:text-[10px] font-semibold">26</span>
                     </div>
                 </div>
 
-                <!-- Título abaixo da imagem -->
                 <div class="text-center mt-1 sm:mt-2 lg:mt-3">
                     <h3 class="text-white font-semibold text-[10px] sm:text-xs lg:text-base">Futebol da Seleção</h3>
                 </div>
-            </div>
+            </a>
 
-            <!-- Card 3 - Mais Recente -->
-            <div class="flex flex-col items-center">
+            <!-- Card 3 - Mais Recente (link para Volei de Areia 393) -->
+            <a href="#card-393" class="flex flex-col items-center no-underline hover:no-underline cursor-pointer">
                 <div class="relative inline-block mx-auto block text-center group">
-                    <!-- Badge "Mais Recente" centralizado no topo - TAMANHO AUMENTADO NO CELULAR -->
-                    <div
-                        class="absolute -top-1 sm:-top-2 lg:-top-3 left-1/2 transform -translate-x-1/2 z-10 bg-blue-500 hover:bg-blue-600 hover:shadow-[0_0_10px_rgba(59,130,246,0.5)] rounded-full text-[9px] sm:text-[9px] lg:text-xs text-white font-semibold px-2 sm:px-2 lg:px-3 py-1 sm:py-1 lg:py-1.5 w-max cursor-pointer transition-all duration-300 shadow-md whitespace-nowrap">
+                    <div class="absolute -top-1 sm:-top-2 lg:-top-3 left-1/2 transform -translate-x-1/2 z-10 bg-blue-500 hover:bg-blue-600 hover:shadow-[0_0_10px_rgba(59,130,246,0.5)] rounded-full text-[9px] sm:text-[9px] lg:text-xs text-white font-semibold px-2 sm:px-2 lg:px-3 py-1 sm:py-1 lg:py-1.5 w-max transition-all duration-300 shadow-md whitespace-nowrap">
                         Mais Recente
                     </div>
 
-                    <!-- Imagem com efeito hover - responsiva -->
-                    <div
-                        class="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-28 lg:h-28 rounded-full overflow-hidden bg-blue-500 flex-shrink-0 mx-auto transition-transform duration-300 hover:scale-105 cursor-pointer">
+                    <div class="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-28 lg:h-28 rounded-full overflow-hidden bg-blue-500 flex-shrink-0 mx-auto transition-transform duration-300 hover:scale-105">
                         <img src="img/JOGA JUNTO/volei areia.jpeg" alt="Volei" class="w-full h-full object-cover" />
                     </div>
 
-                    <!-- Badge de membros - responsivo (tamanhos proporcionais) -->
-                    <div
-                        class="absolute -bottom-0.5 sm:-bottom-1 lg:-bottom-1.5 -right-0.5 sm:-right-1 lg:-right-1.5 z-20 bg-zinc-700/40 backdrop-blur-sm rounded-full text-center flex items-center justify-center gap-0.5 w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 shadow-md">
+                    <div class="absolute -bottom-0.5 sm:-bottom-1 lg:-bottom-1.5 -right-0.5 sm:-right-1 lg:-right-1.5 z-20 bg-zinc-700/40 backdrop-blur-sm rounded-full text-center flex items-center justify-center gap-0.5 w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 shadow-md">
                         <span class="text-[6px] sm:text-[7px] lg:text-[9px]">👥</span>
                         <span class="text-blue-400 text-[7px] sm:text-[8px] lg:text-[10px] font-semibold">24</span>
                     </div>
                 </div>
 
-                <!-- Título abaixo da imagem -->
                 <div class="text-center mt-1 sm:mt-2 lg:mt-3">
                     <h3 class="text-white font-semibold text-[10px] sm:text-xs lg:text-base">Volei de Areia 393</h3>
                 </div>
-            </div>
+            </a>
         </div>
 
         <br>
@@ -198,7 +183,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
 
             <!-- Card 1 - Pelada do Belves -->
-            <figure
+            <figure id="card-belves"
                 class="bg-surface border border-white/10 rounded-lg pb-2 h-full flex flex-col hover:scale-[1.02] transition-transform hover:border-lime/40 transition-colors cursor-pointer overflow-hidden">
                 <div class="relative aspect-[3/1] overflow-hidden rounded-t-lg flex-shrink-0">
                     <img src="img/JOGA JUNTO/volei quadra.jpeg" alt="Volei" class="w-full h-full object-cover" />
@@ -275,7 +260,7 @@
             </figure>
 
             <!-- Card 2 - Volei de Areia 393 -->
-            <figure
+            <figure id="card-393"
                 class="bg-surface border border-white/10 rounded-lg pb-2 h-full flex flex-col hover:scale-[1.02] transition-transform hover:border-lime/40 transition-colors cursor-pointer overflow-hidden">
                 <div class="relative aspect-[3/1] overflow-hidden rounded-t-lg flex-shrink-0">
                     <img src="img/JOGA JUNTO/volei areia.jpeg" alt="Vôlei de areia"
@@ -348,7 +333,7 @@
             </figure>
 
             <!-- Card 3 - Futebol da Seleção -->
-            <figure
+            <figure id="card-selecao"
                 class="bg-surface border border-white/10 rounded-lg pb-2 h-full flex flex-col hover:scale-[1.02] transition-transform hover:border-lime/40 transition-colors cursor-pointer overflow-hidden">
                 <div class="relative aspect-[3/1] overflow-hidden rounded-t-lg flex-shrink-0">
                     <img src="img/JOGA JUNTO/selecao.jpeg" alt="Futebol" class="w-full h-full object-cover" />
@@ -476,11 +461,11 @@
                 </div>
             </figure>
 
-            <!-- Card 5 - Card de Exemplo 1 -->
+            <!-- Card 5 - Treinão da Terceira Idade -->
             <figure
                 class="bg-surface border border-white/10 rounded-lg pb-2 h-full flex flex-col hover:scale-[1.02] transition-transform hover:border-lime/40 transition-colors cursor-pointer overflow-hidden">
                 <div class="relative aspect-[3/1] overflow-hidden rounded-t-lg flex-shrink-0">
-                    <img src="img/JOGA JUNTO/MELHOR IDADE EM MOVIMENTO.png" alt="Padel da Vila"
+                    <img src="img/JOGA JUNTO/MELHOR IDADE EM MOVIMENTO.png" alt="Treinão da Terceira Idade"
                         class="w-full h-full object-cover" />
                     <div class="absolute top-0 right-0 p-1.5 sm:p-2 lg:p-3 flex flex-wrap gap-1 sm:gap-2">
                         <span
@@ -536,11 +521,12 @@
                 </div>
             </figure>
 
-            <!-- Card 6 - Card de Exemplo 2 -->
+            <!-- Card 6 - Queimada di Cria -->
             <figure
                 class="bg-surface border border-white/10 rounded-lg pb-2 h-full flex flex-col hover:scale-[1.02] transition-transform hover:border-lime/40 transition-colors cursor-pointer overflow-hidden">
                 <div class="relative aspect-[3/1] overflow-hidden rounded-t-lg flex-shrink-0">
-                    <img src="img/JOGA JUNTO/queimadadicria.jpg" alt="Comunidade" class="w-full h-full object-cover" />
+                    <img src="img/JOGA JUNTO/queimadadicria.jpg" alt="Queimada di Cria"
+                        class="w-full h-full object-cover" />
                     <div class="absolute top-0 right-0 p-1.5 sm:p-2 lg:p-3 flex flex-wrap gap-1 sm:gap-2">
                         <span
                             class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono font-semibold border border-green-500/40 text-green-500 px-2 lg:px-3 py-1 rounded-md bg-zinc-950/50 backdrop-blur-sm w-fit hover:bg-green-500/10 transition-colors cursor-pointer whitespace-nowrap">
@@ -593,7 +579,6 @@
                         class="bg-lime text-black font-semibold text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-4 lg:px-5 rounded-2xl sm:rounded-3xl transition-all hover:bg-lime-500 hover:scale-[1.05] active:scale-[0.98] cursor-pointer w-full sm:w-auto whitespace-nowrap text-center">Ver
                         comunidade</a>
                 </div>
-
             </figure>
 
         </div>
@@ -648,14 +633,12 @@
                 <ul class="flex flex-col gap-1.5 sm:gap-2 text-xs sm:text-sm text-fg/70">
                     <li><a href="index.html" class="hover:text-lime transition-colors">Home</a></li>
                     <li><a href="#" class="hover:text-lime transition-colors">Eventos</a></li>
-                    <li><a href="#" class="hover:text-lime transition-colors">Joga Junto</a></li>
+                    <li><a href="jj.html" class="hover:text-lime transition-colors">Joga Junto</a></li>
                     <li><a href="mapa.html" class="hover:text-lime transition-colors">Mapa</a></li>
                 </ul>
             </div>
         </div>
     </footer>
-    </div>
-    </main>
 
     <script src="./js/global.js"></script>
     <script src="./js/auth.js"></script>
