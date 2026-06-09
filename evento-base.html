@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
@@ -73,7 +73,7 @@
           placeholder="Pesquisar..."
           class="hidden lg:block bg-surface border border-white/10 rounded-lg text-sm text-fg placeholder-muted px-3 py-1.5 w-44 focus:outline-none focus:border-lime/50 transition-colors"
         />
-        <a href="telaPerfil.html" class="hidden md:block text-sm border border-white/20 text-fg px-3 py-1.5 rounded-lg hover:bg-surface transition-colors whitespace-nowrap">Entrar</a>
+        <a href="login.html" class="hidden md:block text-sm border border-white/20 text-fg px-3 py-1.5 rounded-lg hover:bg-surface transition-colors whitespace-nowrap">Entrar</a>
         <a href="cadastro.html" class="hidden md:block text-sm bg-lime text-zinc-900 font-semibold px-3 py-1.5 rounded-lg hover:glow-lime-sm transition-all whitespace-nowrap">Criar Conta</a>
 
         <button id="btnMenu" class="md:hidden text-fg text-xl w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-lg hover:bg-surface transition-colors" aria-label="Abrir menu">&#9776;</button>
@@ -86,7 +86,7 @@
       <a href="jj.html" class="text-fg hover:text-lime transition-colors">Joga Junto</a>
       <a href="mapa.html" class="text-fg hover:text-lime transition-colors">Mapa</a>
       <hr class="border-white/10" />
-      <a href="telaPerfil.html" class="text-muted hover:text-fg transition-colors">Login</a>
+      <a href="login.html" class="text-muted hover:text-fg transition-colors">Login</a>
       <a href="cadastro.html" class="bg-lime text-zinc-900 font-semibold px-4 py-2 rounded-lg text-center">Criar Conta</a>
     </div>
   </header>
@@ -110,10 +110,10 @@
             Desafie seus limites com percursos de 3K e 5K pelas ruas de Volta Redonda. Um evento para todos os níveis, com estrutura completa e experiência pensada para quem ama esporte.
           </p>
           <div class="mt-6 flex flex-wrap items-center gap-3">
-            <button class="bg-lime text-zinc-900 font-display text-sm px-6 py-3 rounded-xl hover:glow-lime transition-all uppercase tracking-wide w-fit inline-flex items-center gap-2">
+            <a href="checkout.html" class="bg-lime text-zinc-900 font-display text-sm px-6 py-3 rounded-xl hover:glow-lime transition-all uppercase tracking-wide w-fit inline-flex items-center gap-2">
               Inscrever-se
               <span aria-hidden="true">→</span>
-            </button>
+            </a>
             <button class="border border-white/20 text-fg px-6 py-3 rounded-xl hover:bg-white/5 transition-colors text-sm font-semibold inline-flex items-center gap-2">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 20h18"></path>
@@ -324,9 +324,9 @@
 
         <article class="bg-surface rounded-2xl border border-white/10 p-5 sm:p-6">
           <p class="text-center text-fg/80">Garanta sua vaga agora</p>
-          <button class="mt-4 w-full bg-lime text-zinc-900 font-display text-sm px-6 py-3.5 rounded-xl hover:glow-lime transition-all uppercase tracking-wide">
+          <a href="checkout.html" class="mt-4 w-full inline-flex items-center justify-center bg-lime text-zinc-900 font-display text-sm px-6 py-3.5 rounded-xl hover:glow-lime transition-all uppercase tracking-wide">
             Inscrever-se agora →
-          </button>
+          </a>
           <p class="mt-3 text-center text-sm text-muted">Pagamento 100% seguro</p>
         </article>
       </aside>
@@ -375,20 +375,20 @@
       <div>
         <h4 class="font-mono text-xs tracking-widest text-muted uppercase mb-3">Conta</h4>
         <ul class="flex flex-col gap-2 text-sm text-fg/70">
-          <li><a href="telaPerfil.html" class="hover:text-lime transition-colors">Login</a></li>
+          <li><a href="login.html" class="hover:text-lime transition-colors">Login</a></li>
           <li><a href="cadastro.html" class="hover:text-lime transition-colors">Cadastrar</a></li>
-          <li><a href="telaPerfil.html" class="hover:text-lime transition-colors">Meus Eventos</a></li>
-          <li><a href="#" class="hover:text-lime transition-colors">Ajuda</a></li>
+          <li><a href="meus-eventos.html" class="hover:text-lime transition-colors">Meus Eventos</a></li>
+          <li><a href="ajuda.html" class="hover:text-lime transition-colors">Ajuda</a></li>
         </ul>
       </div>
 
       <div>
         <h4 class="font-mono text-xs tracking-widest text-muted uppercase mb-3">+Sports</h4>
         <ul class="flex flex-col gap-2 text-sm text-fg/70">
-          <li><a href="#" class="hover:text-lime transition-colors">Sobre Nós</a></li>
-          <li><a href="#" class="hover:text-lime transition-colors">Contato</a></li>
-          <li><a href="#" class="hover:text-lime transition-colors">Política de Privacidade</a></li>
-          <li><a href="#" class="hover:text-lime transition-colors">Termos de Uso</a></li>
+          <li><a href="sobre.html" class="hover:text-lime transition-colors">Sobre Nós</a></li>
+          <li><a href="contato.html" class="hover:text-lime transition-colors">Contato</a></li>
+          <li><a href="privacidade.html" class="hover:text-lime transition-colors">Política de Privacidade</a></li>
+          <li><a href="termos.html" class="hover:text-lime transition-colors">Termos de Uso</a></li>
         </ul>
       </div>
     </div>
@@ -429,3 +429,4 @@
   <script src="./js/auth.js"></script>
 </body>
 </html>
+
