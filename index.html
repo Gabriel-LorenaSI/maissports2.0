@@ -57,6 +57,15 @@
       .slide.active {
         display: block;
       }
+      html[data-theme="light"] .slide .theme-hero-scrim {
+        opacity: 1 !important;
+        background: linear-gradient(
+          to top,
+          rgba(24, 27, 24, 0.76) 0%,
+          rgba(35, 39, 34, 0.46) 46%,
+          rgba(35, 39, 34, 0.08) 100%
+        ) !important;
+      }
 
       /* ── Mapas Leaflet · alturas fixas ──────────────────────── */
       #mini-map-aside {
@@ -320,7 +329,7 @@
             class="theme-image-media w-full h-full object-cover opacity-60"
           />
           <div
-            class="theme-image-scrim absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"
+            class="theme-image-scrim theme-hero-scrim absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"
           ></div>
         </div>
         <div class="slide absolute inset-0">
@@ -330,7 +339,7 @@
             class="theme-image-media w-full h-full object-cover opacity-60"
           />
           <div
-            class="theme-image-scrim absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"
+            class="theme-image-scrim theme-hero-scrim absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"
           ></div>
         </div>
         <div class="slide absolute inset-0">
@@ -340,7 +349,7 @@
             class="theme-image-media w-full h-full object-cover opacity-60"
           />
           <div
-            class="theme-image-scrim absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"
+            class="theme-image-scrim theme-hero-scrim absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"
           ></div>
         </div>
         <div class="slide absolute inset-0">
@@ -350,7 +359,7 @@
             class="theme-image-media w-full h-full object-cover opacity-60"
           />
           <div
-            class="theme-image-scrim absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"
+            class="theme-image-scrim theme-hero-scrim absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"
           ></div>
         </div>
 
