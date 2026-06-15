@@ -10,10 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const calGrid = document.getElementById('calendario-grid');
   if (calGrid) {
     let html = '';
-    // Abril 2026 começa na quarta-feira (índice 3)
-    for (let i = 0; i < 3; i++) html += '<span></span>';
+    // Junho 2026 começa na segunda-feira (índice 1)
+    for (let i = 0; i < 1; i++) html += '<span></span>';
     for (let d = 1; d <= 30; d++) {
-      const isEvent = d === 12 || d === 21 || d === 26;
+      const isEvent = d === 21 || d === 28;
       if (isEvent) {
         html += `<span class="flex items-center justify-center h-6 rounded-md bg-zinc-800 text-lime font-bold font-mono text-[10px] cursor-pointer hover:bg-lime hover:text-zinc-900 transition-colors">${d}</span>`;
       } else {
@@ -27,25 +27,32 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── 2. SLIDESHOW DO HERO BANNER ───────────────────────────
   const heroData = [
     {
-      titulo: 'Corrida do Guerreiro',
-      sub:    '21 de Abril · Volta Redonda, RJ · 3K e 5K',
+      titulo: '2ª Corrida do Clube Comercial',
+      sub:    '16 de Agosto · Volta Redonda, RJ · 5K',
       badge:  'INSCRIÇÕES ABERTAS',
       aberta: true,
-      data:   new Date('2026-04-21T06:00:00'),
+      data:   new Date('2026-08-16T07:30:00'),
     },
     {
-      titulo: '2ª Meia Maratona do Aço',
-      sub:    '12 de Abril · Volta Redonda, RJ · 21K',
-      badge:  'INSCRIÇÕES ENCERRADAS',
-      aberta: false,
-      data:   new Date('2026-04-12T06:00:00'),
-    },
-    {
-      titulo: 'Nutri Day Run',
-      sub:    '03 de Maio · Bananal/SP · 5K',
+      titulo: 'Boltz Run 5K',
+      sub:    '21 de Junho · Barra do Piraí, RJ · 5K',
       badge:  'INSCRIÇÕES ABERTAS',
       aberta: true,
-      data:   new Date('2026-05-03T07:00:00'),
+      data:   new Date('2026-06-21T07:30:00'),
+    },
+    {
+      titulo: 'Royal Night Run Resende',
+      sub:    '08 de Agosto · Resende, RJ · 5K',
+      badge:  'INSCRIÇÕES ABERTAS',
+      aberta: true,
+      data:   new Date('2026-08-08T19:30:00'),
+    },
+    {
+      titulo: 'Corrida do Malte',
+      sub:    '10 de Outubro · Bananal, SP · 5K',
+      badge:  'INSCRIÇÕES ABERTAS',
+      aberta: true,
+      data:   new Date('2026-10-10T19:00:00'),
     },
   ];
 
