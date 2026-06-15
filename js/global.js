@@ -111,6 +111,18 @@
         background-color: rgba(20, 23, 18, 0.07) !important;
       }
 
+      html[data-theme="light"] .theme-image-media {
+        opacity: 1 !important;
+      }
+
+      html[data-theme="light"] .theme-image-scrim {
+        opacity: 0.16 !important;
+      }
+
+      html[data-theme="light"] .theme-card-edge-scrim {
+        opacity: 0.08 !important;
+      }
+
       html[data-theme="light"] .input-field,
       html[data-theme="light"] .select-field {
         background: #ffffff !important;
@@ -289,7 +301,9 @@
   };
 
   const ensureThemeToggle = () => {
-    const headers = document.querySelectorAll('header');
+    const headers = Array.from(document.querySelectorAll('header')).filter(header =>
+      header.querySelector('nav') || header.querySelector('#btnMenu') || header.querySelector('img[alt="+Sports"]')
+    );
 
     if (!headers.length) {
       if (document.querySelector('[data-theme-toggle]')) return;
