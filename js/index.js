@@ -10,12 +10,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const calGrid = document.getElementById('calendario-grid');
   if (calGrid) {
     let html = '';
+    const eventDays = [21, 28];
+    const pastEventDays = [7, 14, 6, 19, 20, 13];
+
     // Junho 2026 começa na segunda-feira (índice 1)
     for (let i = 0; i < 1; i++) html += '<span></span>';
     for (let d = 1; d <= 30; d++) {
-      const isEvent = d === 21 || d === 28;
+      const isEvent = eventDays.includes(d);
+      const isPastEvent = pastEventDays.includes(d);
       if (isEvent) {
         html += `<span class="flex items-center justify-center h-6 rounded-md bg-zinc-800 text-lime font-bold font-mono text-[10px] cursor-pointer hover:bg-lime hover:text-zinc-900 transition-colors">${d}</span>`;
+      } else if (isPastEvent) {
+        html += `<span class="flex items-center justify-center h-6 rounded-md bg-zinc-800 text-white/80 font-semibold font-mono text-[10px] cursor-pointer hover:bg-lime hover:text-zinc-900 transition-colors">${d}</span>`;
       } else {
         html += `<span class="flex items-center justify-center h-6 rounded-md text-muted font-mono text-[10px] hover:bg-secondary cursor-pointer transition-colors">${d}</span>`;
       }
